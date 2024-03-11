@@ -1,0 +1,35 @@
+# Node.js
+node_modules/
+.env  
+
+# Build output (if applicable)
+build/
+dist/
+out/
+
+# Testing frameworks (choose the ones you use)
+jest/  
+ava/   
+
+# Documentation
+coverage/
+
+# IDE and editor specific files
+.idea/  
+.vscode/ 
+
+# Temporary files
+.tmp/
+
+# Logs
+logs/
+
+# NPM lock files (consider using package-lock.json instead)
+npm-lock.json
+
+*.tsbuildinfo
+*.js.map  
+
+# OS specific
+Thumbs.db  
+.DS_Store  
