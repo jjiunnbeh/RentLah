@@ -2,6 +2,14 @@ import { useState } from "react";
 import "../styles/LoginForm.css";
 
 function LoginForm({user}) {
+    const [hide, setHide] = useState(true);
+
+    function handleClickHide(event)
+    {
+        event.preventDefault();
+        setHide(!hide);
+    }
+
 
  
     return (
@@ -14,7 +22,7 @@ function LoginForm({user}) {
           </label>
           <div className="col-sm-10">
             <input
-              type="username"
+              type="text"
               className="form-control"
               id="inputUserName3"
               placeholder="Username"
@@ -27,10 +35,10 @@ function LoginForm({user}) {
             Password
           </label>
           <div className="col-sm-10">
-            <input type="password" className="form-control" id="inputPassword3" placeholder="Password" required/>
+            <input type={hide ? "password" :"text"} className="form-control" id="inputPassword3" placeholder="Password" required />
+            <button className="btn" onClick={handleClickHide} >{hide? "🙊" : "🙈"}</button>
           </div>
         </div>
-
         <button type="submit" className="btn btn-primary">
           Login as {user}
         </button>
