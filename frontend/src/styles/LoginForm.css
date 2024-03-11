@@ -1,5 +1,13 @@
+div.form
+{
+    display: flexbox;
+    top:-15%;
+    position: absolute;
+    bottom:50%
+}
 form
 {
+    position:relative;
     background-color: aqua;
     border-radius: 3px;
 }
@@ -13,4 +21,8 @@ form label
 {
     margin-left: 12px;
     font-weight: 500;;
+}
+#monkey-emoji
+{
+    font-size: x-large;
 }

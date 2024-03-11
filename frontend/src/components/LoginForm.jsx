@@ -14,7 +14,7 @@ function LoginForm({user}) {
  
     return (
     
-    <div>
+    <div className="form">
       <form name={user} >
         <div className="row mb-3 .bg-primary">
           <label htmlFor="inputUserName3" className="col-sm-2 col-form-label ">
@@ -36,7 +36,7 @@ function LoginForm({user}) {
           </label>
           <div className="col-sm-10">
             <input type={hide ? "password" :"text"} className="form-control" id="inputPassword3" placeholder="Password" required />
-            <button className="btn" onClick={handleClickHide} >{hide? "🙊" : "🙈"}</button>
+            <button className="btn" onClick={handleClickHide} id="monkey-emoji">{hide? "🙈" : "🙊"}</button>
           </div>
         </div>
         <button type="submit" className="btn btn-primary">
