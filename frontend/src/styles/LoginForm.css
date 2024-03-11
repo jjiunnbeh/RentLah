@@ -1,0 +1,16 @@
+form
+{
+    background-color: aqua;
+    border-radius: 3px;
+}
+form button
+{
+    position: relative;
+    margin: 10px 10px 10px 10px;
+    
+}
+form label
+{
+    margin-left: 12px;
+    font-weight: 500;;
+}
