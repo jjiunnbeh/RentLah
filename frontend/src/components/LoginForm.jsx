@@ -32,7 +32,7 @@ function LoginForm({user}) {
         </div>
 
         <button type="submit" className="btn btn-primary">
-          Sign in as {user}
+          Login as {user}
         </button>
       </form>
     </div>
