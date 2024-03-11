@@ -1,0 +1,12 @@
+div
+{
+    align-items: left;
+    width:480px;
+    margin-top:20%;
+    margin-left:3%;
+}
+
+div a , div p
+{
+    text-align: center;
+}
