@@ -1,6 +1,11 @@
 import { useState } from 'react'
-import LandingForm from './LandingForm'
+import LoginChoice from './LoginChoice'
+import RegisterChoice from './RegisterChoice';
 import Footer from './Footer'
+
+import React from "react";
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+
 
 import '../styles/App.css'
 
@@ -8,10 +13,19 @@ function App() {
 
   return (
 
-<>
-<LandingForm/>
-<Footer />
-</>
+<Router>
+<Routes>
+ <Route path="/" element={<LoginChoice  />}/>
+ <Route path="/RegisterChoice" element={<RegisterChoice  />}/>
+
+
+</Routes>
+<Footer/>
+</Router>
+
+
+
+
   
 
   )
