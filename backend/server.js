@@ -20,9 +20,8 @@ app.use(bodyParser.json());
   // Login Endpoint
   app.post('/loginSubmit', async (req, res) => {
     try {
-        const username = req.body.username;
-        const password = req.body.password;
-      const {message}= await login(username, password); // Pass request body and (optional) users data
+      const {username, password, user} = req.body;
+      const {message}= await login(username, password, user); // Pass request body and (optional) users data
       res.json( {message : {message}} );
     } catch (error) {
       console.error(error);

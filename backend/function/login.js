@@ -4,7 +4,7 @@
 let loginAttempts = 0;
 let accountLocked = false;
 
-export default function login(username, password) {
+export default function login(username, password, user) {
 
     if (accountLocked) {
       console.log("Account is locked. Please try again later.");
@@ -16,12 +16,14 @@ export default function login(username, password) {
       { username: "user2", password: "password2" },
     ];
   
-    const user = users.find(
+    const userfound = users.find(
       (u) => u.username === username && u.password === password
     );
   
-    if (user) {
-      console.log("Login successful. Redirecting to homepage.");
+    if (userfound) {
+      console.log(`Login successful. Redirecting to homepage. This is a ${user} signing in`);
+      //Check which type of user is signing in
+      {String(user) === "Customer" ?console.log("This is a customer") : console.log("This is an agent")}
       return { message: "Login Sucessful!" };
       // Insert redirect to homepage
     } else {
