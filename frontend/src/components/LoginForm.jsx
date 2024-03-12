@@ -29,10 +29,10 @@ function LoginForm({ user }) {
     event.preventDefault();
     try {
       const response = await loginService(data);
-      // Handle successful login based on the server's response (e.g., redirect, display success message)
+      // Handle successful login based on the server's response 
       console.log(response.data);
     } catch (error) {
-      // Handle login errors (e.g., display error message)
+      // Handle login errors 
       console.error("Login failed:", error);
     }
   };
