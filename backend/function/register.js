@@ -20,7 +20,7 @@ async function register(username, password, userType) {
         const database = client.db('sample_airbnb');
         const usersCollection = database.collection('users');
 
-        // Check for existing username (optional):
+        // check for existing username
         const existingUser = await usersCollection.findOne({ username });
         if (existingUser) {
             throw new Error('Username already exists');
@@ -44,13 +44,13 @@ async function register(username, password, userType) {
         console.log(`New user created with ID: ${result.insertedId}`);
     } catch (error) {
         console.error('Error registering user:', error.message);
-        // Handle errors appropriately (e.g., send error response to user)
+        // handle errors appropriately (e.g., send error to user)
     } finally {
-        await client.close(); // Close the database connection
+        await client.close();
     }
 }
 
-async function connectToDatabase() {
+async function connectToDatabase() { //preferably mongoDB
     /**
      * Connection URI. Replace placeholders with your actual credentials.
      * Refer to https://docs.mongodb.com/ecosystem/drivers/node/ for details.
