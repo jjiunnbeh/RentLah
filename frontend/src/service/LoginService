@@ -13,4 +13,4 @@ const loginService = async (data) => {
 
 
 
-export { loginService, forgetPassword }; // Export both services
+export { loginService }; // Export both services
