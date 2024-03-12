@@ -1,0 +1,16 @@
+import axios from 'axios';
+
+const BASE_URL = 'http://localhost:3000'; 
+
+const loginService = async (data) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/loginSubmit`, data);
+    return response.data; // Return the server's response data
+  } catch (error) {
+    throw error; // Re-throw the error for handling in the LoginForm component
+  }
+};
+
+
+
+export { loginService, forgetPassword }; // Export both services
