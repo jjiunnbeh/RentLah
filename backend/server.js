@@ -22,12 +22,24 @@ app.use(bodyParser.json());
     try {
       const {username, password, user} = req.body;
       const {message}= await login(username, password, user); // Pass request body and (optional) users data
-      res.json( {message : {message}} );
+      res.json(message);
     } catch (error) {
       console.error(error);
-      res.status(500).send({ message: 'Internal server error' });
+      res.sendStatus(500).send({ message: 'Internal server error' });
     }
   });
+  app.post('/registerSubmit', async(req, res)=>{
+    try{
+    const {username, email, phoneNumber, password, user} = req.body;
+    const {message} = await register(username, email, phoneNumber, password, user);
+    res.json(message);
+    }
+    catch(error)
+    {
+        console.error(error);
+        res.status(500).send({ message: 'Internal server error' });
+    }
+  })
 
 
 app.get('/api/users', (req, res) => {
