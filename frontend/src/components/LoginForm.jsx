@@ -30,7 +30,7 @@ function LoginForm({ user }) {
     try {
       const response = await loginService(data);
       // Handle successful login based on the server's response 
-      console.log(response.data);
+      console.log(response);
     } catch (error) {
       // Handle login errors 
       console.error("Login failed:", error);

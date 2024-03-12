@@ -22,8 +22,8 @@ app.use(bodyParser.json());
     try {
         const username = req.body.username;
         const password = req.body.password;
-      const res = await login(username, password); // Pass request body and (optional) users data
-      res.status(200).send({ message });
+      const {message}= await login(username, password); // Pass request body and (optional) users data
+      res.json( {message : {message}} );
     } catch (error) {
       console.error(error);
       res.status(500).send({ message: 'Internal server error' });
