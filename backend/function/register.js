@@ -6,6 +6,11 @@ const typeOfUsers = [
     { user: 'Customer' }
 ];
 
+function isPasswordStrong(password) {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Example regular expression
+    return regex.test(password);
+}
+
 async function register(username, password, userType) {
     console.log("Welcome to the register page!");
 
@@ -14,7 +19,15 @@ async function register(username, password, userType) {
         throw new Error('Missing required fields: username, password, and userType');
     }
 
-    const client = await connectToDatabase(); // connect to MongoDB 
+    // check password validation
+    if (password.length < 10) {
+        console.log("Password length must be greater than 10");
+    }
+    if (!isPasswordStrong(password)) {
+        console.log("Password must contain at least 1 upper Case letter, 1 special symbol and normal case letter");
+    }
+    // connect to database (MongoDB)
+    const client = await connectToDatabase();
 
     try {
         const database = client.db('sample_airbnb');
