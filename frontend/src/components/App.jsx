@@ -21,6 +21,8 @@ function App() {
  <Route path="/login=Customer" element={<LoginForm user="Customer"/>}/>
  <Route path="/login=Agent" element={<LoginForm user="Agent"/>}/>
 
+ <Route path="/Home" />
+
 
 </Routes>
 <Footer/>

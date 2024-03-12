@@ -24,5 +24,11 @@ form label
 }
 #monkey-emoji
 {
+    margin-left: 88%;
     font-size: x-large;
+    margin-top:-10%;
+}
+a
+{
+    display:inline;
 }

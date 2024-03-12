@@ -11,6 +11,17 @@ const loginService = async (data) => {
   }
 };
 
+const registerService = async (data) =>{
+  try{
+    const response = await axios.post(`${BASE_URL}/register`, data);
+    return response.data;
+  }catch (error)
+  {
+    throw error;
+  }
+};
 
 
-export { loginService }; // Export both services
+
+
+export { loginService, registerService }; // Export both services

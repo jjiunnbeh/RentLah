@@ -70,10 +70,12 @@ function LoginForm({ user }) {
               onChange={handleChange}
               name="password"
             />
+            <a href="">Forget Password</a>
             <button className="btn" onClick={handleClickHide} id="monkey-emoji" onKeyDown={(event)=>{return false}}>
               {hide ? "🙈" : "🙊"}
             </button>
           </div>
+
         </div>
         <button type="submit" className="btn btn-primary">
           Login as {user}
