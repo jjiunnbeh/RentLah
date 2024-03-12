@@ -29,13 +29,14 @@ export default function login(username, password) {
       loginAttempts++;
       if (loginAttempts >= 5) {
         accountLocked = true;
-        console.log("Too many login attempts. Account locked for 30 minutes.");
-        
+        console.log("Too many login attempts. Account locked for 30 minutes.");    
+
         setTimeout(() => {
           accountLocked = false;
           loginAttempts = 0;
           console.log("Account unlocked. You can now attempt to login again.");
         }, 30 * 60 * 1000);
+        return { message: "Account locked due to too many failed attempts" };
         
       } else {
         console.log("Invalid login. Please check your username and password.");
