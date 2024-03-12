@@ -13,7 +13,7 @@ const loginService = async (data) => {
 
 const registerService = async (data) =>{
   try{
-    const response = await axios.post(`${BASE_URL}/register`, data);
+    const response = await axios.post(`${BASE_URL}/registerSubmit`, data);
     return response.data;
   }catch (error)
   {
