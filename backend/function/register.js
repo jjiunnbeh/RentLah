@@ -1,5 +1,5 @@
-const { MongoClient } = require('mongodb');
-const bcrypt = require('bcrypt'); // password hashing
+import { MongoClient } from 'mongodb';
+import bcrypt from 'bcrypt';
 
 const typeOfUsers = [
     { user: 'Agent' },
