@@ -75,7 +75,7 @@ export default function login(username, password, user) {
     if (user.password === password) {
       console.log(`Login successful for ${userType} ${username}`);
       // return { auth: "Successful", user };
-      return {message: "Sucessful"};
+      return {message: "Successful"};
     } else {
       // Track and limit login attempts
       user.loginAttempts++;

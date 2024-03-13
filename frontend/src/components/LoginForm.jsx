@@ -4,19 +4,23 @@ import Axios from "axios";
 import {loginService} from "../service/LoginService"
 
 
-function LoginForm({ user }) {
+function LoginForm({ user }) 
+{
   const [hide, setHide] = useState(true);
   const [data, setData] = useState({
     username: "",
     password: "",
     user
-  });
+});
 
-  function handleClickHide(event) {
+  function handleClickHide(event) 
+  {
     event.preventDefault();
     setHide(!hide);
   }
-  function handleChange(event) {
+
+  function handleChange(event) 
+  {
     const { name, value } = event.target;
 
     setData((prevData) => ({
@@ -25,7 +29,8 @@ function LoginForm({ user }) {
     }));
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event) => 
+  {
     event.preventDefault();
     try {
       const response = await loginService(data);
@@ -50,9 +55,10 @@ function LoginForm({ user }) {
               className="form-control"
               id="inputUserName3"
               placeholder="Username"
-              required
               onChange={handleChange}
               name="username"
+              onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
+              required
             />
           </div>
         </div>
@@ -66,18 +72,38 @@ function LoginForm({ user }) {
               className="form-control"
               id="inputPassword3"
               placeholder="Password"
-              required
               onChange={handleChange}
               name="password"
+              onKeyDown= {
+                (event)=>
+                {
+                  if ((event.key) === "Enter")
+                  {
+                    event.preventDefault();
+                    {(data.username != "" && data.password != "") ? (handleSubmit(event)) : alert("Username and Password field cannot be empty!")}
+                  }
+                  else if (event.key === ' ')
+                  {
+                    event.preventDefault();
+                  }
+                }
+              }
+              required
+              
+
             />
-            <a href="">Forget Password</a>
-            <button className="btn" onClick={handleClickHide} id="monkey-emoji" onKeyDown={(event)=>{return false}}>
+            </div>
+            <div>
+            <a href="" >Forget Password</a>
+            </div>
+            <div>
+            <button className="btn" onClick={handleClickHide} id="monkey-emoji" >
               {hide ? "🙈" : "🙊"}
             </button>
           </div>
 
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" >
           Login as {user}
         </button>
       </form>
