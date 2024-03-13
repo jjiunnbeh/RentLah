@@ -43,13 +43,13 @@ function LoginForm({ user })
   };
 
   return (
-    <div className="form">
+    <div className="formcontainer">
       <form name={user} onSubmit={handleSubmit}>
-        <div className="row mb-3 .bg-primary">
-          <label htmlFor="inputUserName3" className="col-sm-2 col-form-label ">
+        <div className="row mb-4 .bg-primary">
+          <label htmlFor="inputUserName3" className="col-sm-8 col-form-label ">
             Username
           </label>
-          <div className="col-sm-10">
+          <div className="col-sm-8">
             <input
               type="text"
               className="form-control"
@@ -63,10 +63,10 @@ function LoginForm({ user })
           </div>
         </div>
         <div className="row mb-3">
-          <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">
+          <label htmlFor="inputPassword3" className="col-sm-8 col-form-label">
             Password
           </label>
-          <div className="col-sm-10">
+          <div className="col-sm-8">
             <input
               type={hide ? "password" : "text"}
               className="form-control"
@@ -94,7 +94,7 @@ function LoginForm({ user })
             />
             </div>
             <div>
-            <a href="" >Forget Password</a>
+            <a className="fgetPass" href="" >Forget Password</a>
             </div>
             <div>
             <button className="btn" onClick={handleClickHide} id="monkey-emoji" >

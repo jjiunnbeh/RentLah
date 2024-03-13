@@ -1,12 +1,19 @@
-div
+div.d-grid.gap-5
 {
     align-items: left;
     width:480px;
-    margin-top:20%;
-    margin-left:3%;
+    margin-top:25%;
+    margin-left:5%;
+    width:40%;
+}
+div.d-grid.gap-5 button.btn-primary
+{
+    height:130%;
 }
 
-div a , div p
+a.Choice
 {
     text-align: center;
 }
+
+

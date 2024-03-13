@@ -8,10 +8,10 @@ function RegisterChoice()
 
     
     return (
-        <div className="d-grid gap-2">
+    <div className="d-grid gap-5 ">
   <button onClick={()=>{console.log("Reg as Customer")}}className="btn btn-primary" type="button">Register as Customer</button>
   <button onClick={()=>{console.log("Reg as Agent")}}className="btn btn-primary" type="button">Register as Agent</button>
-  <a onClick={()=>{console.log("LoginChoice")}} href="/">Have account? Login Here</a>
+  <a className="Choice" onClick={()=>{console.log("LoginChoice")}} href="/">Have account? Login Here</a>
         </div>
     )
 }

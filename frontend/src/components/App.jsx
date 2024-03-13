@@ -6,11 +6,12 @@ import React from "react";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import '../styles/App.css'
 import LoginForm from './LoginForm';
+import Home from "../pages/Home";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
   
-
 
 
   return (
@@ -20,8 +21,7 @@ function App() {
  <Route path="/RegisterChoice" element={<RegisterChoice />}/>
  <Route path="/login=Customer" element={<LoginForm user="Customer"/>}/>
  <Route path="/login=Agent" element={<LoginForm user="Agent"/>}/>
-
- <Route path="/Home" />
+ <Route path="/Home" element={<Home />}/>
 
 
 </Routes>

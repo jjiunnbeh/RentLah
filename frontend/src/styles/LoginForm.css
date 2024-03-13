@@ -1,4 +1,4 @@
-div.form
+/* div.form
 {
     display: flexbox;
     top:-15%;
@@ -31,4 +31,52 @@ form label
 a
 {
     display:inline;
+} */
+
+
+div.formcontainer
+{
+    display:flexbox;
+    justify-content: center;
+    background-color: black;
+    margin-top:10%;
+    margin-right:50%;
+    margin-left:10%;
+    border-radius: 10px;
+    
 }
+div.formcontainer > form
+{
+    background-color: rgb(221, 107, 107);
+    padding:5%;
+    border-radius: 10px;
+}
+div.formcontainer > form label.col-sm-8.col-form-label
+{
+    height: 50px;
+    font-size: 25px;
+}
+input#inputPassword3.form-control
+{
+    margin-bottom:20px;
+
+}
+a.fgetPass
+{
+    padding-left:1%;
+    display:inline;
+    font-size: 25px;
+    
+}
+#monkey-emoji
+{
+    display: inline;
+    position: relative;
+    margin-left: 55%;
+    margin-top:-10%;
+    background-color:rgb(63, 250, 250);
+}
+
+
+
+

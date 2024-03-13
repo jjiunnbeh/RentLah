@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 
-function LoginChoice(LoginChoiceProps)
+function LoginChoice()
 {
     function handleClick(event)
     {
@@ -12,10 +12,10 @@ function LoginChoice(LoginChoiceProps)
 
     
     return (
-        <div className="d-grid gap-2">
+        <div className="d-grid gap-5">
   <button onClick={handleClick} name="Customer" className="btn btn-primary" type="button">Login as Customer</button>
   <button onClick={handleClick} name="Agent" className="btn btn-primary" type="button">Login as Agent</button>
-  <a onClick={()=>{console.log("Register")}} href="/RegisterChoice">Register Here</a>
+  <a className="Choice" onClick={()=>{console.log("Register")}} href="/RegisterChoice">Register Here</a>
         </div>
     )
 }
