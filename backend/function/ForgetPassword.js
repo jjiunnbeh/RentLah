@@ -90,6 +90,6 @@ function generateRandomToken() {
 }
 
 // Example usage:
-forgetPassword('user@example.com')
+/* forgetPassword('user@example.com')
     .then(() => console.log('Forget password process completed successfully'))
     .catch(error => console.error('Forget password process failed:', error.message));
