@@ -1,12 +1,18 @@
 import { useState } from "react";
 import "../styles/LoginForm.css";
 import Axios from "axios";
-import {loginService} from "../service/LoginService"
-import {$} from "jquery";
-
+import {loginService} from "../service/LoginService";
+import useSignIn from 'react-auth-kit/hooks/useSignIn';
+import { Link } from "react-router-dom";
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
 
 function LoginForm({ user }) 
 {
+  const signIn = useSignIn();
+  const isAuthenticated = useIsAuthenticated()
+
+
+
   const [hide, setHide] = useState(true);
   const [data, setData] = useState({
     username: "",
@@ -38,16 +44,42 @@ const [errorMessage,setErrorMessage] = useState("");
       const response = await loginService(data);
       // Handle successful login based on the server's response 
       console.log(response.message);
-      if (response.token === "fail")
+      if (!response.token)
       {
         setErrorMessage(response.message);
       }
+      else
+      {
+        setErrorMessage('');
+        if (signIn({
+          auth: {
+            token: response.token,
+            type: 'Bearer'
+          },
+          userState: response.userType
+        })) {
+          // Successful login using react-auth-kit
+          if (isAuthenticated)
+          {
+            window.location.href = '/';
+
+          }
+
+
+
+        }
+
+
+      }
+      console.log(response.token);
+
+
 
       
       console.log(response);
     } catch (error) {
       // Handle login errors 
-      console.error("Login failed:", error);
+      
     }
   };
 

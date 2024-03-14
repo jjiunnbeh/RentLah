@@ -21,14 +21,14 @@ const Agents = [
     if (!user) {
       console.log("Invalid username or password.");
       // return { auth: "Unsuccessful", user: userType };
-      return {message: "Invalid username or password. Please try again later.", userType: userType, token:"fail"};
+      return {message: "Invalid username or password. Please try again later.", userType: userType};
     }
   
     // 3. Check account lock status
     if (user.accountLocked) {
       console.log("Account is locked. Please try again later.");
       // return { auth: "Unsuccessful", user: user.userType };
-      return {message:"Account is locked.", userType: userType, token:"fail"};
+      return {message:"Account is locked.", userType: userType};
     }
   
     // 4. Check password and handle login attempts
@@ -37,7 +37,7 @@ const Agents = [
       //JWT token
       const jwtToken = jwt.sign(
         { id: user.username, email: user.email , type:userType},
-        process.env.JWT_SECRET
+        process.env.JWT_SECRET,{expiresIn:"1h"}
       );
       console.log(jwtToken);
       return { message: "Successful", userType: userType, token: jwtToken };
@@ -61,7 +61,7 @@ const Agents = [
   
     // Login failed (wrong password or locked account)
     // return { auth: "Unsuccessful", user: user.userType };
-    return {message: "Invalid username or password. Please try again later.", userType: userType, token:"fail"};
+    return {message: "Invalid username or password. Please try again later.", userType: userType};
   }
   
 

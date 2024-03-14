@@ -19,8 +19,9 @@ app.use(bodyParser.json());
   app.post('/loginSubmit', async (req, res) => {
     try {
       const {username, password, user} = req.body;
-      const {message, userType, token} = await login(username, password, user); // Pass request body and (optional) users data\
-      res.json({message,userType,token});
+      const response = await login(username, password, user); // Pass request body and (optional) users data\
+      res.json(response);
+      
 
     } catch (error) {
       console.error(error);
