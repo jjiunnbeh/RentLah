@@ -1,9 +1,9 @@
 import { MongoClient } from 'mongodb';
 import bcrypt from 'bcrypt';
-import nodemailer from 'nodemailer'; // Assuming you use Nodemailer for sending emails
+import nodemailer from 'nodemailer'; // can use nodemailer for sending emails
 
 // MongoDB connection URI
-const uri = "mongodb://localhost:27017";
+const uri = "mongodb://localhost:27017"; // not sure of how to connect to Mongo rn
 const client = new MongoClient(uri);
 
 // Connect to MongoDB
@@ -17,28 +17,27 @@ async function connectToDatabase() {
     }
 }
 
-// Function to handle forget password use case
+// main function
 async function forgetPassword(email) {
     try {
         // Connect to the database
         await connectToDatabase();
 
         // 1. Check if the email exists in the database
-        const user = await client.db("sample_airbnb").collection("users").findOne({ email });
+        const user = await client.db("sample_airbnb").collection("users").findOne({ email }); // database:: sample_airbnb, same as login.js
 
         // 2. Handle non-existent email
         if (!user) {
             throw new Error('Email not found');
         }
 
-        // 3. Generate and send reset password link to the user's email
+        // 3. Generate and send reset password link
         const resetLink = generateResetPasswordLink(user);
         await sendResetPasswordEmail(email, resetLink);
 
         console.log(`Reset password link sent to ${email}: ${resetLink}`);
 
-        // 4. Optionally, update the database to mark that a reset link was sent
-        // This could involve updating a field in the user document indicating that a reset link was sent
+        // 4. optional: can update database to show link sent
         await client.db("sample_airbnb").collection("users").updateOne(
             { email },
             { $set: { resetLinkSent: true } }
@@ -54,9 +53,8 @@ async function forgetPassword(email) {
 
 // Function to generate reset password link
 function generateResetPasswordLink(user) {
-    // Generate a unique reset password link, such as a token or a unique URL
-    // For simplicity, let's assume it's just a random token
-    const resetToken = generateRandomToken();
+    // Generate a unique reset password link
+    const resetToken = generateRandomToken(); // random generation
     const resetLink = `https://example.com/reset-password?token=${resetToken}`;
     return resetLink;
 }
@@ -67,18 +65,17 @@ async function sendResetPasswordEmail(email, resetLink) {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'your-email@gmail.com',
+            user: 'your-email@gmail.com', // need to create dummy email for this
             pass: 'your-email-password'
         }
     });
 
     // Define email options
     let mailOptions = {
-        from: 'your-email@gmail.com',
+        from: 'your-email@gmail.com', // better to use dummy, can use env variables
         to: email,
         subject: 'Reset Your Password',
-        text: `Dear user, 
-            You have requested to reset your password. Please click the following link to reset your password:
+        text: ` Please click the following link to reset your password:
             ${resetLink}`
     };
 
@@ -87,7 +84,7 @@ async function sendResetPasswordEmail(email, resetLink) {
     console.log("Reset password email sent successfully");
 }
 
-// Function to generate random token (for simplicity)
+// Function to generate random token
 function generateRandomToken() {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 }
