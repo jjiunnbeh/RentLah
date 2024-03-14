@@ -18,6 +18,7 @@ const PropertyListings = ({ listings }) => {
     );
 };
 
+
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState('');
 
