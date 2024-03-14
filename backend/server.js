@@ -7,6 +7,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import login from './function/login.js'
 
+import propertyListingsRouter from './function/propertyListings.js'; // Import the property listings router
 
 dotenv.config();
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -42,6 +43,9 @@ app.use(bodyParser.json());
         res.status(500).send({ message: 'Internal server error' });
     }
   })
+
+// Mount the property listings router to the /api path
+app.use('/api', propertyListingsRouter);
 
 
 app.get('/api/users', (req, res) => {
