@@ -1,15 +1,74 @@
 //i will link the DB with mongoDB later, in this demo i just use const users as db to retrieve data
+import jwt from "jsonwebtoken";//jwt  
+import 'dotenv/config'; 
 
 // const readline = require('readline');
 //test database
 const Customers = [
-  { username: "customer1", password: "customer1" , accountLocked:false, userType:"Customer", loginAttempts:0},
-  { username: "customer2", password: "customer2", accountLocked:false, userType: "Customer", loginAttempts:0},
+  { username: "customer1", password: "customer1" , accountLocked:false, userType:"Customer", loginAttempts:0, email:"customer1@gmail.com"},
+  { username: "customer2", password: "customer2", accountLocked:false, userType: "Customer", loginAttempts:0, email:"customer2@gmail.com"},
 ];
 const Agents = [
-  { username: "agent1", password: "agent1" , accountLocked:false, userType:"Customer", loginAttempts:0},
-  { username: "agent2", password: "agent2", accountLocked:false, userType: "Customer", loginAttempts:0},
+  { username: "agent1", password: "agent1" , accountLocked:false, userType:"Agent", loginAttempts:0,email:"agent2@gmail.com"},
+  { username: "agent2", password: "agent2", accountLocked:false, userType: "Agent", loginAttempts:0,email:"agent2@gmail.com"},
 ];
+
+  export default function login(username, password, userType) {
+    // 1. Check user existence
+    const user = findUser(username, userType);
+  
+    // 2. Handle non-existent user (Won't locked)
+    if (!user) {
+      console.log("Invalid username or password.");
+      // return { auth: "Unsuccessful", user: userType };
+      return {message: "Invalid username or password. Please try again later.", userType: userType, token:"fail"};
+    }
+  
+    // 3. Check account lock status
+    if (user.accountLocked) {
+      console.log("Account is locked. Please try again later.");
+      // return { auth: "Unsuccessful", user: user.userType };
+      return {message:"Account is locked.", userType: userType, token:"fail"};
+    }
+  
+    // 4. Check password and handle login attempts
+    if (user.password === password) {
+      console.log(`Login successful for ${userType} ${username}`);
+      //JWT token
+      const jwtToken = jwt.sign(
+        { id: user.username, email: user.email , type:userType},
+        process.env.JWT_SECRET
+      );
+      console.log(jwtToken);
+      return { message: "Successful", userType: userType, token: jwtToken };
+    } else {
+      // Login attempts not more than 5
+      user.loginAttempts++;
+      if (user.loginAttempts >= 5) {
+        user.accountLocked = true;
+        console.log("Too many login attempts. Account locked for 5 minutes.");
+        //Timer to lock
+        setTimeout(() => {
+          user.accountLocked = false;
+          user.loginAttempts = 0;
+          console.log("Account unlocked. You can now attempt to login again.");
+        }, 5 * 60 * 1000); // Unlock after 5 minutes
+
+      } else {
+        console.log("Incorrect username or password.");
+      }
+    }
+  
+    // Login failed (wrong password or locked account)
+    // return { auth: "Unsuccessful", user: user.userType };
+    return {message: "Invalid username or password. Please try again later.", userType: userType, token:"fail"};
+  }
+  
+
+  function findUser(username, userType) {
+    const userArray = userType === "Customer" ? Customers : Agents;
+    return userArray.find((user) => user.username === username);
+  }
 
 /*  Function now
 export default function login(username, password, user) {
@@ -52,62 +111,6 @@ export default function login(username, password, user) {
 
 
   }*/
-
-
-  export default function login(username, password, userType) {
-    // 1. Check user existence
-    const user = findUser(username, userType);
-  
-    // 2. Handle non-existent user
-    if (!user) {
-      console.log("Invalid username or password.");
-      // return { auth: "Unsuccessful", user: userType };
-      return {message: "Unsuccessful"};
-    }
-  
-    // 3. Check account lock status
-    if (user.accountLocked) {
-      console.log("Account is locked. Please try again later.");
-      return { auth: "Unsuccessful", user: user.userType };
-    }
-  
-    // 4. Check password and handle login attempts
-    if (user.password === password) {
-      console.log(`Login successful for ${userType} ${username}`);
-      // return { auth: "Successful", user };
-      return {message: "Successful"};
-    } else {
-      // Track and limit login attempts
-      user.loginAttempts++;
-      if (user.loginAttempts >= 5) {
-        user.accountLocked = true;
-        console.log("Too many login attempts. Account locked for 5 minutes.");
-  
-        //Timer to lock
-        setTimeout(() => {
-          user.accountLocked = false;
-          user.loginAttempts = 0;
-          console.log("Account unlocked. You can now attempt to login again.");
-        }, 5 * 60 * 1000); // Unlock after 5 minutes
-      } else {
-        console.log("Incorrect username or password.");
-      }
-    }
-  
-    // Login failed (wrong password or locked account)
-    // return { auth: "Unsuccessful", user: user.userType };
-    return {message: "Unsucessful"};
-  }
-  
-  function findUser(username, userType) {
-    const userArray = userType === "Customer" ? Customers : Agents;
-    return userArray.find((user) => user.username === username);
-  }
-  
-
-
-
-
 
 
 // const serFound = {}
