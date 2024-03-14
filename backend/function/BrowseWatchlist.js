@@ -88,7 +88,6 @@ async function fetchPropertyListings(userLocation) {
         throw error;
     }
 }
-*/
 
 
 // Example usage:
@@ -115,6 +114,7 @@ async function browseHomePage(user) {
         throw error;
     }
 }
+*/
 
 
 /*
