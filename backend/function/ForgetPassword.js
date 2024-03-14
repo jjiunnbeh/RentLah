@@ -2,20 +2,24 @@ import { MongoClient } from 'mongodb';
 import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer'; // can use nodemailer for sending emails
 
-// MongoDB connection URI
-const uri = "mongodb://localhost:27017"; // not sure of how to connect to Mongo rn
-const client = new MongoClient(uri);
 
-// Connect to MongoDB
-async function connectToDatabase() {
+
+async function connectToDatabase() { // taken from register.js
+    /**
+     * Connection URI. Replace placeholders with your actual credentials.
+     * Refer to https://docs.mongodb.com/ecosystem/drivers/node/ for details.
+     */
+    const uri = "mongodb+srv://<username>:<password>@<your-cluster-url>/sample_airbnb?retryWrites=true&w=majority";
+
     try {
-        await client.connect();
-        console.log("Connected to MongoDB");
+        const client = await MongoClient.connect(uri);
+        return client;
     } catch (error) {
-        console.error("Error connecting to MongoDB:", error.message);
-        throw error;
+        console.error('Error connecting to MongoDB:', error.message);
+        throw error; // Re-throw the error for handling
     }
 }
+
 
 // main function
 async function forgetPassword(email) {
@@ -90,6 +94,6 @@ function generateRandomToken() {
 }
 
 // Example usage:
-/* forgetPassword('user@example.com')
-    .then(() => console.log('Forget password process completed successfully'))
-    .catch(error => console.error('Forget password process failed:', error.message));
+// forgetPassword('user@example.com')
+ //   .then(() => console.log('Forget password process completed successfully'))
+   // .catch(error => console.error('Forget password process failed:', error.message));
