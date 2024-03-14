@@ -50,8 +50,6 @@ async function browseHomePage(user) {
 }
 
 
-
-
 /*
 example using Zillow API
 const fetch = require('node-fetch');
