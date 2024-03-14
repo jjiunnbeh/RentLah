@@ -1,7 +1,15 @@
+
 import { MongoClient } from 'mongodb';
 import bcrypt from 'bcrypt';
-import nodemailer from 'nodemailer'; // can use nodemailer for sending emails
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv'; // Import dotenv package to load environment variables
 
+dotenv.config(); // Load environment variables from .env file
+
+
+// have to create .env file and add these:
+// EMAIL_USER=dummy mail
+// EMAIL_PASSWORD=dummy mail password
 
 
 async function connectToDatabase() { // taken from register.js
@@ -55,43 +63,52 @@ async function forgetPassword(email) {
     }
 }
 
-// Function to generate reset password link
-function generateResetPasswordLink(user) {
-    // Generate a unique reset password link
-    const resetToken = generateRandomToken(); // random generation
-    const resetLink = `https://example.com/reset-password?token=${resetToken}`;
-    return resetLink;
-}
 
-// Function to send reset password email
-async function sendResetPasswordEmail(email, resetLink) {
-    // Create Nodemailer transporter
-    let transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'your-email@gmail.com', // need to create dummy email for this
-            pass: 'your-email-password'
-        }
-    });
-
-    // Define email options
-    let mailOptions = {
-        from: 'your-email@gmail.com', // better to use dummy, can use env variables
-        to: email,
-        subject: 'Reset Your Password',
-        text: ` Please click the following link to reset your password:
-            ${resetLink}`
-    };
-
-    // Send the email
-    await transporter.sendMail(mailOptions);
-    console.log("Reset password email sent successfully");
-}
 
 // Function to generate random token
 function generateRandomToken() {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 }
+
+// Function to send reset password email
+async function sendResetPasswordEmail(email, resetLink) {
+    try {
+        // Create Nodemailer transporter
+        let transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL_USER, // Use env var
+                pass: process.env.EMAIL_PASSWORD // use env var
+            }
+        });
+
+        // Define email options
+        let mailOptions = {
+            from: process.env.EMAIL_USER, 
+            to: email,
+            subject: 'Reset Your Password',
+            text: ` Please click the following link to reset your password:
+            ${resetLink}`
+        };
+
+        // Send the email
+        await transporter.sendMail(mailOptions);
+        console.log("Reset password email sent successfully");
+    } catch (error) {
+        console.error("Error sending reset password email:", error.message);
+        throw error;
+    }
+}
+
+
+// Function to generate reset password link
+function generateResetPasswordLink(user) {
+    // Generate a unique link
+    const resetToken = generateRandomToken(); // random generation
+    const resetLink = `https://example.com/reset-password?token=${resetToken}`;
+    return resetLink;
+}
+
 
 // Example usage:
 // forgetPassword('user@example.com')
