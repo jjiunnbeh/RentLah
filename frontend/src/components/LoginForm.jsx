@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../styles/LoginForm.css";
 import Axios from "axios";
 import {loginService} from "../service/LoginService"
+import {$} from "jquery";
 
 
 function LoginForm({ user }) 
@@ -12,6 +13,7 @@ function LoginForm({ user })
     password: "",
     user
 });
+const [errorMessage,setErrorMessage] = useState("");
 
   function handleClickHide(event) 
   {
@@ -35,6 +37,13 @@ function LoginForm({ user })
     try {
       const response = await loginService(data);
       // Handle successful login based on the server's response 
+      console.log(response.message);
+      if (response.token === "fail")
+      {
+        setErrorMessage(response.message);
+      }
+
+      
       console.log(response);
     } catch (error) {
       // Handle login errors 
@@ -88,22 +97,23 @@ function LoginForm({ user })
                   }
                 }
               }
-              required
-              
+              required/>
+              <div>
+              {errorMessage && <span id="errormsg">{errorMessage}</span>} 
+              <button className="btn btn-danger" onClick={handleClickHide} id="monkey-emoji" >
+            {hide ? "🙈" : "🙊"}
+          </button>
 
-            />
+              </div>
             </div>
             <div>
-            <a className="fgetPass" href="" >Forget Password</a>
+            <button className= "btn btn-link =">Forget Password</button>
             </div>
-            <div>
-            <button className="btn" onClick={handleClickHide} id="monkey-emoji" >
-              {hide ? "🙈" : "🙊"}
-            </button>
-          </div>
+           
+           
 
         </div>
-        <button type="submit" className="btn btn-primary" >
+        <button type="submit" className="btn btn-primary loginSubmit" >
           Login as {user}
         </button>
       </form>

@@ -38,7 +38,7 @@ div.formcontainer
 {
     display:flexbox;
     justify-content: center;
-    background-color: black;
+    background-color: transparent;
     margin-top:10%;
     margin-right:50%;
     margin-left:10%;
@@ -47,34 +47,52 @@ div.formcontainer
 }
 div.formcontainer > form
 {
-    background-color: rgb(221, 107, 107);
+    background-color: rgb(238, 193, 193);
     padding:5%;
-    border-radius: 10px;
+    border-radius: 18px;
 }
 div.formcontainer > form label.col-sm-8.col-form-label
 {
     height: 50px;
-    font-size: 25px;
+    font-size: 26px;
+}
+input.form-control
+{
+    font-size: 25px;;
 }
 input#inputPassword3.form-control
 {
     margin-bottom:20px;
+    position: inline-block;
 
 }
-a.fgetPass
+button.btn.btn-link
 {
     padding-left:1%;
     display:inline;
-    font-size: 25px;
+    font-size: 20px;
     
 }
 #monkey-emoji
 {
-    display: inline;
-    position: relative;
-    margin-left: 55%;
-    margin-top:-10%;
-    background-color:rgb(63, 250, 250);
+    display: inline-flex;
+    position:inherit;
+    margin-bottom:10px;
+    margin-left:85.8%;
+    margin-top:-4%;
+    font-size: 20px;
+
+}
+span#errormsg
+{
+    color:red;
+}
+button.btn.btn-primary.loginSubmit
+{
+    padding-bottom:16px;
+    padding-top:16px;
+    width:45%;
+    font-size: 25px;
 }
 
 
