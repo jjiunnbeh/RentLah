@@ -4,15 +4,19 @@ import { Link } from 'react-router-dom';
 
 function RegisterChoice()
 {
-    
+    function handleClick(event)
+    {
+        window.location.href= "/register=" + event.target.name;
+    }
 
     
     return (
     <div className="d-grid gap-5 ">
-  <button onClick={()=>{console.log("Reg as Customer")}}className="btn btn-primary" type="button">Register as Customer</button>
-  <button onClick={()=>{console.log("Reg as Agent")}}className="btn btn-primary" type="button">Register as Agent</button>
-  <a className="Choice" onClick={()=>{console.log("LoginChoice")}} href="/">Have account? Login Here</a>
-        </div>
+  <button onClick={handleClick} name="Customer" className="btn btn-primary" type="button">Register as Customer</button>
+  <button onClick={handleClick} name="Agent" className="btn btn-primary" type="button">Register as Agent</button>
+  <a className="Choice" href="/LoginChoice">Have account? Login Here</a>
+    </div>
     )
 }
+
 export default RegisterChoice;

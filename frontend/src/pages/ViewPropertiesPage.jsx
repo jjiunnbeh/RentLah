@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchPropertyListings } from './propertyListings'; // Import the fetchPropertyListings function from your backend API file
+// import { fetchPropertyListings } from './propertyListings'; // Import the fetchPropertyListings function from your backend API file
 
 const PropertyListings = ({ listings }) => {
     return (

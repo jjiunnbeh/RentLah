@@ -31,8 +31,8 @@ function App() {
             element={<LoginForm user="Customer" />}
           />
           <Route path="/login=Agent" element={<LoginForm user="Agent" />} />
-          <Route path="/register=Agent" element={<RegisterForm user="Agent" />} />
-          <Route path="/register=Customer" element={<RegisterForm user="Customer" />} />
+          <Route path="/register=Agent" element={<RegisterForm  />} />
+          <Route path="/register=Customer" element={<RegisterForm  />} />
       
           {/* Protected routes */}
           <Route
