@@ -33,7 +33,14 @@ a
     display:inline;
 } */
 
-.bg
+html
+{
+    background-color: #2288FF;
+}
+
+body{
+    --bs-body-bg: transparent;
+}
 
 div.formcontainer
 {
@@ -48,7 +55,6 @@ div.formcontainer
 }
 div.formcontainer > form
 {
-    background-color: rgb(238, 193, 193);
     padding:5%;
     border-radius: 18px;
 }
@@ -59,6 +65,7 @@ div.formcontainer > form label.col-sm-8.col-form-label
 }
 input.form-control
 {
+    background-color: white;
     font-size: 25px;;
 }
 input#inputPassword3.form-control

@@ -140,7 +140,7 @@ const [errorMessage,setErrorMessage] = useState("");
               </div>
             </div>
             <div>
-            <button className= "btn btn-link =">Forget Password</button>
+            <button className= "btn btn-link =" style={{color: "white"}}>Forget Password</button>
             </div>
            
            
