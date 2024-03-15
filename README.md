@@ -12,6 +12,8 @@ npm run dev
 
 Paste the link into your browser.  
 
+Open a new terminal.  
+
 Then go back to the RentLah directory and  
 
 ```
