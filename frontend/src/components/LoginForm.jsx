@@ -109,6 +109,7 @@ const [errorMessage,setErrorMessage] = useState("");
             Password
           </label>
           <div className="col-sm-8">
+          <div class="input-group">
             <input
               type={hide ? "password" : "text"}
               className="form-control"
@@ -131,12 +132,12 @@ const [errorMessage,setErrorMessage] = useState("");
                 }
               }
               required/>
+              <button className="btn" onClick={handleClickHide} id="monkey-emoji" style={{backgroundColor: "white", marginBottom:"20px"}}>
+              {hide ? "🙈" : "🙊"}
+              </button>
+              </div>
               <div>
               {errorMessage && <span id="errormsg">{errorMessage}</span>} 
-              <button className="btn" onClick={handleClickHide} id="monkey-emoji" >
-            {hide ? "🙈" : "🙊"}
-          </button>
-
               </div>
             </div>
             <div>

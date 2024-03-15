@@ -83,12 +83,8 @@ button.btn.btn-link
 }
 #monkey-emoji
 {
-    display: inline-flex;
     position:inherit;
-    margin-bottom:10px;
-    margin-left:85.8%;
-    margin-top:-4%;
-    font-size: 20px;
+    font-size: 25px;
 
 }
 span#errormsg
