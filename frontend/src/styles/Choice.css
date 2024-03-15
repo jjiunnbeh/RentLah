@@ -16,4 +16,15 @@ a.Choice
     text-align: center;
 }
 
+div.imagecontainer {
+    height: 100%;
+    min-height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    background-color: aliceblue;
+}
+
 

@@ -133,7 +133,7 @@ const [errorMessage,setErrorMessage] = useState("");
               required/>
               <div>
               {errorMessage && <span id="errormsg">{errorMessage}</span>} 
-              <button className="btn btn-danger" onClick={handleClickHide} id="monkey-emoji" >
+              <button className="btn" onClick={handleClickHide} id="monkey-emoji" >
             {hide ? "🙈" : "🙊"}
           </button>
 
