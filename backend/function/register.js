@@ -68,7 +68,7 @@ async function connectToDatabase() { //preferably mongoDB
      * Connection URI. Replace placeholders with your actual credentials.
      * Refer to https://docs.mongodb.com/ecosystem/drivers/node/ for details.
      */
-    const uri = "mongodb+srv://yamemtid69:SC2006PROJECT@sc2006project.1tavfjr.mongodb.net/?retryWrites=true&w=majority&appName=SC2006Project";
+    const uri = "hihi";
 
     try {
         const client = await MongoClient.connect(uri);
