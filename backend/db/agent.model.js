@@ -16,31 +16,32 @@ const agentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    phoneNo:{
+      type:String,
+      required:true,
+      unique:true
+  },
     loginAttempts: {
       type: Number,
       default: 0,
     },
-    userType: {
-      type: String,
-      required: true,
-    },
-    profilepic: {
+    profilePic: {
       data: Buffer,
       contentType: String, // e.g xxx.png
     },
-    agentfullname:
+    agentFullName:
     {
       type:String,
       required:true
     },
-    agentregno:
+    agentRegNo:
     {
       type:String,
       uppercase:true,
       required:true,
       unique:true
     },
-    estatecompanyname:
+    estateCompanyName:
     {
       type:String,
       required:true
@@ -49,5 +50,5 @@ const agentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Agent = mongoose.model("Agent", customerSchema);
+const Agent = mongoose.model("Agent", agentSchema);
 export default Agent;

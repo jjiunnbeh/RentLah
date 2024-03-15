@@ -16,13 +16,14 @@ const customerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    phoneNo:{
+        type:String,
+        required:true,
+        unique:true
+    },
     loginAttempts: {
       type: Number,
       default: 0,
-    },
-    userType: {
-      type: String,
-      required: true,
     },
     profilepic: {
       data: Buffer,

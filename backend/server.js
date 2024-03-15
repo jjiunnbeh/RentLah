@@ -9,6 +9,7 @@ import login from './functions/login.js';
 import register from "./functions/register.js";
 import customerRouter from "./routes/customer.routes.js";
 import { error } from 'console';
+import authRouter from "./routes/auth.route.js";
 
 // import propertyListingsRouter from './function/propertyListings.js'; // Import the property listings router
 
@@ -56,6 +57,21 @@ app.use(bodyParser.json());
 
 
 app.use("/api/customer", customerRouter);
+//This is the register route// Use Postman to try http://localhost:3000/api/auth/registerAgent or registerCustomer
+app.use('/api/auth', authRouter);
+//Middleware
+app.use((error, req, res, next)=>
+{
+  const statusCode = error.statusCode || 500;
+  const message = error.message || "Internal server error";
+  return res.status(statusCode).json(
+    {
+      success:false,
+      statusCode,
+      message,
+    }
+  );
+});
 
 app.get('/api/users', (req, res) => {
     res.json({})});
