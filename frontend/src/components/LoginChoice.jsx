@@ -1,6 +1,7 @@
 import "../styles/Choice.css";
 import { Link } from 'react-router-dom';
 import loginimg from '../assets/loginimg.png';
+import Logo from '../assets/Logo.png';
 
 
 function LoginChoice()
@@ -13,14 +14,21 @@ function LoginChoice()
     
     return (
         <>
+    <div className="groupLogo">
+      <img
+        src={Logo}
+        alt="Rent Lah Logo"
+        style={{ height: "100%", left: "0%" }}
+      />
+    </div>
 
         <div className="d-grid gap-5">
   <button onClick={handleClick} name="Customer" className="btn btn-primary" type="button">Login as Customer</button>
   <button onClick={handleClick} name="Agent" className="btn btn-primary" type="button">Login as Agent</button>
-  <a className="Choice" onClick={()=>{console.log("Register")}} href="/RegisterChoice">Register Here</a>
+  <a className="Choice" onClick={()=>{console.log("Register")}} href="/RegisterChoice" style={{color:"white"}}> Register Here</a>
         </div>
         
-        <div className="imagecontainer">
+    <div className="imagecontainer">
       <img
         src={loginimg}
         alt="City landscape"
