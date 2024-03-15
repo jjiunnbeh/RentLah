@@ -109,7 +109,7 @@ const [errorMessage,setErrorMessage] = useState("");
             Password
           </label>
           <div className="col-sm-8">
-          <div class="input-group">
+          <div className="input-group">
             <input
               type={hide ? "password" : "text"}
               className="form-control"
