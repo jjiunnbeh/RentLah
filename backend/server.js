@@ -5,7 +5,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-import login from './function/login.js'
+import login from './function/login.js';
 // import propertyListingsRouter from './function/propertyListings.js'; // Import the property listings router
 
 dotenv.config();
