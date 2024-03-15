@@ -5,6 +5,7 @@ import {loginService} from "../service/LoginService";
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import { Link } from "react-router-dom";
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
+import loginimg from '../assets/loginimg.png';
 
 function LoginForm({ user }) 
 {
