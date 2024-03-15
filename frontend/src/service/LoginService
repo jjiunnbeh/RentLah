@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const BASE_URL = 'http://localhost:3000'; 
 
 const loginService = async (data) => {
@@ -11,17 +10,9 @@ const loginService = async (data) => {
   }
 };
 
-const registerService = async (data) =>{
-  try{
-    const response = await axios.post(`${BASE_URL}/registerSubmit`, data);
-    return response.data;
-  }catch (error)
-  {
-    throw error;
-  }
-};
 
 
 
 
-export { loginService, registerService }; // Export both services
+
+export { loginService}; 

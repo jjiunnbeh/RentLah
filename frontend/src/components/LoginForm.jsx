@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
 import loginimg from '../assets/loginimg.png';
 
-function LoginForm({ user }) 
+function LoginForm({ userType }) 
 {
   const signIn = useSignIn();
   const isAuthenticated = useIsAuthenticated()
@@ -18,7 +18,7 @@ function LoginForm({ user })
   const [data, setData] = useState({
     username: "",
     password: "",
-    user
+    userType
 });
 const [errorMessage,setErrorMessage] = useState("");
 
@@ -38,55 +38,45 @@ const [errorMessage,setErrorMessage] = useState("");
     }));
   }
 
-  const handleSubmit = async (event) => 
-  {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      console.log(data.username, data.password);
       const response = await loginService(data);
-      // Handle successful login based on the server's response 
-      console.log(response.message);
-      if (!response.token)
-      {
+  
+      if (!response.token) {
         setErrorMessage(response.message);
-      }
-      else
-      {
+        // Don't need to set state here
+        // Just update state directly
+        setData({
+          ...data,
+          password: ""
+        });
+      } else {
         setErrorMessage('');
         if (signIn({
           auth: {
             token: response.token,
             type: 'Bearer'
           },
-          userState: response.userType
+          userState: response.username
         })) {
-          // Successful login using react-auth-kit
-          if (isAuthenticated)
-          {
+          if (isAuthenticated) {
             window.location.href = '/';
-
           }
-
-
-
         }
-
-
       }
       console.log(response.token);
-
-
-
-      
       console.log(response);
     } catch (error) {
       // Handle login errors 
-      
+      console.error("Login error:", error);
     }
   };
 
   return (
     <div className="formcontainer">
-      <form name={user} onSubmit={handleSubmit}>
+      <form name={userType} onSubmit={handleSubmit}>
         <div className="row mb-4 .bg-primary">
           <label htmlFor="inputUserName3" className="col-sm-8 col-form-label ">
             Username
@@ -100,6 +90,7 @@ const [errorMessage,setErrorMessage] = useState("");
               onChange={handleChange}
               name="username"
               onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
+              value={data.username}
               required
             />
           </div>
@@ -116,6 +107,7 @@ const [errorMessage,setErrorMessage] = useState("");
               id="inputPassword3"
               placeholder="Password"
               onChange={handleChange}
+              value={data.password}
               name="password"
               onKeyDown= {
                 (event)=>
@@ -148,7 +140,7 @@ const [errorMessage,setErrorMessage] = useState("");
 
         </div>
         <button type="submit" className="btn btn-primary loginSubmit" >
-          Login as {user}
+          Login as {userType}
         </button>
       </form>
       <div className="imagecontainer">

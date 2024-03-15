@@ -3,18 +3,6 @@ import jwt from "jsonwebtoken";//jwt
 import 'dotenv/config';
 import { MongoClient } from "mongodb";
 
-let password_dummy;
-// const readline = require('readline');
-//test database
-// const Customers = [
-//   { username: "customer1", password: "customer1" , accountLocked:false, userType:"Customer", loginAttempts:0, email:"customer1@gmail.com"},
-//   { username: "customer2", password: "customer2", accountLocked:false, userType: "Customer", loginAttempts:0, email:"customer2@gmail.com"},
-//   {username:"SC2006", password:"1234", accountLocked: false, userType: "Customer", loginAttempt: 0, email:"SC2006@gmail.com"},
-// ];
-// const Agents = [
-//   { username: "agent1", password: "agent1" , accountLocked:false, userType:"Agent", loginAttempts:0,email:"agent2@gmail.com"},
-//   { username: "agent2", password: "agent2", accountLocked:false, userType: "Agent", loginAttempts:0,email:"agent2@gmail.com"},
-// ];
 
 export default async function login(username, password, userType) {
   // const userArray = userType === "Customer" ? Customers : Agents;
@@ -122,7 +110,7 @@ async function connectToDatabase() { //preferably mongoDB
    */
   // const uri = "hehe";
   const uri=process.env.MONGO;
-  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+  const client = new MongoClient(uri);
 
   try {
     const client = await MongoClient.connect(uri);

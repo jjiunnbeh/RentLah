@@ -28,9 +28,9 @@ function App() {
           <Route path="/RegisterChoice" element={<RegisterChoice />} />
           <Route
             path="/login=Customer"
-            element={<LoginForm user="Customer" />}
+            element={<LoginForm userType="Customer" />}
           />
-          <Route path="/login=Agent" element={<LoginForm user="Agent" />} />
+          <Route path="/login=Agent" element={<LoginForm userType="Agent" />} />
           <Route path="/register=Agent" element={<RegisterForm  />} />
           <Route path="/register=Customer" element={<RegisterForm  />} />
       

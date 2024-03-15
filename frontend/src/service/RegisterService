@@ -1,0 +1,24 @@
+import axios from 'axios';
+const BASE_URL = 'http://localhost:3000'; 
+
+const customerRegisterService = async (data) =>{
+  try{
+    const response = await axios.post(`${BASE_URL}/registerSubmit?Customer`, data);
+    return response.data;
+  }catch (error)
+  {
+    throw error;
+  }
+};
+
+const agentRegisterService = async (data) =>{
+    try{
+      const response = await axios.post(`${BASE_URL}/registerSubmit`, data);
+      return response.data;
+    }catch (error)
+    {
+      throw error;
+    }
+  };
+
+export default { customerRegisterService, agentRegisterService }

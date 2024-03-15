@@ -11,8 +11,12 @@ function isPasswordStrong(password) {
     return regex.test(password);
 }
 
-async function register(username, password, userType) {
-    console.log("Welcome to the register page!");
+export default async function register(username, email, phoneNumber, password, userType) {
+    console.log(`Trying to register ${userType}`);
+//No two user should have the same username/email/phoneNumber/password
+
+
+
 
     // input validation
     if (!username || !password || !userType) {
