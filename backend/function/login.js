@@ -120,7 +120,11 @@ async function connectToDatabase() { //preferably mongoDB
    * Connection URI. Replace placeholders with your actual credentials.
    * Refer to https://docs.mongodb.com/ecosystem/drivers/node/ for details.
    */
+<<<<<<< HEAD
   const uri = "hehe";
+=======
+  const uri = process.env.MONGO;
+>>>>>>> 93277c2 (connected to db)
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
   try {
