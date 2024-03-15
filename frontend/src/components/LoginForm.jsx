@@ -150,6 +150,13 @@ const [errorMessage,setErrorMessage] = useState("");
           Login as {user}
         </button>
       </form>
+      <div className="imagecontainer">
+      <img
+        src={loginimg}
+        alt="City landscape"
+        style={{ height: "100%", left: "0%" }}
+      />
+    </div>
     </div>
   );
 }
