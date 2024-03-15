@@ -12,6 +12,19 @@ Paste the link into your browser.
 Then go back to the RentLah directory and 
 ```
 cd backend
+
+```
+Now in the backend directory, create a file with the name **.env**
+Inside the **.env** file, key in the following:
+**Note: Replace <...> with your own secret key and MongoDB uri**
+
+```
+JWT_SECRET=<Your secret key>
+MONGO=<Your MongoDB uri>
+
+```
+Then in the backend directory, run the following:
+```
 npm i
 npm run dev
 
