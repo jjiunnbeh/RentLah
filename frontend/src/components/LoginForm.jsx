@@ -5,6 +5,7 @@ import {loginService} from "../service/LoginService";
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import { Link } from "react-router-dom";
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
+import loginimg from '../assets/loginimg.png';
 
 function LoginForm({ user }) 
 {
@@ -108,6 +109,7 @@ const [errorMessage,setErrorMessage] = useState("");
             Password
           </label>
           <div className="col-sm-8">
+          <div class="input-group">
             <input
               type={hide ? "password" : "text"}
               className="form-control"
@@ -130,16 +132,16 @@ const [errorMessage,setErrorMessage] = useState("");
                 }
               }
               required/>
+              <button className="btn" onClick={handleClickHide} id="monkey-emoji" style={{backgroundColor: "white", marginBottom:"20px"}}>
+              {hide ? "🙈" : "🙊"}
+              </button>
+              </div>
               <div>
               {errorMessage && <span id="errormsg">{errorMessage}</span>} 
-              <button className="btn btn-danger" onClick={handleClickHide} id="monkey-emoji" >
-            {hide ? "🙈" : "🙊"}
-          </button>
-
               </div>
             </div>
             <div>
-            <button className= "btn btn-link =">Forget Password</button>
+            <button className= "btn btn-link =" style={{color: "white"}}>Forget Password</button>
             </div>
            
            
@@ -149,6 +151,13 @@ const [errorMessage,setErrorMessage] = useState("");
           Login as {user}
         </button>
       </form>
+      <div className="imagecontainer">
+      <img
+        src={loginimg}
+        alt="City landscape"
+        style={{ height: "100%", left: "0%" }}
+      />
+    </div>
     </div>
   );
 }

@@ -13,7 +13,27 @@ div.d-grid.gap-5 button.btn-primary
 
 a.Choice
 {
-    text-align: center;
+    text-align: center; 
 }
 
+div.imagecontainer {
+    height: 100%;
+    min-height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    background-color: aliceblue;
+}
+
+
+div.groupLogo {
+    height: 30%;
+    min-height: 10%;
+    width: 50%;
+    position: absolute;
+    top: 17%;
+    left: 7%;
+}
 

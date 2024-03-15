@@ -33,6 +33,14 @@ a
     display:inline;
 } */
 
+html
+{
+    background-color: #8cbdf9;
+}
+
+body{
+    --bs-body-bg: transparent;
+}
 
 div.formcontainer
 {
@@ -47,7 +55,6 @@ div.formcontainer
 }
 div.formcontainer > form
 {
-    background-color: rgb(238, 193, 193);
     padding:5%;
     border-radius: 18px;
 }
@@ -58,6 +65,7 @@ div.formcontainer > form label.col-sm-8.col-form-label
 }
 input.form-control
 {
+    background-color: white;
     font-size: 25px;;
 }
 input#inputPassword3.form-control
@@ -75,12 +83,8 @@ button.btn.btn-link
 }
 #monkey-emoji
 {
-    display: inline-flex;
     position:inherit;
-    margin-bottom:10px;
-    margin-left:85.8%;
-    margin-top:-4%;
-    font-size: 20px;
+    font-size: 25px;
 
 }
 span#errormsg
@@ -93,8 +97,18 @@ button.btn.btn-primary.loginSubmit
     padding-top:16px;
     width:45%;
     font-size: 25px;
+    margin-left: 10%;
 }
 
-
+div.imagecontainer {
+    height: 100%;
+    min-height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    background-color: aliceblue;
+}
 
 
