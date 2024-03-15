@@ -2,28 +2,35 @@
 
 To run this web applicaton, clone this file, then cd into your working directory:
 
-Then run the following code to launch the front end:
+Then run the following code to launch the front end:  
+
 ```
 cd RentLah/frontend
 npm i
 npm run dev
 ```
-Paste the link into your browser.
-Then go back to the RentLah directory and 
-```
-cd backend
+
+Paste the link into your browser.  
+
+Then go back to the RentLah directory and  
 
 ```
-Now in the backend directory, create a file with the name **.env**
-Inside the **.env** file, key in the following:
-**Note: Replace <...> with your own secret key and MongoDB uri**
+cd backend
+```
+
+Now in the backend directory, create a file with the name **.env**  
+
+Inside the **.env** file, key in the following:  
+
+**Note: Replace <...> with your own secret key and MongoDB uri**  
+
 
 ```
 JWT_SECRET=<Your secret key>
 MONGO=<Your MongoDB uri>
-
 ```
-Then in the backend directory, run the following:
+Then in the backend directory, run the following:  
+
 ```
 npm i
 npm run dev
