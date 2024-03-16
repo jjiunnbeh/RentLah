@@ -1,18 +1,14 @@
-import axios from 'axios';
-const BASE_URL = 'http://localhost:3000'; 
+// import axios from 'axios';
+// const BASE_URL = 'http://localhost:3000'; 
 
-const loginService = async (data) => {
-  try {
-    const response = await axios.post(`${BASE_URL}/loginSubmit`, data);
-    return response.data; // Return the server's response data
-  } catch (error) {
-    throw error; // Re-throw the error for handling in the LoginForm component
-  }
-};
+// const loginService = async (data) => {
+
+//     const response = await axios.post(`${BASE_URL}/api/auth/login${data.userType}`, data);
+//     return response.data;
+
+// };
 
 
 
-
-
-
-export { loginService}; 
+// export { loginService}; 
+// // 

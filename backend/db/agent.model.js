@@ -25,6 +25,16 @@ const agentSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    accountLocked:
+    {
+      type:Boolean,
+      default:false
+    },
+    lockedAt:
+    {
+      type:Date,
+      default:null
+    },
     profilePic: {
       data: Buffer,
       contentType: String, // e.g xxx.png

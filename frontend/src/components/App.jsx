@@ -11,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import createStore from "react-auth-kit/createStore";
 import AuthProvider from "react-auth-kit";
 import RequireAuth from "@auth-kit/react-router/RequireAuth";
+import LoginPage from "../pages/LoginPage";
 
 const store = createStore({
   authName: "_auth",
@@ -28,9 +29,9 @@ function App() {
           <Route path="/RegisterChoice" element={<RegisterChoice />} />
           <Route
             path="/login=Customer"
-            element={<LoginForm userType="Customer" />}
+            element={<LoginPage userType="Customer" />}
           />
-          <Route path="/login=Agent" element={<LoginForm userType="Agent" />} />
+          <Route path="/login=Agent" element={<LoginPage userType="Agent" />} />
           <Route path="/register=Agent" element={<RegisterForm  />} />
           <Route path="/register=Customer" element={<RegisterForm  />} />
       
