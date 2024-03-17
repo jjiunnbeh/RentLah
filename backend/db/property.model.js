@@ -1,27 +1,49 @@
-
-import Agent from "./agent.model";
-
-
 import mongoose from "mongoose";
 
-
-
-const propertySchema = new Schema(
+const propertySchema = new mongoose.Schema(
   {
-    // Other properties of your property schema
-
-    // Reference to the Agent model
-    agent: {
-      type: Schema.Types.ObjectId,  
-      ref: "Agent", // Reference to the Agent model
-      required: true
+    name: {
+      type: String,
+      required: true,
     },
-
-    // Other properties of your property schema
+    postalCode: {
+      type: Number,
+      required: true,
+      maxlength: 6,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    bedroom: {
+      type: Number,
+      required: true,
+    },
+    bathroom: {
+      type: Number,
+      required: true,
+    },
+    images: {
+      type: Array,
+      required: true,
+    },
+    agentRef: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
 const Property = mongoose.model("Property", propertySchema);
-
-export default Property;
+const ManagedListing = mongoose.model("ManagedListing", propertySchema);
+const WatchList = mongoose.model("WatchList", propertySchema);
+export default { Property, ManagedListing, WatchList };
