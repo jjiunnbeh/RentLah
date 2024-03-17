@@ -3,6 +3,9 @@ import "../styles/LoginForm.css";
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signInStart,signInSuccess,signInFailure } from "../redux/user/userSlice"; 
 
 function LoginForm({ userType }) 
 {
@@ -11,13 +14,20 @@ function LoginForm({ userType })
   const isAuthenticated = useIsAuthenticated()
 
 //Hooks 
+// const [loading, setLoading] = useState(false);
   const [hide, setHide] = useState(true);
   const [data, setData] = useState({
     username: "",
     password: "",
     userType
 });
-const [errorMessage,setErrorMessage] = useState("");
+// const [errorMessage,setErrorMessage] = useState("");
+const navigate = useNavigate();
+const dispatch = useDispatch();
+const {loading, errorMessage} = useSelector((state)=>state.user)
+
+
+
 
 //Handlers
   function handleClickHide(event) 
@@ -39,11 +49,12 @@ const [errorMessage,setErrorMessage] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      dispatch(signInStart());
       const response = await axios.post(`${BASE_URL}/api/auth/login${data.userType}`, data);
       console.log(response.data);
       if (response.data.token)
       {
-        setErrorMessage('');
+        dispatch(signInSuccess(response.data))
         if (signIn({
           auth: {
             token: response.data.token,
@@ -52,14 +63,14 @@ const [errorMessage,setErrorMessage] = useState("");
           userState: response.data.message
         })) {
           if (isAuthenticated) {
-            window.location.href = '/';
+            navigate("/");
           }
         }
       }
     } catch (error) {
       // Handle login errors 
       console.log(error.response.data);
-      setErrorMessage(error.response.data.message);
+      dispatch(signInFailure(error.response.data.message));
       setData({
         ...data,
         password: ""
@@ -130,12 +141,13 @@ const [errorMessage,setErrorMessage] = useState("");
             </div>
         </div>
         <button type="submit" className="btn btn-primary loginSubmit" >
-          Login as {userType}
+          {loading? "Loading..." : `Login as ${userType}`}
         </button>
       </form>
 
     </div>
   );
 }
+
 
 export default LoginForm;

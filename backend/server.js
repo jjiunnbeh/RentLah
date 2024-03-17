@@ -8,7 +8,7 @@ import { fileURLToPath } from "url";
 // import login from './functions/login.js';
 // import register from "./functions/register.js";
 import customerRouter from "./routes/customer.routes.js";
-// import { error } from 'console';
+import { error } from 'console';
 import authRouter from "./routes/auth.route.js";
 
 // import propertyListingsRouter from './function/propertyListings.js'; // Import the property listings router
@@ -16,7 +16,7 @@ import authRouter from "./routes/auth.route.js";
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGO, ).then(()=>{console.log("Connected to DB")}).catch((error)=>{console.log("Error: " , error)});
+mongoose.connect(process.env.MONGO).then(()=>{console.log("Connected to DB")}).catch((error)=>{console.log("Error: " , error)});
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();

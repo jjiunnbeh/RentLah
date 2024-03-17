@@ -55,6 +55,12 @@ const agentSchema = new mongoose.Schema(
     {
       type:String,
       required:true
+    },
+    userType:
+    {
+      type:String,
+      default:"Agent",
+      unmodifiable:true
     }
   },
   { timestamps: true }

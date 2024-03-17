@@ -39,6 +39,12 @@ const customerSchema = new mongoose.Schema(
       data: Buffer,
       contentType: String, // e.g xxx.png
     },
+    userType:
+    {
+      type:String,
+      default:"Customer",
+      unmodifiable:true
+    }
   },
   { timestamps: true }
 );
