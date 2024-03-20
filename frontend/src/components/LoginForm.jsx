@@ -50,7 +50,7 @@ const {loading, errorMessage} = useSelector((state)=>state.user)
     event.preventDefault();
     try {
       dispatch(signInStart());
-      const response = await axios.post(`${BASE_URL}/api/auth/login${data.userType}`, data);
+      const response = await axios.post(`${BASE_URL}/api/auth/login-${data.userType}`, data);
       console.log(response.data);
       if (response.data.token)
       {

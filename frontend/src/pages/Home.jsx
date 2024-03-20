@@ -1,11 +1,13 @@
 import NavBar from "../components/NavBar";
+import {useSelector} from "react-redux";
 
 function Home()
-{return (
-<div>
+{
+ return (
     <header><NavBar/></header>
-  </div>
-)
+ );
+
+
 }
 export default Home;
 
