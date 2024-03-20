@@ -4,10 +4,10 @@ import {registerCustomer, registerAgent, loginCustomer, loginAgent} from "../con
 
 const router = express.Router();
 
-router.post("/registerCustomer", registerCustomer);
-router.post("/registerAgent", registerAgent);
-router.post("/loginAgent", loginAgent);
-router.post("/loginCustomer", loginCustomer);
+router.post("/register-customer", registerCustomer);
+router.post("/register-agent", registerAgent);
+router.post("/login-agent", loginAgent);
+router.post("/login-customer", loginCustomer);
 
 export default router;
 
