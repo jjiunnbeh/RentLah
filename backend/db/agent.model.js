@@ -35,9 +35,9 @@ const agentSchema = new mongoose.Schema(
       type:Date,
       default:null
     },
-    profilePic: {
-      data: Buffer,
-      contentType: String, // e.g xxx.png
+    profilepic: {
+      type: String,
+      default:"https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg"
     },
     agentFullName:
     {
