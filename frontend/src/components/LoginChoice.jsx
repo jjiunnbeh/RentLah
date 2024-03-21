@@ -14,11 +14,11 @@ function LoginChoice()
     
     return (
         <>
-    <div className="groupLogo">
+    <div className="groupLogo ">
       <img
         src={Logo}
         alt="Rent Lah Logo"
-        style={{ height: "100%", left: "0%" }}
+        style={{maxHeight:"100%", left: "0%", maxWidth:"100%"}}
       />
     </div>
 
@@ -28,11 +28,11 @@ function LoginChoice()
   <a className="Choice" onClick={()=>{console.log("Register")}} href="/RegisterChoice" style={{color:"white"}}> Register Here</a>
         </div>
         
-    <div className="imagecontainer">
+    <div className="imagecontainer img-fluid">
       <img
         src={loginimg}
         alt="City landscape"
-        style={{ height: "100%", left: "0%" }}
+        style={{ height: "100%", left: "0%" , maxWidth:"100%"}}
       />
     </div>
 

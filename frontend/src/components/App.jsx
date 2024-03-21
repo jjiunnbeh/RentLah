@@ -11,6 +11,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import createStore from "react-auth-kit/createStore";
 import AuthProvider from "react-auth-kit";
 import RequireAuth from "@auth-kit/react-router/RequireAuth";
+import LoginPage from "../pages/LoginPage";
+import ProfileForm from "./ProfileForm";
 
 const store = createStore({
   authName: "_auth",
@@ -26,10 +28,12 @@ function App() {
         <Routes>
           <Route path="/LoginChoice" element={<LoginChoice />} />
           <Route path="/RegisterChoice" element={<RegisterChoice />} />
-          <Route path="/login=Customer" element={<LoginForm user="Customer" />} />
-          <Route path="/login=Agent" element={<LoginForm user="Agent" />} />
-          <Route path="/register=Agent" element={<RegisterForm user="Agent" />} />
-          <Route path="/register=Customer" element={<RegisterForm user="Customer"  />} />
+
+          <Route path="/login=Customer" element={<LoginForm userType="customer" />} />
+         <Route path="/login=Agent" element={<LoginForm userType="agent" />} />
+          <Route path="/register=Agent" element={<RegisterForm userType="agent" />} />
+          <Route path="/register=Customer" element={<RegisterForm userType="customer"  />} />
+
       
           {/* Protected routes */}
           <Route
@@ -37,6 +41,14 @@ function App() {
             element={
               <RequireAuth fallbackPath={"/LoginChoice"}>
                 <Home />
+              </RequireAuth>
+            }
+          />
+            <Route
+            path={"/profile"}
+            element={
+              <RequireAuth fallbackPath={"/LoginChoice"}>
+                <ProfileForm />
               </RequireAuth>
             }
           />

@@ -1,27 +1,35 @@
 import { useState } from "react";
 import "../styles/LoginForm.css";
-import Axios from "axios";
-import {loginService} from "../service/LoginService";
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
-import { Link } from "react-router-dom";
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
-import loginimg from '../assets/loginimg.png';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signInStart,signInSuccess,signInFailure } from "../redux/user/userSlice"; 
 
-function LoginForm({ user }) 
+function LoginForm({ userType }) 
 {
+  const BASE_URL = 'http://localhost:3000'; 
   const signIn = useSignIn();
   const isAuthenticated = useIsAuthenticated()
 
-
-
+//Hooks 
+// const [loading, setLoading] = useState(false);
   const [hide, setHide] = useState(true);
   const [data, setData] = useState({
     username: "",
     password: "",
-    user
+    userType
 });
-const [errorMessage,setErrorMessage] = useState("");
+// const [errorMessage,setErrorMessage] = useState("");
+const navigate = useNavigate();
+const dispatch = useDispatch();
+const {loading, errorMessage} = useSelector((state)=>state.user)
 
+
+
+
+//Handlers
   function handleClickHide(event) 
   {
     event.preventDefault();
@@ -38,57 +46,45 @@ const [errorMessage,setErrorMessage] = useState("");
     }));
   }
 
-  const handleSubmit = async (event) => 
-  {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await loginService(data);
-      // Handle successful login based on the server's response 
-      console.log(response.message);
-      if (!response.token)
+      dispatch(signInStart());
+      const response = await axios.post(`${BASE_URL}/api/auth/login-${data.userType}`, data);
+      console.log(response.data);
+      if (response.data.token)
       {
-        setErrorMessage(response.message);
-      }
-      else
-      {
-        setErrorMessage('');
+        dispatch(signInSuccess(response.data))
         if (signIn({
           auth: {
-            token: response.token,
+            token: response.data.token,
             type: 'Bearer'
           },
-          userState: response.userType
+          userState: response.data.message
         })) {
-          // Successful login using react-auth-kit
-          if (isAuthenticated)
-          {
-            window.location.href = '/';
-
+          if (isAuthenticated) {
+            navigate("/");
           }
-
-
-
         }
-
-
       }
-      console.log(response.token);
-
-
-
-      
-      console.log(response);
     } catch (error) {
       // Handle login errors 
-      
+      console.log(error.response.data);
+      dispatch(signInFailure(error.response.data.message));
+      setData({
+        ...data,
+        password: ""
+      });
     }
   };
 
   return (
+
     <>
     <div className="formcontainer" style={{marginTop:"10%"}}>
-      <form name={user} onSubmit={handleSubmit}>
+      <form name={userType} onSubmit={handleSubmit}>
         <div className="row justify-content-center">
+
           <label htmlFor="inputUserName3" className="col-sm-8 col-form-label ">
             Username
           </label>
@@ -101,6 +97,7 @@ const [errorMessage,setErrorMessage] = useState("");
               onChange={handleChange}
               name="username"
               onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
+              value={data.username}
               required
             />
           </div>
@@ -110,13 +107,14 @@ const [errorMessage,setErrorMessage] = useState("");
             Password
           </label>
           <div className="col-sm-8">
-          <div class="input-group">
+          <div className="input-group">
             <input
               type={hide ? "password" : "text"}
               className="form-control"
               id="inputPassword3"
               placeholder="Password"
               onChange={handleChange}
+              value={data.password}
               name="password"
               onKeyDown= {
                 (event)=>
@@ -144,14 +142,15 @@ const [errorMessage,setErrorMessage] = useState("");
               <button className= "btn btn-link =" style={{color: "white"}}>Forget Password</button>
               </div>
             </div>
+
             
 
 
         </div>
         <div className="row justify-content-center">
-          <button type="submit" className="btn btn-primary loginSubmit" >
-            Login as {user}
-          </button>
+        <button type="submit" className="btn btn-primary loginSubmit" >
+          {loading? "Loading..." : `Login as ${userType}`}
+        </button>
         </div>
       </form>
     </div>
@@ -163,7 +162,9 @@ const [errorMessage,setErrorMessage] = useState("");
       />
     </div>
     </>
+
   );
 }
+
 
 export default LoginForm;
