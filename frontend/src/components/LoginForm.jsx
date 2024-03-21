@@ -85,6 +85,7 @@ const [errorMessage,setErrorMessage] = useState("");
   };
 
   return (
+    <>
     <div className="formcontainer">
       <form name={user} onSubmit={handleSubmit}>
         <div className="row mb-4 .bg-primary">
@@ -151,14 +152,15 @@ const [errorMessage,setErrorMessage] = useState("");
           Login as {user}
         </button>
       </form>
-      <div className="imagecontainer">
+    </div>
+    <div className="imagecontainer">
       <img
         src={loginimg}
         alt="City landscape"
         style={{ height: "100%", left: "0%" }}
       />
     </div>
-    </div>
+    </>
   );
 }
 

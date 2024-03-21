@@ -26,13 +26,10 @@ function App() {
         <Routes>
           <Route path="/LoginChoice" element={<LoginChoice />} />
           <Route path="/RegisterChoice" element={<RegisterChoice />} />
-          <Route
-            path="/login=Customer"
-            element={<LoginForm user="Customer" />}
-          />
+          <Route path="/login=Customer" element={<LoginForm user="Customer" />} />
           <Route path="/login=Agent" element={<LoginForm user="Agent" />} />
-          <Route path="/register=Agent" element={<RegisterForm  />} />
-          <Route path="/register=Customer" element={<RegisterForm  />} />
+          <Route path="/register=Agent" element={<RegisterForm user="Agent" />} />
+          <Route path="/register=Customer" element={<RegisterForm user="Customer"  />} />
       
           {/* Protected routes */}
           <Route
