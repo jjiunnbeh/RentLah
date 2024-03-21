@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signInStart,signInSuccess,signInFailure } from "../redux/user/userSlice"; 
-
+import loginimg from '../assets/loginimg.png';
 function LoginForm({ userType }) 
 {
   const BASE_URL = 'http://localhost:3000'; 
