@@ -1,28 +1,77 @@
 import { useState } from "react";
 
 import "../styles/RegisterForm.css";
-import Axios from "axios";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-
-import useSignIn from 'react-auth-kit/hooks/useSignIn';
-import { Link } from "react-router-dom";
-import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
 import loginimg from '../assets/loginimg.png';
 
-function RegisterForm({ user }) 
+function RegisterForm({ userType }) 
 {
+    const navigate = useNavigate();
+//Set up useState hooks
+        if (String(userType) === "customer")
+        {
+            const data = useState({
+                username:"",
+                password:"",
+                passwordConfirm:"",
+                email:"",
+                phoneNo:null
+        
+            });
+
+        }
+        else{
+            const data = useState({
+                username:"",
+                password:"",
+                passwordConfirm:"",
+                email:"",
+                phoneNo:null,
+                agentname:"",
+                agentregnum:null
+            });
+        }
+
   
     function handleChange(event) 
-    {}    
+    {
+        const { name, value } = event.target;
+
+        setData((prevData) => ({
+          ...prevData,
+          [name]: value,
+        }));
+    }    
 
     const handleSubmit = async (event) => 
-    {}
+    {    event.preventDefault();
+        try {
+          const response = await axios.post(`${BASE_URL}/api/auth/register-${userType}`, data);
+
+          console.log(response.data);
+          navigate("/login/" + userType);
+            } catch (error) {
+          // Handle register errors 
+          setData({
+            ...data,
+            password: ""
+          });
+        }
+
+
+
+        
+
+    }
+    
 
     return (
         <>
             <div className="formcontainer">
-                <form name={user} onSubmit={handleSubmit}>
-                    <h1 className="text-center font-weight-bold" style={{color:"white"}}>{user} Registration</h1>
+                <form name={userType} onSubmit={handleSubmit}>
+                    <h1 className="text-center font-weight-bold" style={{color:"white"}}>{userType.charAt(0).toUpperCase() + userType.slice(1)} Registration</h1>
                     <div className="row justify-content-center">
                         <label htmlFor="inputUserName3" className="col-sm-8 col-form-label ">
                             Username
@@ -58,7 +107,7 @@ function RegisterForm({ user })
                             />
                         </div>
                     </div>
-                    {user=="Agent" &&
+                    {userType==="agent" &&
                     <>
                         <br></br>
                         <div className="row justify-content-center">
@@ -113,7 +162,7 @@ function RegisterForm({ user })
                                 id="inputPhoneNumber"
                                 placeholder="Phone Number"
                                 onChange={handleChange}
-                                name="phone number"
+                                name="phoneNo"
                                 onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                                 required
                                 />
@@ -149,7 +198,7 @@ function RegisterForm({ user })
                             id="inputPasswordConfirmation"
                             placeholder="Password Confirmation"
                             onChange={handleChange}
-                            name="password confirmation"
+                            name="passwordconfirm"
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
