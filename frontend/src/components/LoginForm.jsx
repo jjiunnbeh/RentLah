@@ -88,7 +88,7 @@ const [errorMessage,setErrorMessage] = useState("");
     <>
     <div className="formcontainer">
       <form name={user} onSubmit={handleSubmit}>
-        <div className="row mb-4 .bg-primary">
+        <div className="row justify-content-center">
           <label htmlFor="inputUserName3" className="col-sm-8 col-form-label ">
             Username
           </label>
@@ -105,7 +105,7 @@ const [errorMessage,setErrorMessage] = useState("");
             />
           </div>
         </div>
-        <div className="row mb-3">
+        <div className="row justify-content-center">
           <label htmlFor="inputPassword3" className="col-sm-8 col-form-label">
             Password
           </label>
@@ -140,17 +140,19 @@ const [errorMessage,setErrorMessage] = useState("");
               <div>
               {errorMessage && <span id="errormsg">{errorMessage}</span>} 
               </div>
+              <div htmlFor="inputPassword3" className="col-sm-8 col-form-label">
+              <button className= "btn btn-link =" style={{color: "white"}}>Forget Password</button>
+              </div>
             </div>
-            <div>
-            <button className= "btn btn-link =" style={{color: "white"}}>Forget Password</button>
-            </div>
-           
-           
+            
+
 
         </div>
-        <button type="submit" className="btn btn-primary loginSubmit" >
-          Login as {user}
-        </button>
+        <div className="row justify-content-center">
+          <button type="submit" className="btn btn-primary loginSubmit" >
+            Login as {user}
+          </button>
+        </div>
       </form>
     </div>
     <div className="imagecontainer">
