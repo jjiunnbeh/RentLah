@@ -75,7 +75,6 @@ input#inputPassword3.form-control
 }
 button.btn.btn-link
 {
-    padding-left:1%;
     display:inline;
     font-size: 20px;
     
@@ -96,7 +95,6 @@ button.btn.btn-primary.loginSubmit
     padding-top:16px;
     width:45%;
     font-size: 25px;
-    margin-left: 10%;
 }
 
 div.imagecontainer {
