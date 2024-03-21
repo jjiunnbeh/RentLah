@@ -28,13 +28,12 @@ function App() {
         <Routes>
           <Route path="/LoginChoice" element={<LoginChoice />} />
           <Route path="/RegisterChoice" element={<RegisterChoice />} />
-          <Route
-            path="/login=Customer"
-            element={<LoginPage userType="customer" />}
-          />
-          <Route path="/login=Agent" element={<LoginPage userType="agent" />} />
-          <Route path="/register=Agent" element={<RegisterForm  />} />
-          <Route path="/register=Customer" element={<RegisterForm  />} />
+
+          <Route path="/login=Customer" element={<LoginForm userType="customer" />} />
+         <Route path="/login=Agent" element={<LoginForm userType="agent" />} />
+          <Route path="/register=Agent" element={<RegisterForm userType="agent" />} />
+          <Route path="/register=Customer" element={<RegisterForm userType="customer"  />} />
+
       
           {/* Protected routes */}
           <Route

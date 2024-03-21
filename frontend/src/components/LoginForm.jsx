@@ -79,9 +79,12 @@ const {loading, errorMessage} = useSelector((state)=>state.user)
   };
 
   return (
-    <div className="formcontainer">
+
+    <>
+    <div className="formcontainer" style={{marginTop:"10%"}}>
       <form name={userType} onSubmit={handleSubmit}>
-        <div className="row mb-4 .bg-primary">
+        <div className="row justify-content-center">
+
           <label htmlFor="inputUserName3" className="col-sm-8 col-form-label ">
             Username
           </label>
@@ -99,7 +102,7 @@ const {loading, errorMessage} = useSelector((state)=>state.user)
             />
           </div>
         </div>
-        <div className="row mb-3">
+        <div className="row justify-content-center">
           <label htmlFor="inputPassword3" className="col-sm-8 col-form-label">
             Password
           </label>
@@ -135,17 +138,31 @@ const {loading, errorMessage} = useSelector((state)=>state.user)
               <div>
               {errorMessage && <span id="errormsg">{errorMessage}</span>} 
               </div>
+              <div htmlFor="inputPassword3" className="col-sm-8 col-form-label">
+              <button className= "btn btn-link =" style={{color: "white"}}>Forget Password</button>
+              </div>
             </div>
-            <div>
-            <button className= "btn btn-link =" style={{color: "white"}}>Forget Password</button>
-            </div>
+
+            
+
+
         </div>
+        <div className="row justify-content-center">
         <button type="submit" className="btn btn-primary loginSubmit" >
           {loading? "Loading..." : `Login as ${userType}`}
         </button>
+        </div>
       </form>
-
     </div>
+    <div className="imagecontainer">
+      <img
+        src={loginimg}
+        alt="City landscape"
+        style={{ height: "100%", left: "0%" }}
+      />
+    </div>
+    </>
+
   );
 }
 
