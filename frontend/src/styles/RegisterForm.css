@@ -1,0 +1,36 @@
+div.formcontainer
+{
+    display:flexbox;
+    justify-content: center;
+    background-color: transparent;
+    margin-top:0%;
+    margin-right:50%;
+    border-radius: 10px;
+    overflow: auto;
+    
+}
+div.formcontainer > form
+{
+    padding:5%;
+    border-radius: 18px;
+}
+
+div.imagecontainer {
+    height: 100%;
+    min-height: 100%;
+    width: 50%;
+    position: fixed;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    background-color: aliceblue;
+}
+
+button.btn.btn-primary.loginSubmit
+{
+    padding-bottom:16px;
+    padding-top:16px;
+    width:45%;
+    font-size: 25px;
+    margin-left: 0%;
+}
