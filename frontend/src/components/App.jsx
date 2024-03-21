@@ -26,20 +26,20 @@ function App() {
     <AuthProvider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/LoginChoice" element={<LoginChoice />} />
-          <Route path="/RegisterChoice" element={<RegisterChoice />} />
+          <Route path="/login" element={<LoginChoice />} />
+          <Route path="/register" element={<RegisterChoice />} />
 
-          <Route path="/login=Customer" element={<LoginForm userType="customer" />} />
-         <Route path="/login=Agent" element={<LoginForm userType="agent" />} />
-          <Route path="/register=Agent" element={<RegisterForm userType="agent" />} />
-          <Route path="/register=Customer" element={<RegisterForm userType="customer"  />} />
+          <Route path="/login/customer" element={<LoginForm userType="customer" />} />
+         <Route path="/login/agent" element={<LoginForm userType="agent" />} />
+          <Route path="/register/agent" element={<RegisterForm userType="agent" />} />
+          <Route path="/register/customer" element={<RegisterForm userType="customer"  />} />
 
       
           {/* Protected routes */}
           <Route
             path={"/"}
             element={
-              <RequireAuth fallbackPath={"/LoginChoice"}>
+              <RequireAuth fallbackPath={"/login"}>
                 <Home />
               </RequireAuth>
             }
@@ -47,7 +47,7 @@ function App() {
             <Route
             path={"/profile"}
             element={
-              <RequireAuth fallbackPath={"/LoginChoice"}>
+              <RequireAuth fallbackPath={"/logine"}>
                 <ProfileForm />
               </RequireAuth>
             }

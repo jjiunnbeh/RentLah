@@ -8,7 +8,7 @@ function RegisterChoice()
 {
     function handleClick(event)
     {
-        window.location.href= "/register=" + event.target.name;
+        window.location.href= "/register/" + event.target.name;
     }
 
     
@@ -23,9 +23,9 @@ function RegisterChoice()
     </div>
 
     <div className="d-grid gap-5 ">
-      <button onClick={handleClick} name="Customer" className="btn btn-primary" type="button">Register as Customer</button>
-      <button onClick={handleClick} name="Agent" className="btn btn-primary" type="button">Register as Agent</button>
-    <a className="Choice" href="/LoginChoice">Have account? Login Here</a>
+      <button onClick={handleClick} name="customer" className="btn btn-primary" type="button">Register as Customer</button>
+      <button onClick={handleClick} name="agent" className="btn btn-primary" type="button">Register as Agent</button>
+    <a className="Choice" href="/login">Have account? Login Here</a>
     </div>
 
     <div className="imagecontainer">

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signInStart,signInSuccess,signInFailure } from "../redux/user/userSlice"; 
 import loginimg from '../assets/loginimg.png';
+
 function LoginForm({ userType }) 
 {
   const BASE_URL = 'http://localhost:3000'; 
@@ -149,7 +150,7 @@ const {loading, errorMessage} = useSelector((state)=>state.user)
         </div>
         <div className="row justify-content-center">
         <button type="submit" className="btn btn-primary loginSubmit" >
-          {loading? "Loading..." : `Login as ${userType}`}
+          {loading? "Loading..." : `Login as ${userType.charAt(0).toUpperCase() + userType.slice(1)}`}
         </button>
         </div>
       </form>

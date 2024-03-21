@@ -8,7 +8,7 @@ function LoginChoice()
 {
     function handleClick(event)
     {
-        window.location.href= "/login=" + event.target.name;
+        window.location.href= "/login/" + event.target.name;
     }
 
     
@@ -23,9 +23,9 @@ function LoginChoice()
     </div>
 
         <div className="d-grid gap-5">
-  <button onClick={handleClick} name="Customer" className="btn btn-primary" type="button">Login as Customer</button>
-  <button onClick={handleClick} name="Agent" className="btn btn-primary" type="button">Login as Agent</button>
-  <a className="Choice" onClick={()=>{console.log("Register")}} href="/RegisterChoice" style={{color:"white"}}> Register Here</a>
+  <button onClick={handleClick} name="customer" className="btn btn-primary" type="button">Login as Customer</button>
+  <button onClick={handleClick} name="agent" className="btn btn-primary" type="button">Login as Agent</button>
+  <a className="Choice" onClick={()=>{console.log("Register")}} href="/register" style={{color:"white"}}> Register Here</a>
         </div>
         
     <div className="imagecontainer img-fluid">
