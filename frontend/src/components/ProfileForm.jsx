@@ -124,7 +124,7 @@ async function handleFileUpload(file)
           onClick={() => fileRef.current.click()} 
           src={data.profilepic || currentUser.profilepic} 
           alt="profile" 
-          style={{width:"250px", height:"250px"}}
+          style={{width:"250px", height:"250px", borderRadius:"50px"}}
           className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2" 
           />
         
