@@ -47,7 +47,7 @@ function App() {
             <Route
             path={"/profile"}
             element={
-              <RequireAuth fallbackPath={"/logine"}>
+              <RequireAuth fallbackPath={"/login"}>
                 <ProfileForm />
               </RequireAuth>
             }
