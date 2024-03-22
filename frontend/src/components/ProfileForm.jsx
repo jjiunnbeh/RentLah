@@ -120,9 +120,13 @@ async function handleFileUpload(file)
             hidden
             accept="image/*"
             />
-            <img src={formData.avatar} alt="profile picture" className="img-thumbnail" 
-            style={{width:"250px", height:"250px"}}
-            />
+            <img 
+          onClick={() => fileRef.current.click()} 
+          src={data.profilepic || currentUser.profilepic} 
+          alt="profile" 
+          style={{width:"250px", height:"250px"}}
+          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2" 
+          />
         
         </div>
         <div className="col col-lg-2"/>
