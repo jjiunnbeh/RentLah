@@ -36,7 +36,6 @@ export const registerAgent = async (req, res, next) => {
     phoneNo,
     agentFullName,
     agentRegNo,
-    estateCompanyName,
   } = req.body;
   const hashedPassword = bcryptjs.hashSync(password, 10);
   const newAgent = new Agent({
@@ -45,8 +44,7 @@ export const registerAgent = async (req, res, next) => {
     password: hashedPassword,
     phoneNo,
     agentFullName,
-    agentRegNo,
-    estateCompanyName,
+    agentRegNo
   });
   try {
     await newAgent.save();
