@@ -6,7 +6,7 @@
 //     const userType = useSelector((state) => state.user.currentUser.rest.userType);
 // console.log(userType)
 // const currentUser = useSelector((state) => state.user.currentUser.rest);
-// console.log(currentUser )
+// // console.log(currentUser )
 // return (
 // <div>
 // <header><NavBar/></header>
@@ -39,11 +39,11 @@ function ProfileForm() {
   const userType = useSelector((state) => state.user.currentUser.rest.userType);
   const currentUser = useSelector((state) => state.user.currentUser.rest);
   const [formData, setFormData] = useState({
-    avatar: currentUser.profilepic || "",
+    profilepic: currentUser.profilepic || "",
   });
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(null);
-
+  const fileRef = useRef(null);
   const handleFileUpload = (file) => {
     const storage = getStorage(app);
 
@@ -64,7 +64,7 @@ function ProfileForm() {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
-          setFormData({ ...formData, avatar: downloadURL })
+          setFormData({ ...formData, profilepic: downloadURL })
         );
       }
     );
@@ -76,9 +76,21 @@ function ProfileForm() {
         <NavBar />
       </header>
       <div>hello</div>
-      <a href="/login=Agent">
-        <img src={formData.avatar} alt="profile picture" />
-      </a>
+      
+      <input
+          onChange={(e) => setFile(e.target.files[0])}
+          type="file"
+          ref={fileRef}
+          hidden
+          accept="image/*"
+        />
+        <img
+          onClick={() => fileRef.current.click()}
+          src={formData.profilepic || currentUser.profilepic}
+          alt="profile"
+          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2"
+        />
+ 
       {userType === "Agent" ? (
         <form>
           <input placeholder="Agent" />
