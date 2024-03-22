@@ -73,7 +73,7 @@ useEffect(()=>{
   }
 },[file]);
 
-function handleFileUpload(file)
+async function handleFileUpload(file)
 {
   const storage = getStorage(app);
   //Give the new file a new name
@@ -92,11 +92,15 @@ function handleFileUpload(file)
       setFileUploadError(error);
     },
     () => {
-      getDownloadURL(uploadJob.snapshot.ref).then((downloadURL) =>
-        setData({ ...data, profilepic: downloadURL })
-      );
+      getDownloadURL(uploadJob.snapshot.ref).then((downloadURL) =>{
+      setData({ ...data, profilepic: downloadURL });
+      console.log(downloadURL)}
+      )
+      
     }
+    
   );
+  
 
 
 };
