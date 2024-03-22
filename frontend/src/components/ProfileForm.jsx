@@ -30,7 +30,7 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import firebaseConfig from "/Users/trongphan/Desktop/SC2006/RentLah/backend/firebase.js"
+import firebaseConfig from "../../../backend/firebase.js"
 
 
 const app = initializeApp(firebaseConfig);
