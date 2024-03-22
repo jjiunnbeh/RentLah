@@ -14,13 +14,12 @@ function RegisterChoice()
     
     return (
     <>
-    <div className="groupLogo">
       <img
+      className="groupLogo img-fluid"
         src={Logo}
         alt="Rent Lah Logo"
-        style={{ height: "100%", left: "0%" }}
+        style={{maxHeight:"80%", maxWidth:"80%"}}
       />
-    </div>
 
     <div className="d-grid gap-5 ">
       <button onClick={handleClick} name="customer" className="btn btn-primary" type="button">Register as Customer</button>

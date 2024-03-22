@@ -28,12 +28,11 @@ div.imagecontainer {
 }
 
 
-div.groupLogo {
-    height: 30%;
-    min-height: 10%;
-    width: 50%;
-    position: absolute;
-    top: 17%;
-    left: 8%;
+img.groupLogo {
+    width: 40%;
+    position: relative;
+    margin-left:5%;
+    margin-top:10%;
+    margin-bottom:-10%;
 }
 

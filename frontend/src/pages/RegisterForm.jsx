@@ -10,29 +10,15 @@ function RegisterForm({ userType })
 {
     const navigate = useNavigate();
 //Set up useState hooks
-        if (String(userType) === "customer")
-        {
-            const data = useState({
-                username:"",
-                password:"",
-                passwordConfirm:"",
-                email:"",
-                phoneNo:null
-        
-            });
 
-        }
-        else{
-            const data = useState({
-                username:"",
-                password:"",
-                passwordConfirm:"",
-                email:"",
-                phoneNo:null,
-                agentname:"",
-                agentregnum:null
-            });
-        }
+const [data, setData] = useState({
+    username: "",
+    password: "",
+    passwordconfirm: "",
+    email: "",
+    phoneNo: null,
+    ...(userType==="agent" && { agentname: "", agentregnum: null })
+});
 
   
     function handleChange(event) 
@@ -54,10 +40,6 @@ function RegisterForm({ userType })
           navigate("/login/" + userType);
             } catch (error) {
           // Handle register errors 
-          setData({
-            ...data,
-            password: ""
-          });
         }
 
 
@@ -170,7 +152,7 @@ function RegisterForm({ userType })
                     </div>
                     <br></br>
                     <div className="row justify-content-center">
-                        <label htmlFor="inputPassword" className="col-sm-8 col-form-label ">
+                        <label htmlFor="inputPassword" className="col-sm-8 col-sm-7 col-form-label ">
                             Password
                         </label>
                         <div className="col-sm-8">
@@ -188,7 +170,7 @@ function RegisterForm({ userType })
                     </div>
                     <br></br>
                     <div className="row justify-content-center">
-                        <label htmlFor="inputPasswordConfirmation" className="col-sm-8 col-form-label ">
+                        <label htmlFor="inputPasswordConfirmation" className="col-sm-8 col-sm-7 col-form-label ">
                             Password Confirmation
                         </label>
                         <div className="col-sm-8">
@@ -227,3 +209,4 @@ function RegisterForm({ userType })
 }
 
 export default RegisterForm;
+
