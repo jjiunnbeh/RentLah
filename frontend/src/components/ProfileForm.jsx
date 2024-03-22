@@ -80,13 +80,13 @@ function ProfileForm() {
         <div className="col-md-auto">
           <a href="/login=Agent">
             <img src={formData.avatar} alt="profile picture" className="img-thumbnail" 
-            style={{width:"200px", height:"200px"}}
+            style={{width:"250px", height:"250px"}}
             />
           </a>
         </div>
         <div className="col col-lg-2"/>
-        <div className="col align-items-center">
-          <div className="row">
+        <div className="col">
+          <div className="row" style={{marginTop:"8%"}}>
             <h1 className="font-weight-bold">Name</h1>
             <h1 className="font-weight-bold">Username</h1>
           </div>
