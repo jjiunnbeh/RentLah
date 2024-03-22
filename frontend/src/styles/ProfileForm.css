@@ -1,0 +1,18 @@
+hr.tophr {
+    width: 100%; /* Adjusts the width of the <hr> to 50% of its container */
+    margin: auto; /* Centers the <hr> within its container */
+    border-top: 5px solid white; /* Optional: sets the color and height of the line */
+    opacity: 100%;
+}
+
+div.formcontainer {
+    background-color: transparent;
+    margin-top: 0%;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+div.formcontainer > form {
+    margin-top: 0;
+    padding-top: 10 ;
+}

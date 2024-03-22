@@ -44,6 +44,7 @@ function ProfileForm() {
   });
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(null);
+  const fileRef = useRef(null);
 
   const handleFileUpload = (file) => {
     const storage = getStorage(app);
@@ -76,13 +77,20 @@ function ProfileForm() {
       <header>
         <NavBar />
       </header>
+      
       <div className="row" style={{marginLeft:"10%", marginRight:"10%", marginTop:"3%"}}>
         <div className="col-md-auto">
-          <a href="/login=Agent">
-            <img src={formData.avatar} alt="profile picture" className="img-thumbnail" 
-            style={{width:"200px", height:"200px"}}
+          <input
+            onChange = {(e) => setFile(e.target.files[0])}
+            type="file"
+            ref={fileRef}
+            hidden
+            accept="image/*"
             />
-          </a>
+            <img src={formData.avatar} alt="profile picture" className="img-thumbnail" 
+            style={{width:"250px", height:"250px"}}
+            />
+        
         </div>
         <div className="col col-lg-2"/>
         <div className="col align-items-center">
@@ -93,8 +101,18 @@ function ProfileForm() {
         </div>
       </div>
       <div className="row" style={{marginLeft:"10%", marginRight:"10%", marginTop:"3%"}}>
-        <hr className="border border-danger border-2 opacity-50"/>
+        <hr className="tophr"/>
       </div>
+      <div className="formcontainer" style={{marginLeft:"10%", marginRight:"10%"}}>
+          <form name="profileForm">
+          <h1 className="text-start font-weight-bold" style={{color:"white"}}>Email: {currentUser.email} </h1>
+          <div className="flex"> <input type="email" placeholder="Email"></input></div>
+          <h1 className="text-start font-weight-bold" style={{color:"white"}}>Phone Number: {currentUser.phoneNo} </h1>
+          
+          </form>
+
+      </div>
+      
     </>
   );
 }
