@@ -23,7 +23,7 @@ function LoginChoice()
       />
 
 
-        <div className="d-grid gap-5">
+        <div className="d-grid gap-5" style={{marginTop:"12%"}}>
   <button onClick={handleClick} name="customer" className="btn btn-primary" type="button">Login as Customer</button>
   <button onClick={handleClick} name="agent" className="btn btn-primary" type="button">Login as Agent</button>
   <a className="Choice" onClick={()=>{console.log("Register")}} href="/register" style={{color:"white"}}> Register Here</a>
