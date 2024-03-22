@@ -31,6 +31,7 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import firebaseConfig from "../../../backend/firebase.js"
+import "../styles/ProfileForm.css"
 
 
 const app = initializeApp(firebaseConfig);
@@ -71,24 +72,30 @@ function ProfileForm() {
   };
 
   return (
-    <div>
+    <>
       <header>
         <NavBar />
       </header>
-      <div>hello</div>
-      <a href="/login=Agent">
-        <img src={formData.avatar} alt="profile picture" />
-      </a>
-      {userType === "Agent" ? (
-        <form>
-          <input placeholder="Agent" />
-        </form>
-      ) : (
-        <form>
-          <input placeholder="Customer" />
-        </form>
-      )}
-    </div>
+      <div className="row" style={{marginLeft:"10%", marginRight:"10%", marginTop:"3%"}}>
+        <div className="col-md-auto">
+          <a href="/login=Agent">
+            <img src={formData.avatar} alt="profile picture" className="img-thumbnail" 
+            style={{width:"200px", height:"200px"}}
+            />
+          </a>
+        </div>
+        <div className="col col-lg-2"/>
+        <div className="col align-items-center">
+          <div className="row">
+            <h1 className="font-weight-bold">Name</h1>
+            <h1 className="font-weight-bold">Username</h1>
+          </div>
+        </div>
+      </div>
+      <div className="row" style={{marginLeft:"10%", marginRight:"10%", marginTop:"3%"}}>
+        <hr className="border border-danger border-2 opacity-50"/>
+      </div>
+    </>
   );
 }
 
