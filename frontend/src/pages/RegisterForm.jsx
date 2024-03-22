@@ -9,6 +9,7 @@ import loginimg from '../assets/loginimg.png';
 function RegisterForm({ userType }) 
 {
     const navigate = useNavigate();
+    const BASE_URL = 'http://localhost:3000'; 
 //Set up useState hooks
 
 const [data, setData] = useState({
@@ -35,10 +36,13 @@ const [data, setData] = useState({
     {    event.preventDefault();
         try {
           const response = await axios.post(`${BASE_URL}/api/auth/register-${userType}`, data);
-
-          console.log(response.data);
-          navigate("/login/" + userType);
+          console.log(response);
+          if (response.status == 201)
+          {
+            navigate("/login/" + userType);
+          }
             } catch (error) {
+                console.log(error.response.data)
           // Handle register errors 
         }
 
