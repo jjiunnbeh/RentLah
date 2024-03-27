@@ -21,6 +21,7 @@
 
 import { useSelector } from "react-redux";
 import NavBar from "./NavBar";
+import Triangles from "./Decoration";
 import { useRef, useState, useEffect } from "react";
 import {
   getDownloadURL,
@@ -28,7 +29,8 @@ import {
   ref,
   uploadBytesResumable
 } from "firebase/storage";
-import {app} from "../firebase"
+import {app} from "../firebase" 
+import "../styles/ProfileForm.css"
 
 function ProfileForm() {
   const userType = useSelector((state) => state.user.currentUser.rest.userType);
@@ -110,6 +112,8 @@ async function handleFileUpload(file)
       <header>
         <NavBar />
       </header>
+
+      <Triangles />
       
       <div className="row" style={{marginLeft:"10%", marginRight:"10%", marginTop:"3%"}}>
         <div className="col-md-auto">
@@ -124,16 +128,17 @@ async function handleFileUpload(file)
           onClick={() => fileRef.current.click()} 
           src={data.profilepic || currentUser.profilepic} 
           alt="profile" 
-          style={{width:"250px", height:"250px", borderRadius:"50px"}}
+          style={{width:"300px", height:"300px", borderRadius:"50px", marginLeft:"100px"}}
           className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2" 
           />
         
         </div>
+        
         <div className="col col-lg-2"/>
-        <div className="col align-items-center">
+        <div className="col d-flex align-items-center">
           <div className="row">
-            <h1 className="font-weight-bold">Name</h1>
-            <h1 className="font-weight-bold">Username</h1>
+            {userType==="agent" && <h1 className="mb-3 font-weight-bold font">Name: {currentUser.name}</h1>}
+            <h1 className="mb-3 font-weight-bold">Username: {currentUser.username}</h1>
           </div>
         </div>
       </div>
@@ -141,13 +146,47 @@ async function handleFileUpload(file)
         <hr className="tophr"/>
       </div>
       <div className="formcontainer" style={{marginLeft:"10%", marginRight:"10%"}}>
-          <form name="profileForm">
-          <h1 className="text-start font-weight-bold" style={{color:"white"}}>Email: {currentUser.email} </h1>
-          <div className="flex"> <input type="email" placeholder="Email"></input></div>
-          <h1 className="text-start font-weight-bold" style={{color:"white"}}>Phone Number: {currentUser.phoneNo} </h1>
-          
-          </form>
+          <form name="profileForm" style={{paddingTop:"3%", paddingBottom:"0"}}>
+          <div className="row" style={{marginBottom:"3%"}}> 
+          <div className="col"> <h1 className="text-start font-weight-bold" >Email: {currentUser.email} </h1> </div>
+          <div className="col-lg-4"><input className="form-control" type="email" placeholder="Email"></input></div>
+          </div>
 
+          <div className="row" style={{marginBottom:"3%"}}> 
+          <div className="col"> <h1 className="text-start font-weight-bold" >Phone Number: {currentUser.phoneNo} </h1> </div>
+          <div className="col-lg-4"><input className="form-control" type="text" placeholder="Phone Number"></input></div>
+          </div>
+
+          {userType==="agent" &&
+          <>
+          <div className="row" style={{marginBottom:"3%"}}> 
+          <div className="col"> <h1 className="text-start font-weight-bold" >Registration Number: {currentUser.agentregnum} </h1> </div>
+          <div className="col-lg-4"><input className="form-control" type="text" placeholder="Registration Number"></input></div>
+          </div>
+
+          </>}
+          <div className="row justify-content-center">
+            <button type="submit" className="btn btn-primary loginSubmit" >
+                Save Changes
+            </button>
+          </div>
+          </form>
+      </div>
+      <div className="row" style={{marginLeft:"10%", marginRight:"10%", marginTop:"3%"}}>
+        <hr className="tophr"/>
+      </div>
+
+      <div className="row" style={{marginTop:"3%"}}>
+        <div className="col d-flex justify-content-end">
+        <button type="submit" className="btn btn-primary loginSubmit" >
+                Change Password
+            </button>
+        </div>
+        <div className="col">
+        <button type="reset" className="btn btn-primary loginSubmit" >
+                Log Out
+            </button>
+        </div>
       </div>
       
     </>
