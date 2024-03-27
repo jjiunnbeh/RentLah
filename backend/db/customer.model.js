@@ -4,11 +4,13 @@ const customerSchema = new mongoose.Schema(
   {
     username: {
       type: String,
+      uppercase:true,
       required: true,
       unique: true,
     },
     email: {
       type: String,
+      uppercase:true,
       required: true,
       unique: true,
     },
