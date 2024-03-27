@@ -265,12 +265,11 @@ export const loginAgent = async (req, res, next) => {
     const jwtToken = jwt.sign({ id: validAgent._id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
+    const {password: pass, ...rest} = validAgent._doc;
+    const token =jwtToken;
     res
       .status(200)
-      .json({
-        message: `Sucessfully login as ${validAgent.username}`,
-        token: jwtToken,
-      });
+      .json({rest, token});
   } catch (error) {
     return next(error);
   }

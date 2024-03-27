@@ -157,7 +157,7 @@ async function handleFileUpload(file)
           <div className="col-lg-4"><input className="form-control" type="text" placeholder="Phone Number"></input></div>
           </div>
 
-          {userType==="agent" &&
+          {userType==="Agent" &&
           <>
           <div className="row" style={{marginBottom:"3%"}}> 
           <div className="col"> <h1 className="text-start font-weight-bold" >Registration Number: {currentUser.agentregnum} </h1> </div>
