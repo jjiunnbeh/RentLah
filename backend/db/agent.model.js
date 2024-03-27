@@ -4,12 +4,14 @@ const agentSchema = new mongoose.Schema(
   {
     username: {
       type: String,
+      uppercase:true,
       required: true,
       unique: true,
     },
     email: {
       type: String,
       required: true,
+      uppercase:true,
       unique: true,
     },
     password: {

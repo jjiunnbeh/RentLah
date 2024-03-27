@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "../styles/RegisterForm.css";
 import axios from "axios";
@@ -17,9 +17,21 @@ const [data, setData] = useState({
     password: "",
     passwordconfirm: "",
     email: "",
-    phoneNo: null,
-    ...(userType==="agent" && { agentname: "", agentregnum: null })
+    phoneNo: "",
+    ...(userType==="agent" && { agentname: "", agentregnum: "" })
 });
+
+const [error, setError] = useState(
+    {
+        username:"",
+        email:"",
+        agentregnum:"",
+        phoneNo:"",
+        password:"",
+        passwordconfirm:"",
+        ...(userType==="agent" && {license:""})
+    }
+)
 
   
     function handleChange(event) 
@@ -31,9 +43,40 @@ const [data, setData] = useState({
           [name]: value,
         }));
     }    
+    // useEffect(() => {
+    //     console.log(error.passwordconfirm);
+    //     console.log(error.password);
+    //     console.log(error.username);
+    //     console.log(error.email);
+    //     console.log(error.phoneNo);
+    //     console.log(error.license);
+    //     // Add more error state variables as needed
+    // }, [error.passwordconfirm, error.password, error.username, error.email, error.phoneNo, error.license]);
+    
 
     const handleSubmit = async (event) => 
     {    event.preventDefault();
+        setError(    {
+            username:"",
+            email:"",
+            agentregnum:"",
+            phoneNo:"",
+            password:"",
+            passwordconfirm:"",
+            ...(userType==="agent" && {license:""})
+        })
+        console.log(data)
+        if (data.password !== data.passwordconfirm || data.password === "" || data.passwordconfirm === "") {
+            setError({ passwordconfirm: "Password does not match" });
+            console.log(error.passwordconfirm);
+            setData(prevData => ({
+                ...prevData,
+                password: "", 
+                passwordconfirm: "" 
+            }));
+            return;
+        }
+ 
         try {
           const response = await axios.post(`${BASE_URL}/api/auth/register-${userType}`, data);
           console.log(response);
@@ -42,7 +85,37 @@ const [data, setData] = useState({
             navigate("/login/" + userType);
           }
             } catch (error) {
-                console.log(error.response.data)
+                console.log(error.response.data.message)
+                const e = error.response.data.message;
+                if (e.type === "password")
+                {
+                    console.log(e.content);
+                    setError({password:e.content});
+                }
+                else if (e.type === "username")
+                {
+                    console.log(e.content);
+                    setError({username:e.content});
+
+                }
+                else if(e.type === "email")
+                {
+                    console.log(e.content);
+                    setError({email:e.content});
+
+                }
+                else if(e.type == "phoneNo")
+                {
+                    console.log(e.content);
+                    setError({phoneNo:e.content});
+
+                }
+                else if(e.type === "license")
+                {
+                    console.log(e.content);
+                    setError({license:e.content});
+
+                }
           // Handle register errors 
         }
 
@@ -70,10 +143,12 @@ const [data, setData] = useState({
                             placeholder="Username"
                             onChange={handleChange}
                             name="username"
+                            value={data.username}
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
                         </div>
+                        <span>{error.username}</span>
                     </div>
                     <br></br>
                     <div className="row justify-content-center">
@@ -88,10 +163,12 @@ const [data, setData] = useState({
                             placeholder="Email Address"
                             onChange={handleChange}
                             name="email"
+                            value={data.email}
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
                         </div>
+                        <span>{error.email}</span>
                     </div>
                     {userType==="agent" &&
                     <>
@@ -108,10 +185,12 @@ const [data, setData] = useState({
                                 placeholder="Agent Name"
                                 onChange={handleChange}
                                 name="agentname"
+                                value={data.agentname}
                                 onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                                 required
                                 />
                             </div>
+                            <span>{error.agentname}</span>
                     </div>
                         <br></br>
                         <div className="row justify-content-center">
@@ -125,11 +204,13 @@ const [data, setData] = useState({
                                 id="inputAgentRegNum"
                                 placeholder="Agent Registration Number"
                                 onChange={handleChange}
+                                value={data.agentregnum}
                                 name="agentregnum"
                                 onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                                 required
                                 />
                             </div>
+                            <span>{error.agentregnum}</span>
                     </div>
 
                     </>
@@ -149,10 +230,12 @@ const [data, setData] = useState({
                                 placeholder="Phone Number"
                                 onChange={handleChange}
                                 name="phoneNo"
+                                value={data.phoneNo}
                                 onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                                 required
                                 />
                         </div>
+                        <span>{error.phoneNo}</span>
                     </div>
                     <br></br>
                     <div className="row justify-content-center">
@@ -166,11 +249,13 @@ const [data, setData] = useState({
                             id="inputPassword"
                             placeholder="Password"
                             onChange={handleChange}
+                            value={data.password}
                             name="password"
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
                         </div>
+                        <span>{error.password}</span>
                     </div>
                     <br></br>
                     <div className="row justify-content-center">
@@ -184,11 +269,13 @@ const [data, setData] = useState({
                             id="inputPasswordConfirmation"
                             placeholder="Password Confirmation"
                             onChange={handleChange}
+                            value={data.passwordconfirm}
                             name="passwordconfirm"
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
                         </div>
+                        <span>{error.passwordconfirm}</span>
                     </div>
                     <br></br>
                     <br></br>

@@ -8,6 +8,30 @@ import "dotenv/config";
 //Register Customer
 export const registerCustomer = async (req, res, next) => {
   const { username, email, password, phoneNo } = req.body;
+function isPasswordStrong(password) {     
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Example regular expression
+  return regex.test(password);
+}
+  if (password.length < 10)
+  {
+    return next(
+      errorHandler(
+        401,
+        {type:"password", content:"Password length must be greater than 10."}
+        
+      ))
+  }
+
+  if (!isPasswordStrong(password))
+  {
+    return next(
+      errorHandler(
+        401,
+        
+        {type:"password", content:"Password must contain at least 1 upper Case letter, 1 special symbol and normal case letter"}
+      ))
+  }
+
   const hashedPassword = bcryptjs.hashSync(password, 10);
   const newCustomer = new Customer({
     username,
@@ -22,39 +46,120 @@ export const registerCustomer = async (req, res, next) => {
       .status(201)
       .json(`${newCustomer.username} 's account is created sucessfully`);
   } catch (error) {
-    console.log("Failure to register");
-    next(errorHandler(500, error.message));
+    console.log(error.keyValue);
+    const message = error.keyValue
+    if (error.keyValue.username)
+    {
+      return next(
+        errorHandler(
+          409,
+          {type:"username",content:"Username already existed in our database."}
+        ))
+    }
+    else if (error.keyValue.email)
+    {
+      return next(
+        errorHandler(
+          409,
+          {type:"email",content: "Email address already existed in our database."}
+        ))
+    }
+    else if (error.keyValue.phoneNo)
+    {
+      return next(
+        errorHandler(
+          409,
+          {type:"phoneNo",content: "Phone number already existed in our database."}
+        ))
+    }
+  
+
   }
 };
 
-//Register Agent
+//Register agent
 export const registerAgent = async (req, res, next) => {
-  const {
-    username,
-    email,
-    password,
-    phoneNo,
-    agentFullName,
-    agentRegNo,
-  } = req.body;
+  const { username, email, password, phoneNo,agentname, agentregnum } = req.body;
+function isPasswordStrong(password) {     
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Example regular expression
+  return regex.test(password);
+}
+  if (password.length < 10)
+  {
+    return next(
+      errorHandler(
+        401,
+        {type:"password", content:"Password length must be greater than 10."}
+      ))
+  }
+
+  if (!isPasswordStrong(password))
+  {
+    return next(
+      errorHandler(
+        401,
+        {type:"password", content:"Password must contain at least 1 upper Case letter, 1 special symbol and normal case letter"}
+      ))
+  }
+
   const hashedPassword = bcryptjs.hashSync(password, 10);
   const newAgent = new Agent({
     username,
     email,
     password: hashedPassword,
     phoneNo,
-    agentFullName,
-    agentRegNo
+    agentname,
+    agentregnum,
   });
   try {
     await newAgent.save();
+    console.log(`${newAgent.username} 's account is created sucessfully`);
     res
       .status(201)
       .json(`${newAgent.username} 's account is created sucessfully`);
   } catch (error) {
-    return next(errorHandler(500, error.message));
+    console.log(error);
+    console.log(error.keyValue);
+    const message = error.keyValue
+    if (error.keyValue.username)
+    {
+      return next(
+        errorHandler(
+          409,
+          {type:"username", content:"Username already existed in our database."}
+        ))
+    }
+    else if (error.keyValue.email)
+    {
+      return next(
+        errorHandler(
+          409,
+         {type:"email",content: "Email address already existed in our database."}
+        ))
+    }
+    else if (error.keyValue.phoneNo)
+    {
+      return next(
+        errorHandler(
+          409,
+          {type:"phoneNo",content: "Phone number already existed in our database."}
+        ))
+    }
+    else if (error.keyValue.agentregnum)
+    {
+      return next(
+        errorHandler(
+          409,
+          {type:"license", content:"The license no. has already been registered by another agent."}
+        ))
+
+    }
+  
+
   }
 };
+
+
 
 //Customer Login
 export const loginCustomer = async (req, res, next) => {
