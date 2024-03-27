@@ -32,6 +32,7 @@ import {app} from "../firebase"
 
 function ProfileForm() {
   const userType = useSelector((state) => state.user.currentUser.rest.userType);
+  console.log(userType);
   const currentUser = useSelector((state) => state.user.currentUser.rest);
 
   const [data, setData] = useState({});
