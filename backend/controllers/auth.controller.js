@@ -5,13 +5,16 @@ import errorHandler from "../utils/error.js";
 import jwt from "jsonwebtoken"; //jwt
 import "dotenv/config";
 
-//Register Customer
-export const registerCustomer = async (req, res, next) => {
-  const { username, email, password, phoneNo } = req.body;
 function isPasswordStrong(password) {     
   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Example regular expression
   return regex.test(password);
 }
+
+//Register Customer
+export const registerCustomer = async (req, res, next) => {
+  const { username, email, password, phoneNo } = req.body;
+  const strongpass = isPasswordStrong(password);
+
   if (password.length < 10)
   {
     return next(
@@ -21,13 +24,11 @@ function isPasswordStrong(password) {
         
       ))
   }
-
-  if (!isPasswordStrong(password))
+  if (!strongpass)
   {
     return next(
       errorHandler(
         401,
-        
         {type:"password", content:"Password must contain at least 1 upper Case letter, 1 special symbol and normal case letter"}
       ))
   }
@@ -80,20 +81,16 @@ function isPasswordStrong(password) {
 //Register agent
 export const registerAgent = async (req, res, next) => {
   const { username, email, password, phoneNo,agentname, agentregnum } = req.body;
-function isPasswordStrong(password) {     
-  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Example regular expression
-  return regex.test(password);
-}
   if (password.length < 10)
   {
     return next(
       errorHandler(
         401,
         {type:"password", content:"Password length must be greater than 10."}
+        
       ))
   }
-
-  if (!isPasswordStrong(password))
+  if (!strongpass)
   {
     return next(
       errorHandler(
@@ -276,12 +273,17 @@ export const loginAgent = async (req, res, next) => {
 };
 
 export const forgetPassword = async (req, res, next) => {
+
   const { userType, email } = req.body;
   let validUser;
   if (userType === "Customer") {
     validUser = await Customer.findOne({ email });
   } else {
     validUser = await Agent.findOne({ email });
+  }
+  if (validUser)
+  {
+    
   }
 
 //   if (!validUser)

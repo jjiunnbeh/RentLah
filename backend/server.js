@@ -57,7 +57,6 @@ app.use(bodyParser.json());
 
 
 app.use("/api/customer", customerRouter);
-//This is the register route// Use Postman to try http://localhost:3000/api/auth/registerAgent or registerCustomer
 app.use('/api/auth', authRouter);
 //Middleware
 app.use((error, req, res, next)=>

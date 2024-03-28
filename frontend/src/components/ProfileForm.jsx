@@ -21,8 +21,9 @@
 
 import { useSelector } from "react-redux";
 import NavBar from "./NavBar";
-import Triangles from "./Decoration";
+import Triangles from "./Triangles";
 import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   getDownloadURL,
   getStorage,
@@ -31,8 +32,13 @@ import {
 } from "firebase/storage";
 import {app} from "../firebase" 
 import "../styles/ProfileForm.css"
+import useSignOut from 'react-auth-kit/hooks/useSignOut';
+
+
 
 function ProfileForm() {
+  const signOut = useSignOut();
+  const navigate = useNavigate();
   const userType = useSelector((state) => state.user.currentUser.rest.userType);
   console.log(userType);
   const currentUser = useSelector((state) => state.user.currentUser.rest);
@@ -76,10 +82,6 @@ useEffect(()=>{
   }
 },[file]);
 
-function handleLogout()
-{
-  
-}
 async function handleFileUpload(file)
 {
   const storage = getStorage(app);
@@ -188,7 +190,7 @@ async function handleFileUpload(file)
             </button>
         </div>
         <div className="col">
-        <button onClick={handleLogout}type="reset" className="btn btn-primary loginSubmit" >
+        <button onClick={() => {signOut(); navigate("/login/" + userType);} } type="reset" className="btn btn-primary loginSubmit" >
                 Log Out
             </button>
         </div>
