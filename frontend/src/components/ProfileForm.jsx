@@ -36,12 +36,14 @@ import useSignOut from 'react-auth-kit/hooks/useSignOut';
 
 
 
+
 function ProfileForm() {
   const signOut = useSignOut();
   const navigate = useNavigate();
   const userType = useSelector((state) => state.user.currentUser.rest.userType);
   console.log(userType);
   const currentUser = useSelector((state) => state.user.currentUser.rest);
+  const navigate = useNavigate();
 
   const [data, setData] = useState({});
   const [file, setFile] = useState(undefined);
@@ -82,6 +84,12 @@ useEffect(()=>{
   }
 },[file]);
 
+function handleChangePassword()
+{
+
+    navigate("/change-password/" + userType)
+
+}
 async function handleFileUpload(file)
 {
   const storage = getStorage(app);
@@ -185,7 +193,7 @@ async function handleFileUpload(file)
 
       <div className="row" style={{marginTop:"3%"}}>
         <div className="col d-flex justify-content-end">
-        <button type="submit" className="btn btn-primary loginSubmit" >
+        <button onClick={handleChangePassword} type="submit" className="btn btn-primary loginSubmit" >
                 Change Password
             </button>
         </div>
