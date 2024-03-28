@@ -55,6 +55,8 @@ app.use(bodyParser.json());
 // // Mount the property listings router to the /api path
 // app.use('/api', propertyListingsRouter);
 
+app.use('/api', authRouter);
+
 
 app.use("/api/customer", customerRouter);
 app.use('/api/auth', authRouter);

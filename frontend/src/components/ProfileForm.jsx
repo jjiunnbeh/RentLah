@@ -35,7 +35,11 @@ import "../styles/ProfileForm.css"
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
 
 
+<<<<<<< HEAD
 
+=======
+const app = initializeApp(firebaseConfig);
+>>>>>>> 4e99ef0 (hihi)
 
 function ProfileForm() {
   const signOut = useSignOut();
@@ -130,6 +134,7 @@ async function handleFileUpload(file)
 
       <Triangles />
       
+<<<<<<< HEAD
       <div className="row" style={{marginLeft:"10%", marginRight:"10%", marginTop:"3%"}}>
         <div className="col-md-auto">
           <input
@@ -205,6 +210,33 @@ async function handleFileUpload(file)
       </div>
       
     </>
+=======
+      <input
+          onChange={(e) => setFile(e.target.files[0])}
+          type="file"
+          ref={fileRef}
+          hidden
+          accept="image/*"
+        />
+        
+        <img
+          onClick={() => fileRef.current.click()}
+          src={formData.profilepic || currentUser.profilepic}
+          alt="profile"
+          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2"
+        />
+ 
+      {userType === "Agent" ? (
+        <form>
+          <input placeholder="Agent" />
+        </form>
+      ) : (
+        <form>
+          <input placeholder="Customer" />
+        </form>
+      )}
+    </div>
+>>>>>>> 4e99ef0 (hihi)
   );
 }
 
