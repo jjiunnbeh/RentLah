@@ -3,7 +3,21 @@ footer
   position:fixed;
   bottom:0;
   width:100%;
-  height:5%;
   text-align:left;
   opacity: 50%;
+  z-index: -1;
 }
+
+html
+{
+    background-color: #8cbdf9;
+}
+
+body{
+    --bs-body-bg: transparent;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+

@@ -21,7 +21,7 @@ div.formcontainer > form {
     width: 0px;
     height: 0px;
     border-style: solid;
-    border-width: 1080px 150px 0 0;
+    border-width: 995px 150px 0 0;
     border-color: #6185b2 transparent transparent transparent;
     position: absolute;
 }
@@ -30,7 +30,7 @@ div.formcontainer > form {
     width: 0px;
     height: 0px;
     border-style: solid;
-    border-width: 0 150px 1080px 0;
+    border-width: 0 150px 995px 0;
     border-color: transparent #6185b2 transparent transparent;
     position: absolute;
     right: 0%;
