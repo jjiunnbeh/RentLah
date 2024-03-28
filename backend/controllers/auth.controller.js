@@ -358,25 +358,23 @@ export const getbill = (req, res) => {
     let MailGenerator = new Mailgen({
         theme: "default",
         product : {
-            name: "Mailgen",
+            name: "RentLah by Z440",
             link : 'https://mailgen.js/'
         }
     })
 
     let response = {
         body: {
-            name : "Daily Tuition",
-            intro: "Your bill has arrived!",
+            name : "user",
+            intro: "Here is your reset password link",
             table : {
                 data : [
                     {
-                        item : "Nodemailer Stack Book",
-                        description: "A Backend application",
-                        price : "$10.99",
+                        'Your reset link':'url'
                     }
                 ]
             },
-            outro: "Looking forward to do more business"
+            outro: "Do not share your password with anyone."
         }
     }
 
@@ -385,7 +383,7 @@ export const getbill = (req, res) => {
     let message = {
         from : process.env.EMAIL,
         to : userEmail,
-        subject: "Place Order",
+        subject: "RentLah! How dare you forget your password?",
         html: mail
     }
 
