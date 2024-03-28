@@ -11,6 +11,7 @@ import userRouter from "./routes/user.routes.js";
 import { error } from 'console';
 import authRouter from "./routes/auth.route.js";
 
+
 // import propertyListingsRouter from './function/propertyListings.js'; // Import the property listings router
 
 
@@ -23,9 +24,11 @@ const app = express();
 const port = 3000;
 app.use(cors({ origin: ['http://localhost:5173','http://localhost:5174'] }));
 app.use(bodyParser.json());
+// app.use(cookieParser());
 
 app.use("/api/user", userRouter);
 app.use('/api/auth', authRouter);
+app.use("/api/user", userRouter);
 //Middleware
 app.use((error, req, res, next)=>
 {

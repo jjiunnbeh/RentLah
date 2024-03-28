@@ -1,6 +1,6 @@
 import express from "express";
 
-import { changePassAgent, changePassCustomer } from "../controllers/user.controller.js";
+import { changePassAgent, changePassCustomer, updateProfiePic } from "../controllers/user.controller.js";
 
 
 
@@ -8,7 +8,9 @@ import { changePassAgent, changePassCustomer } from "../controllers/user.control
 const router = express.Router();
 
 
-router.post("/changepass-customer", changePassCustomer);
-router.post("/changepass-agent", changePassAgent);
+// router.post("/changepass-customer", changePassCustomer);
+// router.post("/changepass-agent", changePassAgent);
+router.put("/update/profilepic", updateProfiePic);
+
 
 export default router;

@@ -33,47 +33,26 @@ import {
 import {app} from "../firebase" 
 import "../styles/ProfileForm.css"
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
+import axios from "axios";
 
 
 
 
 function ProfileForm() {
   const signOut = useSignOut();
+  const BASE_URL = 'http://localhost:3000';
   const navigate = useNavigate();
   const userType = useSelector((state) => state.user.currentUser.rest.userType);
   console.log(userType);
   const currentUser = useSelector((state) => state.user.currentUser.rest);
 
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState({profilepic:currentUser.profilepic});
   const [file, setFile] = useState(undefined);
 
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(null);
   const fileRef = useRef(null);
-  // const handleFileUpload = (file) => {
-  //   const storage = getStorage(app);
-
-  //   const fileName = new Date().getTime() + file.name;
-  //   const storageRef = ref(storage, fileName);
-  //   const uploadTask = uploadBytesResumable(storageRef, file);
-    // uploadTask.on(
-    //   "state_changed",
-    //   (snapshot) => {
-    //     const progress =
-    //       (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //     setFilePerc(Math.round(progress));
-    //   },
-    //   (error) => {
-    //     setFileUploadError(error);
-    //   },
-    //   () => {
-    //     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
-    //       setData({ ...data, profilepic: downloadURL })
-    //     );
-    //   }
-    // );
-  // };
 
 
 
@@ -89,6 +68,23 @@ function handleChangePassword()
 
     navigate("/change-password/" + userType)
 
+}
+async function saveProfileImage(downloadURL)
+{
+  try{
+    console.log(currentUser._id)
+  const username = currentUser.username;
+  const imageurl = downloadURL;
+  const response = await axios.put(`${BASE_URL}/api/user/update/profilepic`, {username ,imageurl, userType});
+  if (response.status == 201)
+  {
+    console.log("ok");
+  }
+  }catch(error)
+  {
+    console.log(error);
+  }
+  
 }
 async function handleFileUpload(file)
 {
@@ -110,8 +106,12 @@ async function handleFileUpload(file)
     },
     () => {
       getDownloadURL(uploadJob.snapshot.ref).then((downloadURL) =>{
-      setData({ ...data, profilepic: downloadURL });
-      console.log(downloadURL)}
+      setData({ profilepic: downloadURL });
+      
+      console.log(downloadURL)
+      saveProfileImage(downloadURL);
+      currentUser.profilepic = downloadURL;
+    }
       )
       
     }
@@ -141,7 +141,7 @@ async function handleFileUpload(file)
             />
             <img 
           onClick={() => fileRef.current.click()} 
-          src={data.profilepic || currentUser.profilepic} 
+          src={data.profilepic} 
           alt="profile" 
           style={{width:"300px", height:"300px", borderRadius:"50px", marginLeft:"100px"}}
           className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2" 

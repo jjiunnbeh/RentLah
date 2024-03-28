@@ -300,50 +300,11 @@ export const forgetPassword = async (req, res, next) => {
 
 //   }
 };
-/** send mail from testing account */
-export const signup = async (req, res) => {
 
-    /** testing account */
-    let testAccount = await nodemailer.createTestAccount();
+export const sendEmail = (req, res) => {
 
-      // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-        host: "smtp.ethereal.email",
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-            user: testAccount.user, // generated ethereal user
-            pass: testAccount.pass, // generated ethereal password
-        },
-    });
-
-    let message = {
-        from: '"Fred Foo 👻" <foo@example.com>', // sender address
-        to: "bar@example.com, baz@example.com", // list of receivers
-        subject: "Hello ✔", // Subject line
-        text: "Successfully Register with us.", // plain text body
-        html: "<b>Successfully Register with us.</b>", // html body
-      }
-
-
-    transporter.sendMail(message).then((info) => {
-        return res.status(201)
-        .json({ 
-            msg: "you should receive an email",
-            info : info.messageId,
-            preview: nodemailer.getTestMessageUrl(info)
-        })
-    }).catch(error => {
-        return res.status(500).json({ error })
-    })
-
-    // res.status(201).json("Signup Successfully...!");
-}
-
-/** send mail from real gmail account */
-export const getbill = (req, res) => {
-
-    const { userEmail } = req.body;
+    const { userEmail, userType } = req.body;
+    
 
     let config = {
         service : 'gmail',
@@ -383,13 +344,13 @@ export const getbill = (req, res) => {
     let message = {
         from : process.env.EMAIL,
         to : userEmail,
-        subject: "RentLah! How dare you forget your password?",
+        subject: "RentLah! Password reset",
         html: mail
     }
 
     transporter.sendMail(message).then(() => {
         return res.status(201).json({
-            msg: "you should receive an email"
+            msg: "Email sent"
         })
     }).catch(error => {
         return res.status(500).json({ error })
