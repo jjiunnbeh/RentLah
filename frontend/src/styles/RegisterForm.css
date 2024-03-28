@@ -34,3 +34,9 @@ button.btn.btn-primary.loginSubmit
     font-size: 25px;
     margin-left: 0%;
 }
+
+span.error
+{
+    max-width: 63%;
+    color: red;
+}

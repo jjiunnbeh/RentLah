@@ -1,5 +1,9 @@
 # RentLah : A real estate web application
 
+<p align="center">
+  <img src="./frontend/src/assets/Login Choice Screenshot.png" alt="RentLah Login Choice Image" width="800"/>
+</p>
+
 To run this web applicaton, clone this file, then cd into your working directory:
 
 Then run the following code to launch the front end:  

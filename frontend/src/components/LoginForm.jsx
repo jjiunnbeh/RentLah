@@ -140,7 +140,7 @@ const {loading, errorMessage} = useSelector((state)=>state.user)
               {errorMessage && <span id="errormsg">{errorMessage}</span>} 
               </div>
               <div htmlFor="inputPassword3" className="col-sm-8 col-form-label">
-              <button className= "btn btn-link =" style={{color: "white"}}>Forget Password</button>
+              <a href = "/forget-pass" style={{color: "white"}}>Forget Password</a>
               </div>
             </div>
 

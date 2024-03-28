@@ -148,7 +148,7 @@ const [error, setError] = useState(
                             required
                             />
                         </div>
-                        <span>{error.username}</span>
+                        <span className="error">{error.username}</span>
                     </div>
                     <br></br>
                     <div className="row justify-content-center">
@@ -168,7 +168,7 @@ const [error, setError] = useState(
                             required
                             />
                         </div>
-                        <span>{error.email}</span>
+                        <span className="error">{error.email}</span>
                     </div>
                     {userType==="agent" &&
                     <>
@@ -190,7 +190,7 @@ const [error, setError] = useState(
                                 required
                                 />
                             </div>
-                            <span>{error.agentname}</span>
+                            <span className="error">{error.agentname}</span>
                     </div>
                         <br></br>
                         <div className="row justify-content-center">
@@ -210,7 +210,7 @@ const [error, setError] = useState(
                                 required
                                 />
                             </div>
-                            <span>{error.agentregnum}</span>
+                            <span className="error">{error.agentregnum}</span>
                     </div>
 
                     </>
@@ -235,7 +235,7 @@ const [error, setError] = useState(
                                 required
                                 />
                         </div>
-                        <span>{error.phoneNo}</span>
+                        <span className="error">{error.phoneNo}</span>
                     </div>
                     <br></br>
                     <div className="row justify-content-center">
@@ -255,7 +255,7 @@ const [error, setError] = useState(
                             required
                             />
                         </div>
-                        <span>{error.password}</span>
+                        <span className="error">{error.password}</span>
                     </div>
                     <br></br>
                     <div className="row justify-content-center">
@@ -275,7 +275,7 @@ const [error, setError] = useState(
                             required
                             />
                         </div>
-                        <span>{error.passwordconfirm}</span>
+                        <span className="error">{error.passwordconfirm}</span>
                     </div>
                     <br></br>
                     <br></br>
