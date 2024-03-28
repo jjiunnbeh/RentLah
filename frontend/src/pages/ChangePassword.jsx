@@ -10,13 +10,17 @@ import loginimg from '../assets/loginimg.png';
 function ChangePassword({ userType }) 
 {
 
-    const BASE_URL = 'http://localhost:3000'; 
+    const BASE_URL = 'http://localhost:3000';
+    const data = useState({
+        old:"",
+        new:""
+    })
 
 async function handleSubmit(event)
 {
     event.preventDefault();
-    const response = await axios.post(`${BASE_URL}/api/auth/forgetpassword-${userType}`, data);
-    
+    const response = await axios.post(`${BASE_URL}/api/user/changepass-${userType}`, data);
+
 
 }
 
