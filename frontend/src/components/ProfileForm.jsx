@@ -43,7 +43,7 @@ function ProfileForm() {
   const userType = useSelector((state) => state.user.currentUser.rest.userType);
   console.log(userType);
   const currentUser = useSelector((state) => state.user.currentUser.rest);
-  const navigate = useNavigate();
+
 
   const [data, setData] = useState({});
   const [file, setFile] = useState(undefined);
