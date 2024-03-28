@@ -76,6 +76,10 @@ useEffect(()=>{
   }
 },[file]);
 
+function handleLogout()
+{
+  
+}
 async function handleFileUpload(file)
 {
   const storage = getStorage(app);
@@ -184,7 +188,7 @@ async function handleFileUpload(file)
             </button>
         </div>
         <div className="col">
-        <button type="reset" className="btn btn-primary loginSubmit" >
+        <button onClick={handleLogout}type="reset" className="btn btn-primary loginSubmit" >
                 Log Out
             </button>
         </div>
