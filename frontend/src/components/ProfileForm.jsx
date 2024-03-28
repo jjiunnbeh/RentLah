@@ -190,7 +190,7 @@ async function handleFileUpload(file)
             </button>
         </div>
         <div className="col">
-        <button onClick={() => {signOut(); navigate("/login/" + userType);} } type="reset" className="btn btn-primary loginSubmit" >
+        <button onClick={() => {signOut(); navigate("/login");} } type="reset" className="btn btn-primary loginSubmit" >
                 Log Out
             </button>
         </div>
