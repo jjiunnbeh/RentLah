@@ -4,7 +4,6 @@ import bcryptjs from "bcryptjs";
 import errorHandler from "../utils/error.js";
 import jwt from "jsonwebtoken"; //jwt
 import "dotenv/config";
-
 import nodemailer from 'nodemailer';
 import Mailgen from 'mailgen';
 
@@ -289,16 +288,6 @@ export const forgetPassword = async (req, res, next) => {
 
   }
 
-//   if (!validUser)
-//   {
-//     res
-//     .status(200)
-//     .json({
-//       message: `Sucessfully login as ${validCustomer.username}`,
-//       token: jwtToken,
-//     });
-
-//   }
 };
 
 export const sendEmail = (req, res) => {
@@ -356,5 +345,5 @@ export const sendEmail = (req, res) => {
         return res.status(500).json({ error })
     })
 
-    // res.status(201).json("getBill Successfully...!");
+
 };
