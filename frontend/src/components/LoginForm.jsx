@@ -52,10 +52,10 @@ const {loading, errorMessage} = useSelector((state)=>state.user)
     try {
       dispatch(signInStart());
       const response = await axios.post(`${BASE_URL}/api/auth/login-${data.userType}`, data);
-      console.log(response.data);
+      
       if (response.status == 200)
       {
-        dispatch(signInSuccess(response.data))
+        dispatch(signInSuccess(response.data.rest))
         if (signIn({
           auth: {
             token: response.data.token,

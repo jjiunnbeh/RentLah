@@ -43,12 +43,12 @@ function ProfileForm() {
   const signOut = useSignOut();
   const BASE_URL = 'http://localhost:3000';
   const navigate = useNavigate();
-  const userType = useSelector((state) => state.user.currentUser.rest.userType);
-  const token = useSelector((state) => state.user.currentUser.token);
+  const userType = useSelector((state) => state.user.currentUser.userType);
+
   const dispatch = useDispatch();
 
   console.log(userType);
-  const currentUser = useSelector((state) => state.user.currentUser.rest);
+  const currentUser = useSelector((state) => state.user.currentUser);
 
 
   const [data, setData] = useState({profilepic:currentUser.profilepic});
@@ -79,10 +79,10 @@ async function saveProfileImage(downloadURL)
     dispatch(updateUserStart());
   const username = currentUser.username;
   const imageurl = downloadURL;
-  const response = await axios.put(`${BASE_URL}/api/user/update/profilepic`, {username ,imageurl, userType, token});
+  const response = await axios.put(`${BASE_URL}/api/user/update/profilepic`, {username ,imageurl, userType});
   if (response.status == 200)
   {
-    dispatch(updateUserSuccess(response.data));
+    dispatch(updateUserSuccess(response.data.rest));
     console.log("ok");
   }
   }catch(error)
