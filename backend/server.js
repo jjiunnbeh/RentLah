@@ -7,7 +7,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 // import login from './functions/login.js';
 // import register from "./functions/register.js";
-import customerRouter from "./routes/user.routes.js";
+import userRouter from "./routes/user.routes.js";
 import { error } from 'console';
 import authRouter from "./routes/auth.route.js";
 
@@ -56,7 +56,7 @@ app.use(bodyParser.json());
 // app.use('/api', propertyListingsRouter);
 
 
-app.use("/api/customer", customerRouter);
+app.use("/api/user", userRouter);
 app.use('/api/auth', authRouter);
 //Middleware
 app.use((error, req, res, next)=>
