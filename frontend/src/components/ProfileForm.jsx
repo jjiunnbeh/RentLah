@@ -19,7 +19,7 @@
 // export default ProfileForm
 /*---------------------------------------------------------------------------------------*/
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
 import NavBar from "./NavBar";
 import Triangles from "./Triangles";
 import { useRef, useState, useEffect } from "react";
@@ -34,6 +34,7 @@ import {app} from "../firebase"
 import "../styles/ProfileForm.css"
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
 import axios from "axios";
+import { updateUserFailure,updateUserStart,updateUserSuccess } from "../redux/user/userSlice";
 
 
 
@@ -43,6 +44,9 @@ function ProfileForm() {
   const BASE_URL = 'http://localhost:3000';
   const navigate = useNavigate();
   const userType = useSelector((state) => state.user.currentUser.rest.userType);
+  const token = useSelector((state) => state.user.currentUser.token);
+  const dispatch = useDispatch();
+
   console.log(userType);
   const currentUser = useSelector((state) => state.user.currentUser.rest);
 
@@ -72,12 +76,13 @@ function handleChangePassword()
 async function saveProfileImage(downloadURL)
 {
   try{
-    console.log(currentUser._id)
+    dispatch(updateUserStart());
   const username = currentUser.username;
   const imageurl = downloadURL;
-  const response = await axios.put(`${BASE_URL}/api/user/update/profilepic`, {username ,imageurl, userType});
-  if (response.status == 201)
+  const response = await axios.put(`${BASE_URL}/api/user/update/profilepic`, {username ,imageurl, userType, token});
+  if (response.status == 200)
   {
+    dispatch(updateUserSuccess(response.data));
     console.log("ok");
   }
   }catch(error)
@@ -110,7 +115,7 @@ async function handleFileUpload(file)
       
       console.log(downloadURL)
       saveProfileImage(downloadURL);
-      currentUser.profilepic = downloadURL;
+      
     }
       )
       

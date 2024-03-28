@@ -11,7 +11,7 @@ export const changePassCustomer = () =>{}
 
 export const updateProfiePic = async (req, res, next) =>
 {
-    const{username, imageurl, userType} = req.body;
+    const{username, imageurl, userType, token} = req.body;
     let user;
     try{
         if (String(userType) === "Customer")
@@ -24,7 +24,8 @@ export const updateProfiePic = async (req, res, next) =>
     }
     user.profilepic = imageurl;
     await user.save();
-    res.status(200)
+    const {password: pass, ...rest} = user._doc;
+    res.status(200).json({rest, token})
     }catch(error){
         console.log("here")
         return next(error);
