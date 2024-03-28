@@ -31,10 +31,12 @@ import {
 } from "firebase/storage";
 import {app} from "../firebase" 
 import "../styles/ProfileForm.css"
+import { useNavigate } from "react-router-dom";
 
 function ProfileForm() {
   const userType = useSelector((state) => state.user.currentUser.rest.userType);
   const currentUser = useSelector((state) => state.user.currentUser.rest);
+  const navigate = useNavigate();
 
   const [data, setData] = useState({});
   const [file, setFile] = useState(undefined);
@@ -75,6 +77,12 @@ useEffect(()=>{
   }
 },[file]);
 
+function handleChangePassword()
+{
+
+    navigate("/change-password/" + userType)
+
+}
 async function handleFileUpload(file)
 {
   const storage = getStorage(app);
@@ -178,7 +186,7 @@ async function handleFileUpload(file)
 
       <div className="row" style={{marginTop:"3%"}}>
         <div className="col d-flex justify-content-end">
-        <button type="submit" className="btn btn-primary loginSubmit" >
+        <button onClick={handleChangePassword} type="submit" className="btn btn-primary loginSubmit" >
                 Change Password
             </button>
         </div>

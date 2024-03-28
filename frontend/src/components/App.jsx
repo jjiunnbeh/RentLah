@@ -13,6 +13,7 @@ import AuthProvider from "react-auth-kit";
 import RequireAuth from "@auth-kit/react-router/RequireAuth";
 import LoginPage from "../pages/LoginPage";
 import ProfileForm from "./ProfileForm";
+import ChangePassword from "../pages/ChangePassword";
 
 const store = createStore({
   authName: "_auth",
@@ -44,6 +45,24 @@ function App() {
               </RequireAuth>
             }
           />
+          <Route
+            path={"/change-password/Agent"}
+            element={
+              <RequireAuth fallbackPath={"/login"}>
+                <ChangePassword userType="agent"/>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={"/change-password/Customer"}
+            element={
+              <RequireAuth fallbackPath={"/login"}>
+                <ChangePassword userType="customer"/>
+              </RequireAuth>
+            }
+          />
+
+
             <Route
             path={"/profile"}
             element={

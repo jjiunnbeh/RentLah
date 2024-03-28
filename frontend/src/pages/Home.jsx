@@ -6,7 +6,7 @@ function Home()
  return (
     <header><NavBar/></header>
  );
-
+    
 
 }
 export default Home;
