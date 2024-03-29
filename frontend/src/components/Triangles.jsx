@@ -6,12 +6,12 @@ function Triangles() {
   return (
 
 
-    <>
+    <div>
       <div className="lefttriangle"/>
       <div className="rightriangle"/>
     
   
-    </>
+    </div>
  
   );
 }

@@ -32,16 +32,6 @@ a
 {
     display:inline;
 } */
-
-html
-{
-    background-color: #8cbdf9;
-}
-
-body{
-    --bs-body-bg: transparent;
-}
-
 div.formcontainer
 {
     display:flexbox;

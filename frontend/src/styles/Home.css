@@ -1,0 +1,40 @@
+div.Listingcontainer {
+    background-color: white;
+    height:  700px;
+    width: 550px;
+    border-radius: 25px;
+}
+
+div.Listingimg{
+    background-color: gray;
+    height:  325px;
+    width: 525px;
+    border-radius: 25px;
+    margin-top: 10px;
+
+}
+
+a.Listing {
+    font-size: 30px;
+}
+
+/* width */
+#Listingsbar::-webkit-scrollbar {
+    height: 5px;
+  }
+  
+  /* Track */
+#Listingsbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  /* Handle */
+#Listingsbar::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+#Listingsbar::-webkit-scrollbar-thumb:hover {
+    background: #626262;
+  }
