@@ -14,6 +14,7 @@ import RequireAuth from "@auth-kit/react-router/RequireAuth";
 import LoginPage from "../pages/LoginPage";
 import ProfileForm from "./ProfileForm";
 import ChangePassword from "../pages/ChangePassword";
+import ListingDetails from "../pages/ListingDetails";
 
 const store = createStore({
   authName: "_auth",
@@ -61,13 +62,20 @@ function App() {
               </RequireAuth>
             }
           />
-
-
             <Route
             path={"/profile"}
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <ProfileForm />
+              </RequireAuth>
+            }
+          />
+
+            <Route
+            path={"/ListingDetails"}
+            element={
+              <RequireAuth fallbackPath={"/login"}>
+                <ListingDetails />
               </RequireAuth>
             }
           />

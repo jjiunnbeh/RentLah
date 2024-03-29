@@ -1,0 +1,120 @@
+import NavBar from "../components/NavBar";
+import {useSelector} from "react-redux";
+import Triangles from "../components/Triangles";
+import "../styles/ListingDetails.css"
+import { Carousel } from "react-bootstrap";
+import { useState } from "react";
+
+
+function ListingDetails()
+{   
+    const userType = useSelector((state) => state.user.currentUser.userType);
+    console.log(userType);
+    const currentUser = useSelector((state) => state.user.currentUser);
+    const listing1 = {
+        name:"PDR The Gardens at Your Mom's House",
+        postalCode:123456,
+        price:69.69,
+        description:"ARC",
+        address:'This is\nsupposed to be\nan address',
+        bedroom:3,
+        bathroom:2,
+        images:["https://firebasestorage.googleapis.com/v0/b/rentlah-667e3.appspot.com/o/1711687189301download%20(1).jpeg?alt=media&token=359100cb-2c18-4666-8ba8-ccc80c88e025","https://firebasestorage.googleapis.com/v0/b/rentlah-667e3.appspot.com/o/1711687215981download.jpeg?alt=media&token=d05befb6-d255-4bc9-b217-fe8e05ce5a45"],
+        agentRef:"agent1"
+    }
+    const [index, setindex] = useState(0);
+
+    const handleSelect = (selectedIndex) => {
+        setindex(selectedIndex);
+    };
+
+
+
+
+
+
+ return (
+
+            <>
+            <header><NavBar /></header>
+
+            <Triangles />
+
+
+            <div className="row" >
+                <div className="col mt-3 " style={{marginLeft:"12%"}}>
+                    
+                    <Carousel activeIndex={index} onSelect={handleSelect}>
+                    {
+                        [...Array(listing1.images.length)].map((e,i) => <Carousel.Item key={i}>
+                                                                        <img className="d-block w-100" src={listing1.images[i]} alt="First image" style={{height:"700px", width:"800px"}}/>
+                                                                        </Carousel.Item>)
+                    }
+                    </Carousel>
+                </div>
+            
+
+                <div className="card bg-primary text-white" id="detailcard" style={{width: "30%", marginRight:"12%"}}>
+                    <div className="card-body">
+                        <h1 className="Card Title" > {listing1.name} </h1>
+                
+                        <ul className="list-group list-group-flush">
+                            <li className="list-group-item ">
+                                <hr className="cardhr"></hr>
+                                <h2 className="card-text" style={{whiteSpace: "pre-line"}}> {listing1.address} </h2>
+                                <h2> {listing1.postalCode} </h2>
+                            </li>
+                        </ul>
+
+                        <ul className="list-group list-group-flush">
+                            <li className="list-group-item">
+                                <hr className="cardhr"></hr>
+                                <h2> Monthly Rent: </h2>
+                                <h2> {listing1.price} </h2>
+                            </li>
+                        </ul>
+
+                        <ul className="list-group list-group-flush">
+                            <li className="list-group-item">
+                                <hr className="cardhr"></hr>
+                                <div className="row">
+                                    <div className="col text-center">
+                                        <h1 style={{fontSize: "5rem"}}> {listing1.bedroom}</h1>
+                                        <h1> Bedrooms </h1>
+                                    </div>
+                                    <div className="col text-center">
+                                        <h1 style={{fontSize: "5rem"}}> {listing1.bathroom}</h1>
+                                        <h1> Bathrooms </h1>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div className="row mt-5">
+                <div className="col-md-3" style={{marginLeft:"12%"}}>
+                    <div className="card bg-primary text-white" id="agentcard">
+                        <div className="card-body">
+                            <h2 className="card-title">
+                                {listing1.agentRef}
+                            </h2>
+                            <h4 className="card-text" style={{whiteSpace:"pre-line"}}>
+                                {"Agent Registration Number\nAgent Contact Number"}
+                            </h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <footer className="text-end"><img src="https://www.onemap.gov.sg/web-assets/images/logo/om_logo.png" style={{height:"20px", width:"20px"}}/>&nbsp;<a href="https://www.onemap.gov.sg/" target="_blank" rel="noopener noreferrer">OneMap</a>&nbsp;&copy;&nbsp;contributors&nbsp;&#124;&nbsp;<a href="https://www.sla.gov.sg/" target="_blank" rel="noopener noreferrer">Singapore Land Authority</a></footer>
+            </>
+
+)
+
+ }
+
+ export default ListingDetails;
