@@ -78,6 +78,7 @@ const {loading, errorMessage} = useSelector((state)=>state.user)
       });
     }
   };
+  const forgetlink = `/forget-pass/${userType}`;
 
   return (
 
@@ -140,7 +141,7 @@ const {loading, errorMessage} = useSelector((state)=>state.user)
               {errorMessage && <span id="errormsg">{errorMessage}</span>} 
               </div>
               <div htmlFor="inputPassword3" className="col-sm-8 col-form-label">
-              <a href = "/forget-pass" style={{color: "white"}}>Forget Password</a>
+              <a href ={forgetlink} style={{color: "white"}}>Forget Password</a>
               </div>
             </div>
 

@@ -14,7 +14,7 @@ import RequireAuth from "@auth-kit/react-router/RequireAuth";
 import LoginPage from "../pages/LoginPage";
 import ProfileForm from "./ProfileForm";
 import ChangePassword from "../pages/ChangePassword";
-
+import ForgotPassword from "./ForgotPassword";
 const store = createStore({
   authName: "_auth",
   authType: "cookie",
@@ -29,6 +29,9 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginChoice />} />
           <Route path="/register" element={<RegisterChoice />} />
+          <Route path="/forget-pass/agent" element={<ForgotPassword userType="agent"/>} />
+          <Route path="/forget-pass/customer" element={<ForgotPassword userType="customer"/>} />
+          {/* <Route path="/reset_password/:id/:token" element={<ResetPassword />}></Route> */}
 
           <Route path="/login/customer" element={<LoginForm userType="customer" />} />
          <Route path="/login/agent" element={<LoginForm userType="agent" />} />

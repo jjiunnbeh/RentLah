@@ -277,17 +277,61 @@ export const loginAgent = async (req, res, next) => {
 
 export const forgetPassword = async (req, res, next) => {
 
-  const { userType, email } = req.body;
+  const { email, type } = req.body;
+  console.log(req.body);
   let validUser;
-  if (userType === "Customer") {
+  if (type === "customer") {
     validUser = await Customer.findOne({ email });
   } else {
     validUser = await Agent.findOne({ email });
   }
   if (validUser)
-  {
+  {console.log("connected");}}
 
-  }
+  //     const token = jwt.sign({id: validUser._id}, "jwt_secret_key", {expiresIn: "1d"})
+  //     var transporter = nodemailer.createTransport({
+  //         service: 'gmail',
+  //         auth: {
+  //           user: process.env.EMAIL,
+  //           pass: process.env.PASSWORD
+  //         }
+  //       });
+        
+  //       var mailOptions = {
+  //         from: process.env.EMAIL,
+  //         to: validUser.email,
+  //         subject: 'Reset Password Link',
+  //         text: `http://localhost:5173/reset_password/${validUser._id}/${token}`
+  //       };
+        
+  //       transporter.sendMail(mailOptions, function(error, info){
+  //         if (error) {
+  //           console.log(error);
+  //         } else {
+  //           return res.send({Status: "Success"})
+  //         }
+  //       });
+  // }};
+
+// app.post('/reset-password/:id/:token', (req, res) => {
+//   const {id, token} = req.params
+//   const {password} = req.body
+
+//   jwt.verify(token, "jwt_secret_key", (err, decoded) => {
+//       if(err) {
+//           return res.json({Status: "Error with token"})
+//       } else {
+//           bcrypt.hash(password, 10)
+//           .then(hash => {
+//               UserModel.findByIdAndUpdate({_id: id}, {password: hash})
+//               .then(u => res.send({Status: "Success"}))
+//               .catch(err => res.send({Status: err}))
+//           })
+//           .catch(err => res.send({Status: err}))
+//       }
+//   })
+// })
+//   }
 
 //   if (!validUser)
 //   {
@@ -299,101 +343,101 @@ export const forgetPassword = async (req, res, next) => {
 //     });
 
 //   }
-};
+// };
 /** send mail from testing account */
-export const signup = async (req, res) => {
+// export const signup = async (req, res) => {
 
-    /** testing account */
-    let testAccount = await nodemailer.createTestAccount();
+//     /** testing account */
+//     let testAccount = await nodemailer.createTestAccount();
 
-      // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-        host: "smtp.ethereal.email",
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-            user: testAccount.user, // generated ethereal user
-            pass: testAccount.pass, // generated ethereal password
-        },
-    });
+//       // create reusable transporter object using the default SMTP transport
+//     let transporter = nodemailer.createTransport({
+//         host: "smtp.ethereal.email",
+//         port: 587,
+//         secure: false, // true for 465, false for other ports
+//         auth: {
+//             user: testAccount.user, // generated ethereal user
+//             pass: testAccount.pass, // generated ethereal password
+//         },
+//     });
 
-    let message = {
-        from: '"Fred Foo 👻" <foo@example.com>', // sender address
-        to: "bar@example.com, baz@example.com", // list of receivers
-        subject: "Hello ✔", // Subject line
-        text: "Successfully Register with us.", // plain text body
-        html: "<b>Successfully Register with us.</b>", // html body
-      }
+//     let message = {
+//         from: '"Fred Foo 👻" <foo@example.com>', // sender address
+//         to: "bar@example.com, baz@example.com", // list of receivers
+//         subject: "Hello ✔", // Subject line
+//         text: "Successfully Register with us.", // plain text body
+//         html: "<b>Successfully Register with us.</b>", // html body
+//       }
 
 
-    transporter.sendMail(message).then((info) => {
-        return res.status(201)
-        .json({ 
-            msg: "you should receive an email",
-            info : info.messageId,
-            preview: nodemailer.getTestMessageUrl(info)
-        })
-    }).catch(error => {
-        return res.status(500).json({ error })
-    })
+//     transporter.sendMail(message).then((info) => {
+//         return res.status(201)
+//         .json({ 
+//             msg: "you should receive an email",
+//             info : info.messageId,
+//             preview: nodemailer.getTestMessageUrl(info)
+//         })
+//     }).catch(error => {
+//         return res.status(500).json({ error })
+//     })
 
-    // res.status(201).json("Signup Successfully...!");
-}
+//     // res.status(201).json("Signup Successfully...!");
+// }
 
-/** send mail from real gmail account */
-export const getbill = (req, res) => {
+// /** send mail from real gmail account */
+// export const getbill = (req, res) => {
 
-    const { userEmail } = req.body;
+//     const { userEmail } = req.body;
 
-    let config = {
-        service : 'gmail',
-        auth : {
-            user: process.env.EMAIL,
-            pass: process.env.PASSWORD
-        }
-    }
+//     let config = {
+//         service : 'gmail',
+//         auth : {
+//             user: process.env.EMAIL,
+//             pass: process.env.PASSWORD
+//         }
+//     }
 
-    let transporter = nodemailer.createTransport(config);
+//     let transporter = nodemailer.createTransport(config);
 
-    let MailGenerator = new Mailgen({
-        theme: "default",
-        product : {
-            name: "RentLah by Z440",
-            link : 'https://mailgen.js/'
-        }
-    })
+//     let MailGenerator = new Mailgen({
+//         theme: "default",
+//         product : {
+//             name: "RentLah by Z440",
+//             link : 'https://mailgen.js/'
+//         }
+//     })
 
-    let response = {
-        body: {
-            name : "user",
-            intro: "Here is your reset password link",
-            table : {
-                data : [
-                    {
-                        'Your reset link':'url'
-                    }
-                ]
-            },
-            outro: "Do not share your password with anyone."
-        }
-    }
+//     let response = {
+//         body: {
+//             name : "user",
+//             intro: "Here is your reset password link",
+//             table : {
+//                 data : [
+//                     {
+//                         'Your reset link':'url'
+//                     }
+//                 ]
+//             },
+//             outro: "Do not share your password with anyone."
+//         }
+//     }
 
-    let mail = MailGenerator.generate(response)
+//     let mail = MailGenerator.generate(response)
 
-    let message = {
-        from : process.env.EMAIL,
-        to : userEmail,
-        subject: "RentLah! How dare you forget your password?",
-        html: mail
-    }
+//     let message = {
+//         from : process.env.EMAIL,
+//         to : userEmail,
+//         subject: "RentLah! How dare you forget your password?",
+//         html: mail
+//     }
 
-    transporter.sendMail(message).then(() => {
-        return res.status(201).json({
-            msg: "you should receive an email"
-        })
-    }).catch(error => {
-        return res.status(500).json({ error })
-    })
+//     transporter.sendMail(message).then(() => {
+//         return res.status(201).json({
+//             msg: "you should receive an email"
+//         })
+//     }).catch(error => {
+//         return res.status(500).json({ error })
+//     })
 
-    // res.status(201).json("getBill Successfully...!");
-};
+//     // res.status(201).json("getBill Successfully...!");
+// };
