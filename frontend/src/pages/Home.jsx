@@ -5,9 +5,9 @@ import "../styles/Home.css"
 
 function Home()
 {   
-    const userType = useSelector((state) => state.user.currentUser.rest.userType);
+    const userType = useSelector((state) => state.user.currentUser.userType);
     console.log(userType);
-    const currentUser = useSelector((state) => state.user.currentUser.rest);
+    const currentUser = useSelector((state) => state.user.currentUser);
 
 
 
