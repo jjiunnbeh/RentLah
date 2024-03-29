@@ -1,25 +1,4 @@
-// import {useSelector} from "react-redux";
-// import NavBar from "./NavBar";
-
-// function ProfileForm()
-// {
-//     const userType = useSelector((state) => state.user.currentUser.rest.userType);
-// console.log(userType)
-// const currentUser = useSelector((state) => state.user.currentUser.rest);
-// // console.log(currentUser )
-// return (
-// <div>
-// <header><NavBar/></header>
-// <div>hello</div>
-// <a href="/login=Agent"><img src={currentUser.profilepic} alt = "profile picture"></img></a>
-// {userType == "Agent" ? <form><input placeholder="Agent"/></form>: <form><input placeholder="Customer"/></form>}
-// </div>);
-
-// }
-// export default ProfileForm
-/*---------------------------------------------------------------------------------------*/
-
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
 import NavBar from "./NavBar";
 import Triangles from "./Triangles";
 import { useRef, useState, useEffect } from "react";
@@ -33,47 +12,30 @@ import {
 import {app} from "../firebase" 
 import "../styles/ProfileForm.css"
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
+import axios from "axios";
+import { updateUserFailure,updateUserStart,updateUserSuccess } from "../redux/user/userSlice";
 
 
 
 
 function ProfileForm() {
   const signOut = useSignOut();
+  const BASE_URL = 'http://localhost:3000';
   const navigate = useNavigate();
-  const userType = useSelector((state) => state.user.currentUser.rest.userType);
+  const userType = useSelector((state) => state.user.currentUser.userType);
+
+  const dispatch = useDispatch();
+
   console.log(userType);
-  const currentUser = useSelector((state) => state.user.currentUser.rest);
+  const currentUser = useSelector((state) => state.user.currentUser);
 
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState({profilepic:currentUser.profilepic});
   const [file, setFile] = useState(undefined);
 
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(null);
   const fileRef = useRef(null);
-  // const handleFileUpload = (file) => {
-  //   const storage = getStorage(app);
-
-  //   const fileName = new Date().getTime() + file.name;
-  //   const storageRef = ref(storage, fileName);
-  //   const uploadTask = uploadBytesResumable(storageRef, file);
-    // uploadTask.on(
-    //   "state_changed",
-    //   (snapshot) => {
-    //     const progress =
-    //       (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //     setFilePerc(Math.round(progress));
-    //   },
-    //   (error) => {
-    //     setFileUploadError(error);
-    //   },
-    //   () => {
-    //     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
-    //       setData({ ...data, profilepic: downloadURL })
-    //     );
-    //   }
-    // );
-  // };
 
 
 
@@ -89,6 +51,24 @@ function handleChangePassword()
 
     navigate("/change-password/" + userType)
 
+}
+async function saveProfileImage(downloadURL)
+{
+  try{
+    dispatch(updateUserStart());
+  const username = currentUser.username;
+  const imageurl = downloadURL;
+  const response = await axios.put(`${BASE_URL}/api/user/update/profilepic`, {username ,imageurl, userType});
+  if (response.status == 200)
+  {
+    dispatch(updateUserSuccess(response.data.rest));
+    console.log("ok");
+  }
+  }catch(error)
+  {
+    console.log(error);
+  }
+  
 }
 async function handleFileUpload(file)
 {
@@ -110,8 +90,12 @@ async function handleFileUpload(file)
     },
     () => {
       getDownloadURL(uploadJob.snapshot.ref).then((downloadURL) =>{
-      setData({ ...data, profilepic: downloadURL });
-      console.log(downloadURL)}
+      setData({ profilepic: downloadURL });
+      
+      console.log(downloadURL)
+      saveProfileImage(downloadURL);
+      
+    }
       )
       
     }
@@ -141,7 +125,7 @@ async function handleFileUpload(file)
             />
             <img 
           onClick={() => fileRef.current.click()} 
-          src={data.profilepic || currentUser.profilepic} 
+          src={data.profilepic} 
           alt="profile" 
           style={{width:"300px", height:"300px", borderRadius:"50px", marginLeft:"100px"}}
           className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2" 

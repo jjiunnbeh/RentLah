@@ -5,8 +5,25 @@ import { useNavigate } from "react-router-dom";
 
 import loginimg from '../assets/loginimg.png';
 
+
+
 function ChangePassword({ userType }) 
 {
+
+    const BASE_URL = 'http://localhost:3000';
+    const data = useState({
+        old:"",
+        new:""
+    })
+
+async function handleSubmit(event)
+{
+    event.preventDefault();
+    const response = await axios.post(`${BASE_URL}/api/user/changepass-${userType}`, data);
+
+
+}
+
 
 
    
@@ -15,11 +32,11 @@ function ChangePassword({ userType })
     return (
         <>
             <div className="formcontainer" style={{marginTop:"10%"}}>
-                <form name="changePassword">
+                <form name="changePassword" onSubmit={handleSubmit}>
                 <h1 className="text-center font-weight-bold" style={{color:"white"}}> Change Password</h1>
                 <div className="row justify-content-center">
                         <label htmlFor="inputPassword" className="col-sm-8 col-sm-7 col-form-label ">
-                            New Password
+                            Old Password
                         </label>
                         <div className="col-sm-8">
                             <input
@@ -37,7 +54,7 @@ function ChangePassword({ userType })
                 <br></br>
                 <div className="row justify-content-center">
                         <label htmlFor="inputPasswordConfirmation" className="col-sm-8 col-sm-7 col-form-label ">
-                            Confirm Password
+                            New Password
                         </label>
                         <div className="col-sm-8">
                             <input

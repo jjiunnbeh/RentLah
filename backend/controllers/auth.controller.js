@@ -4,6 +4,8 @@ import bcryptjs from "bcryptjs";
 import errorHandler from "../utils/error.js";
 import jwt from "jsonwebtoken"; //jwt
 import "dotenv/config";
+import nodemailer from 'nodemailer';
+import Mailgen from 'mailgen';
 
 function isPasswordStrong(password) {     
   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Example regular expression
@@ -283,17 +285,65 @@ export const forgetPassword = async (req, res, next) => {
   }
   if (validUser)
   {
-    
+
   }
 
-//   if (!validUser)
-//   {
-//     res
-//     .status(200)
-//     .json({
-//       message: `Sucessfully login as ${validCustomer.username}`,
-//       token: jwtToken,
-//     });
+};
 
-//   }
+export const sendEmail = (req, res) => {
+
+    const { userEmail, userType } = req.body;
+    
+
+    let config = {
+        service : 'gmail',
+        auth : {
+            user: process.env.EMAIL,
+            pass: process.env.PASSWORD
+        }
+    }
+
+    let transporter = nodemailer.createTransport(config);
+
+    let MailGenerator = new Mailgen({
+        theme: "default",
+        product : {
+            name: "RentLah by Z440",
+            link : 'https://mailgen.js/'
+        }
+    })
+
+    let response = {
+        body: {
+            name : "user",
+            intro: "Here is your reset password link",
+            table : {
+                data : [
+                    {
+                        'Your reset link':'url'
+                    }
+                ]
+            },
+            outro: "Do not share your password with anyone."
+        }
+    }
+
+    let mail = MailGenerator.generate(response)
+
+    let message = {
+        from : process.env.EMAIL,
+        to : userEmail,
+        subject: "RentLah! Password reset",
+        html: mail
+    }
+
+    transporter.sendMail(message).then(() => {
+        return res.status(201).json({
+            msg: "Email sent"
+        })
+    }).catch(error => {
+        return res.status(500).json({ error })
+    })
+
+
 };
