@@ -276,23 +276,25 @@ export const loginAgent = async (req, res, next) => {
 
 export const forgetPassword = async (req, res, next) => {
 
-  const { userType, email } = req.body;
+  const { email, userType } = req.body;
   let validUser;
-  if (userType === "Customer") {
+  console.log(email);
+  if (userType === "customer") {
     validUser = await Customer.findOne({ email });
   } else {
     validUser = await Agent.findOne({ email });
   }
   if (validUser)
   {
-
+    res.status(200).json({message:"user found", email:validUser.email});
   }
+
 
 };
 
 export const sendEmail = (req, res) => {
 
-    const { userEmail, userType } = req.body;
+    const { email } = req.body;
     
 
     let config = {
@@ -332,17 +334,17 @@ export const sendEmail = (req, res) => {
 
     let message = {
         from : process.env.EMAIL,
-        to : userEmail,
+        to : email,
         subject: "RentLah! Password reset",
         html: mail
     }
 
     transporter.sendMail(message).then(() => {
-        return res.status(201).json({
+        res.status(201).json({
             msg: "Email sent"
         })
     }).catch(error => {
-        return res.status(500).json({ error })
+        res.status(500).json({ error })
     })
 
 
