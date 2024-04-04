@@ -4,6 +4,7 @@ import Triangles from "../components/Triangles";
 import "../styles/ListingDetails.css"
 import { Carousel } from "react-bootstrap";
 import { useState } from "react";
+import { Map } from "react-map-gl/maplibre";
 
 
 function ListingDetails()
@@ -13,7 +14,7 @@ function ListingDetails()
     const currentUser = useSelector((state) => state.user.currentUser);
     const listing1 = {
         name:"PDR The Gardens at Your Mom's House",
-        postalCode:123456,
+        postalCode:649823,
         price:69.69,
         description:"ARC",
         address:'This is\nsupposed to be\nan address',
@@ -93,8 +94,8 @@ function ListingDetails()
                 </div>
             </div>
 
-            <div className="row mt-3">
-                <div className="col-md-3" style={{marginLeft:"12%"}}>
+            <div className="row mt-3" style={{marginLeft:"12%", maxHeight:"400"}}>
+                <div className="col-md-3">
                     <div className="card bg-primary text-white" id="agentcard">
                         <div className="card-body">
                             <h2 className="card-title">
@@ -106,6 +107,16 @@ function ListingDetails()
                         </div>
                     </div>
 
+                </div>
+                
+                <div className="col-md-5" id="map" style={{marginLeft:"12%"}}>
+                    <Map
+                        container="map"
+                        maxBounds={[103.596, 1.1443, 104.1, 1.4835]}
+                        mapStyle="https://www.onemap.gov.sg/maps/json/raster/mbstyle/Default.json"
+                        attributionControl={false}
+                        style={{height:"400px"}}
+                    />
                 </div>
             </div>
 
