@@ -5,6 +5,7 @@ import "../styles/ListingDetails.css"
 import { Carousel } from "react-bootstrap";
 import { useState } from "react";
 import { Map, Marker } from "react-map-gl/maplibre";
+import whatsapp from "../assets/whatsapp.png"
 import "maplibre-gl/dist/maplibre-gl.css";
 
 
@@ -27,7 +28,7 @@ function ListingDetails()
         longitude: 103.7874458
     }
     const [index, setindex] = useState(0);
-
+    const phonenumber = 6580288819;
     const handleSelect = (selectedIndex) => {
         setindex(selectedIndex);
     };
@@ -116,6 +117,15 @@ function ListingDetails()
                             <h4 className="card-text" style={{whiteSpace:"pre-line"}}>
                                 {"Agent Registration Number\nAgent Contact Number"}
                             </h4>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-text text-decoration-underline">Contact:</h5>
+                            <a href={`https://api.whatsapp.com/send/?phone=${phonenumber}&text&type=phone_number&app_absent=0`}>
+                                <img
+                                src={whatsapp}
+                                alt="Whatsapp"
+                                style={{height:"2em"}}/>
+                            </a>
                         </div>
                     </div>
 
