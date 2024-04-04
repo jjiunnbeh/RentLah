@@ -4,7 +4,8 @@ import Triangles from "../components/Triangles";
 import "../styles/ListingDetails.css"
 import { Carousel } from "react-bootstrap";
 import { useState } from "react";
-import { Map } from "react-map-gl/maplibre";
+import { Map, Marker } from "react-map-gl/maplibre";
+import "maplibre-gl/dist/maplibre-gl.css";
 
 
 function ListingDetails()
@@ -21,7 +22,9 @@ function ListingDetails()
         bedroom:3,
         bathroom:2,
         images:["https://firebasestorage.googleapis.com/v0/b/rentlah-667e3.appspot.com/o/1711687189301download%20(1).jpeg?alt=media&token=359100cb-2c18-4666-8ba8-ccc80c88e025","https://firebasestorage.googleapis.com/v0/b/rentlah-667e3.appspot.com/o/1711687215981download.jpeg?alt=media&token=d05befb6-d255-4bc9-b217-fe8e05ce5a45"],
-        agentRef:"agent1"
+        agentRef:"agent1",
+        latitude: 1.4332513,
+        longitude: 103.7874458
     }
     const [index, setindex] = useState(0);
 
@@ -29,7 +32,16 @@ function ListingDetails()
         setindex(selectedIndex);
     };
 
-
+    const flyTo = (coordinates) => {
+        const map = mapRef.current?.getMap();
+        if (!map) return;
+    
+        map.flyTo({
+          center: coordinates,
+          essential: true,
+          zoom: 14,
+        });
+      };
 
 
 
@@ -111,12 +123,23 @@ function ListingDetails()
                 
                 <div className="col-md-5" id="map" style={{marginLeft:"12%"}}>
                     <Map
+                        initialViewState={{
+                            latitude: listing1.latitude,
+                            longitude: listing1.longitude,
+                            zoom: 15
+                        }}
                         container="map"
                         maxBounds={[103.596, 1.1443, 104.1, 1.4835]}
                         mapStyle="https://www.onemap.gov.sg/maps/json/raster/mbstyle/Default.json"
                         attributionControl={false}
                         style={{height:"400px"}}
-                    />
+                    >
+                    
+                        <Marker
+                        latitude={listing1.latitude}
+                        longitude={listing1.longitude}
+                        />
+                    </Map>
                 </div>
             </div>
 
