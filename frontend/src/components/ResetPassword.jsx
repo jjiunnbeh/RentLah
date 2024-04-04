@@ -41,7 +41,7 @@ function ResetPassword({ userType })
     }
 
             
-            // const response = await axios.post(`${BASE_URL}/reset-pass/${userType}/${id}/${token}`, data);
+            // const response = await axios.post(${BASE_URL}/reset-pass/${userType}/${id}/${token}, data);
 
            
     }
@@ -91,7 +91,7 @@ const navigate = useNavigate();
                             onChange={handleChange}
                             value={data.passwordconfirm}
                             name="passwordconfirm"
-                            onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
+                            onKeyDown= {(event)=> (event.key === "Enter"  ||event.key ===" ") && event.preventDefault()}
                             required
                             />
                         </div>
@@ -106,4 +106,3 @@ const navigate = useNavigate();
     );
 }
 export default ResetPassword;
-
