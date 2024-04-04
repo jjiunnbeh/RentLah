@@ -13,7 +13,7 @@ const router = express.Router();
 router.put("/update/profilepic", updateProfiePic);
 router.put("/update/Customer", updateCustomer);
 router.put("/update/Agent", updateAgent);
-
+t 
 
 
 export default router;
