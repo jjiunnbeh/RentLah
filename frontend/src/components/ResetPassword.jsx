@@ -1,4 +1,4 @@
-mport { useState } from "react";
+import { useState } from "react";
 import "../styles/RegisterForm.css";
 import axios from "axios";
 import { useNavigate, useParams} from "react-router-dom";
@@ -28,7 +28,7 @@ function ResetPassword({ userType })
         e.preventDefault();
 
         try{
-                const response = await axios.put(${BASE_URL}/api/user/resetPassword, data);
+                const response = await axios.put(`${BASE_URL}/api/user/resetPassword`, data);
                 if (response.status == 200)
                 {
                     console.log("Success");
@@ -71,7 +71,7 @@ const navigate = useNavigate();
                             onChange={handleChange}
                             value={data.password}
                             name="password"
-                            onKeyDown= {(event)=> (event.key === "Enter"  event.key ===" ") && event.preventDefault()}
+                            onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
                         </div>
@@ -91,7 +91,7 @@ const navigate = useNavigate();
                             onChange={handleChange}
                             value={data.passwordconfirm}
                             name="passwordconfirm"
-                            onKeyDown= {(event)=> (event.key === "Enter"  event.key ===" ") && event.preventDefault()}
+                            onKeyDown= {(event)=> (event.key === "Enter"  ||event.key ===" ") && event.preventDefault()}
                             required
                             />
                         </div>
