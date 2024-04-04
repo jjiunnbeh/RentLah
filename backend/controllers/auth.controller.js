@@ -286,17 +286,21 @@ export const forgetPassword = async (req, res, next) => {
   }
   if (validUser)
   {
-    res.status(200).json({message:"user found", email:validUser.email});
+    const jwtToken = jwt.sign(
+      { id: validUser._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+    const token =jwtToken;
+    res.status(200).json({message:"user found", email:validUser.email, userType:validUser.userType, token:token, id:validUser._id});
   }
 
 
 };
 
-export const sendEmail = (req, res) => {
-
-    const { email } = req.body;
-    
-
+export const sendEmail = async (req, res) => {
+  const BASE_URL = 'http://localhost:5173';
+    const { email ,userType, token,id} = req.body;
     let config = {
         service : 'gmail',
         auth : {
@@ -322,7 +326,7 @@ export const sendEmail = (req, res) => {
             table : {
                 data : [
                     {
-                        'Your reset link':'url'
+                        'Your reset link': `${BASE_URL}/reset-pass/${userType}/${id}/${token}`
                     }
                 ]
             },
@@ -349,3 +353,48 @@ export const sendEmail = (req, res) => {
 
 
 };
+
+
+export const resetPassword = async (req, res, next) => {
+  const {password, username, userType} = req.body;
+  const strongpass = isPasswordStrong(password);
+  
+
+  if (password.length < 10)
+  {
+    return next(
+      errorHandler(
+        401,
+        {type:"password", content:"Password length must be greater than 10."}
+        
+      ))
+  }
+  if (!strongpass)
+  {
+    return next(
+      errorHandler(
+        401,
+        {type:"password", content:"Password must contain at least 1 upper Case letter, 1 special symbol and normal case letter"}
+      ))
+  }
+
+  const hashedPassword = bcryptjs.hashSync(password, 10);
+  let user;
+    try{
+        if (String(userType) === "Customer")
+    {
+        user = await Customer.findOne({username});
+    }
+    else
+    {
+        user = await Agent.findOne({username});
+    }
+    user.password = hashedPassword;
+    await user.save();
+    const {password: pass, ...rest} = user._doc;
+    res.status(200).json({rest})
+    }catch(error){
+        console.log("here")
+        return next(error);
+    }
+}

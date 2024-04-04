@@ -6,7 +6,10 @@ import jwt from "jsonwebtoken"; //jwt
 import "dotenv/config";
 
 
-export const changePassAgent =()=>{}
+export const changePassAgent =()=>{
+
+}
+
 export const changePassCustomer = () =>{}
 
 export const updateProfiePic = async (req, res, next) =>

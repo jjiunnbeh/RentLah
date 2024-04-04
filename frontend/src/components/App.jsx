@@ -15,6 +15,7 @@ import LoginPage from "../pages/LoginPage";
 import ProfileForm from "./ProfileForm";
 import ChangePassword from "../pages/ChangePassword";
 import ForgetPassword from "./ForgetPasword";
+import ResetPassword from "./ResetPassword";
 
 const store = createStore({
   authName: "_auth",
@@ -38,6 +39,10 @@ function App() {
           <Route path="/forget-pass/customer" element={<ForgetPassword userType="customer"  />} />
 
           <Route path="/forget-pass/agent" element={<ForgetPassword userType="agent"  />} />
+
+          <Route path="/reset-pass/customer/:id/:token" element={<ResetPassword userType="customer"  />} />
+          
+          <Route path="/reset-pass/agent/:id/:token" element={<ResetPassword userType="agent"  />} />
 
 
       

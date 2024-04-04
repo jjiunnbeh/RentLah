@@ -28,7 +28,6 @@ async function connectToDatabase() { // taken from register.js
     }
 }
 
-
 // main function
 async function forgetPassword(email) {
     try {
