@@ -4,6 +4,7 @@ import bcryptjs from "bcryptjs";
 import errorHandler from "../utils/error.js";
 import jwt from "jsonwebtoken"; //jwt
 import "dotenv/config";
+import mongoose, { Mongoose } from "mongoose";
 
 export const changePassAgent = async (req, res, next) => {
     try{
@@ -68,3 +69,41 @@ export const updateProfiePic = async (req, res, next) => {
     return next(error);
   }
 };
+export const resetPassword = async(req, res, next)=>
+{
+    const {password, id, userType} =req.body
+    const ObjectId =mongoose.Types.ObjectId;
+    const validId = new ObjectId(id)
+
+    const hashedPassword = bcryptjs.hashSync(password, 10);
+    try{
+        let user;
+        console.log(password);
+        console.log(userType);
+        console.log(id);
+        if (userType == "customer")
+        {
+          
+            user = await Customer.findOne({_id: validId });
+            user.password = hashedPassword;
+            await user.save();
+            const { password: pass, ...rest } = user._doc;
+            res.status(200).json({ rest });
+        }
+        else
+        {
+            user = await Agent.findOne({_id: validId });
+            user.password = hashedPassword;
+            await user.save();
+            const { password: pass, ...rest } = user._doc;
+            res.status(200).json({ rest });
+        
+        }
+
+
+    }catch (error) {
+        console.log("here");
+        return next(error);
+      }
+
+}
