@@ -93,7 +93,7 @@ function ListingDetails()
                 </div>
             </div>
 
-            <div className="row mt-5">
+            <div className="row mt-3">
                 <div className="col-md-3" style={{marginLeft:"12%"}}>
                     <div className="card bg-primary text-white" id="agentcard">
                         <div className="card-body">
