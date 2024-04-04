@@ -15,6 +15,7 @@ import LoginPage from "../pages/LoginPage";
 import ProfileForm from "./ProfileForm";
 import ChangePassword from "../pages/ChangePassword";
 import ForgetPassword from "./ForgetPasword";
+import CreateListingForm from "./CreateListingForm";
 
 const store = createStore({
   authName: "_auth",
@@ -73,6 +74,15 @@ function App() {
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <ProfileForm />
+              </RequireAuth>
+            }
+          />
+
+            <Route
+            path={"/createlisting"}
+            element={
+              <RequireAuth fallbackPath={"/login"}>
+                <CreateListingForm />
               </RequireAuth>
             }
           />
