@@ -1,0 +1,20 @@
+.Carousel.Item img {
+    overflow: hidden;
+    height: 800px;
+    width: 800px;
+}
+
+
+#detailcard {
+    margin-top: 1%;
+}
+
+#detailcard .list-group-item{
+    color: white;
+}
+
+hr.cardhr{
+    border-top: 5px solid white;
+    opacity: 100%;
+    margin-top: 0%;
+}
