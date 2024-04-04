@@ -15,6 +15,8 @@ import LoginPage from "../pages/LoginPage";
 import ProfileForm from "./ProfileForm";
 import ChangePassword from "../pages/ChangePassword";
 import ListingDetails from "../pages/ListingDetails";
+import ForgetPassword from "./ForgetPasword";
+
 
 const store = createStore({
   authName: "_auth",
@@ -35,6 +37,10 @@ function App() {
          <Route path="/login/agent" element={<LoginForm userType="agent" />} />
           <Route path="/register/agent" element={<RegisterForm userType="agent" />} />
           <Route path="/register/customer" element={<RegisterForm userType="customer"  />} />
+          <Route path="/forget-pass/customer" element={<ForgetPassword userType="customer"  />} />
+
+          <Route path="/forget-pass/agent" element={<ForgetPassword userType="agent"  />} />
+
 
       
           {/* Protected routes */}
