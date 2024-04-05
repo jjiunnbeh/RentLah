@@ -12,7 +12,7 @@ import {
   } from "../redux/user/userSlice";
 
 
-function ChangePassword({userType}) 
+function ChangePassword(userType) 
 {
 
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ function ChangePassword({userType})
         old:"",
         newPass:"",
         username:currentUser.username,
-        userType: String(userType)
+        userType: userType
     });
 
     const [error, setError] = useState({
@@ -45,26 +45,26 @@ function ChangePassword({userType})
         const response = await axios.post(`${BASE_URL}/api/user/change-password`, data);
         if (response.status == 200)
         {
+            dispatch(updateUserSuccess(response.data.rest));
             navigate("/login/" + userType);
         }
         }
         catch(error)
         {
-        // const e = error.response.data.message;
-        // console.log(e.content);
-        // if (e.type  === "password")
-        // {
-        //     console.log(e.content);
-        //     setError({password:e.content});
-        // }
-        // if (e.type === "oldpassword")
-        // {
-        //     setError({oldpassword:e.content});
-        //     console.log(e.content);
-        // }
-        console.log(error);
+        const e = error.response.data.message;
+        console.log(e.content);
+        if (e.type  === "password")
+        {
+            console.log(e.content);
+            setError({password:e.content});
+        }
+        if (e.type === "oldpassword")
+        {
+            setError({oldpassword:e.content});
+            console.log(e.content);
+        }
 
-    }}
+    }
     function handleChange(event) 
     {
         const { name, value } = event.target;
@@ -77,8 +77,8 @@ function ChangePassword({userType})
 
     return (
         <>
-
-            <div className="formcontainer" style={{marginTop:"10%"}}>
+        <h1>hi</h1>
+            {/* <div className="formcontainer" style={{marginTop:"10%"}}>
                 <form name="changePassword" onSubmit={handleSubmit}>
                 <h1 className="text-center font-weight-bold" style={{color:"white"}}> Change Password</h1>
                 <div className="row justify-content-center">
@@ -138,10 +138,10 @@ function ChangePassword({userType})
                     alt="City landscape"
                     style={{ height: "100%", left: "0%" }}
                 />
-            </div>
+            </div>*/}
         </> 
     );
-}
+}}
 
 export default ChangePassword;
 

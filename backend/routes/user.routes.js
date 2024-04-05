@@ -1,6 +1,6 @@
 import express from "express";
 
-import { changePassAgent, changePassCustomer, updateAgent, updateCustomer, updateProfiePic ,resetPassword} from "../controllers/user.controller.js";
+import { changePass, updateAgent, updateCustomer, updateProfiePic ,resetPassword} from "../controllers/user.controller.js";
 
 
 
@@ -8,8 +8,7 @@ import { changePassAgent, changePassCustomer, updateAgent, updateCustomer, updat
 const router = express.Router();
 
 
-// router.post("/changepass-customer", changePassCustomer);
-// router.post("/changepass-agent", changePassAgent);
+router.post("/change-password", changePass);
 router.put("/update/profilepic", updateProfiePic);
 router.put("/update/Customer", updateCustomer);
 router.put("/update/Agent", updateAgent);
