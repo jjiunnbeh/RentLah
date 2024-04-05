@@ -39,6 +39,13 @@ const propertySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    LATITUDE: 
+    {
+      type: Number,
+    },
+    LONGITUDE: {
+      type: Number,
+   },
   },
   { timestamps: true }
 );
