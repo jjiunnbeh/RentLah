@@ -99,9 +99,21 @@ export const updateAgent = async (req, res, next) => {
     try {
         const { email, phoneNo, username, agentregnum} = req.body;
         const validAgent = await Agent.findOne({ username: username });
-        validAgent.email = email;
-        validAgent.phoneNo = phoneNo;
-        validAgent.agentregnum = agentregnum;
+
+        if (email != "")
+        {
+          validAgent.email = email;
+    
+        }
+        if (phoneNo!= "")
+        {
+          validAgent.phoneNo = phoneNo;
+        }
+        if (agentregnum != "")
+        {
+          validAgent.agentregnum = agentregnum;
+        
+        }
         await validAgent.save();
         const { password: pass, ...rest } = validAgent._doc;
         res.status(200).json({ rest });
