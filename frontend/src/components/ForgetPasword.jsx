@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import "../styles/RegisterForm.css";
 import axios from "axios";
