@@ -28,8 +28,16 @@ export const updateCustomer = async (req, res, next) => {
   try {
     const { email, phoneNo, username } = req.body;
     const validCustomer = await Customer.findOne({ username: username });
-    validCustomer.email = email;
-    validCustomer.phoneNo = phoneNo;
+    if (email != "")
+    {
+      validCustomer.email = email;
+
+    }
+    if (phoneNo!= "")
+    {
+      validCustomer.phoneNo = phoneNo;
+    }
+
     await validCustomer.save();
     const { password: pass, ...rest } = validCustomer._doc;
     res.status(200).json({ rest });
