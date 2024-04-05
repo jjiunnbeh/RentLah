@@ -54,7 +54,6 @@ export const updateAgent = async (req, res, next) => {
         if (email != "")
         {
           validAgent.email = email;
-    
         }
         if (phoneNo!= "")
         {
@@ -63,7 +62,6 @@ export const updateAgent = async (req, res, next) => {
         if (agentregnum != "")
         {
           validAgent.agentregnum = agentregnum;
-        
         }
         await validAgent.save();
         const { password: pass, ...rest } = validAgent._doc;
