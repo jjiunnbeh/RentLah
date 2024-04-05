@@ -19,7 +19,6 @@ function ResetPassword({ userType })
         userType:userType,
         id:id,
         token:token,
-        userType:userType
     });
     console.log(id);
 

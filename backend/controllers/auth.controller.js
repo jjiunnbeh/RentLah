@@ -211,6 +211,10 @@ export const loginCustomer = async (req, res, next) => {
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
+    validCustomer.loginAttempts = 0;
+    validCustomer.accountLocked = false;
+    //Save info back to database
+    await validCustomer.save();
     const {password: pass, ...rest} = validCustomer._doc;
     const token =jwtToken;
     res
