@@ -118,8 +118,8 @@ function ListingDetails()
                                 {"Agent Registration Number\nAgent Contact Number"}
                             </h4>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-text text-decoration-underline">Contact:</h5>
+                        <div className="card-body">
+                            <h5 className="card-text text-decoration-underline">Contact:</h5>
                             <a href={`https://api.whatsapp.com/send/?phone=${phonenumber}&text&type=phone_number&app_absent=0`}>
                                 <img
                                 src={whatsapp}
