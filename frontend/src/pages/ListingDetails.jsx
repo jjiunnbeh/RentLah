@@ -51,21 +51,8 @@ function ListingDetails() {
     fetchAgent();
   }, [listing]);
 
-  // const listing = {
-  //     name:"PDR The Gardens at Your Mom's House",
-  //     postalCode:649823,
-  //     price:69.69,
-  //     description:"ARC",
-  //     address:'This is\nsupposed to be\nan address',
-  //     bedroom:3,
-  //     bathroom:2,
-  //     images:["https://firebasestorage.googleapis.com/v0/b/rentlah-667e3.appspot.com/o/1711687189301download%20(1).jpeg?alt=media&token=359100cb-2c18-4666-8ba8-ccc80c88e025","https://firebasestorage.googleapis.com/v0/b/rentlah-667e3.appspot.com/o/1711687215981download.jpeg?alt=media&token=d05befb6-d255-4bc9-b217-fe8e05ce5a45"],
-  //     agentRef:"agent1",
-  //     LATITUDE: 1.4332513,
-  //     LONGTITUDE: 103.7874458
-  // }
+
   const [index, setindex] = useState(0);
-  const phonenumber = 6580288819;
   const handleSelect = (selectedIndex) => {
     setindex(selectedIndex);
   };
