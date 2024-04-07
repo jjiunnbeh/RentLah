@@ -39,9 +39,6 @@ function ChangePassword({userType})
     {
         setError({oldpassword:"", password:""});
 
-        // if(oldpassword !==)
-
-
         event.preventDefault();
         console.log(data)
         try

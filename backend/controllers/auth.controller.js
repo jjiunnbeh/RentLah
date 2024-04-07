@@ -286,8 +286,16 @@ export const forgetPassword = async (req, res, next) => {
   console.log(email);
   if (userType === "customer") {
     validUser = await Customer.findOne({ email });
-  } else {
+  } else if (userType === "agent"){
     validUser = await Agent.findOne({ email });
+  }
+  if(!validUser){
+    return next(
+      errorHandler(
+        401,
+        {type:"email", content:"Email not found"}
+      )
+    );
   }
   if (validUser)
   {

@@ -25,22 +25,36 @@ function ForgetPassword({ userType })
         [name]: value,
       }));
     }
+    const [msg, setMsg] = useState({email:""});
 
 async function handleSubmit(event)
 {
+    setMsg({email:""});
     event.preventDefault();
+    console.log(data);
+    try{
+
     const response = await axios.post(`${BASE_URL}/api/auth/forget-pass`, data);
     if (response.status == 200)
     {
         console.log(response.data);
+        setMsg({email:"Email sent successfully"});
         const email = response.data.email;
         const userType = (response.data.userType).toLowerCase();
         const token = response.data.token;
         const id = response.data.id;
         sendEmail(email, userType, token,id);
-
     }
-
+        }catch(error)
+        {
+            const e = error.response.data.message;
+            console.log(e);
+            if (e.type === "email")
+            {
+                console.log(e.content);
+                setMsg({email:e.content});
+            }
+        }
 }
 async function sendEmail(email, userType, token, id)
 {
@@ -83,7 +97,9 @@ async function sendEmail(email, userType, token, id)
                             required
                             />
                         </div>
-                        {/* <span>{error.password}</span> */}
+                        <span className="
+                        green-text-500
+                        ">{msg.email}</span>
                 </div>
                 <br></br>
 
