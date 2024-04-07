@@ -28,7 +28,7 @@ function ProfileForm() {
   const dispatch = useDispatch();
 
   const currentUser = useSelector((state) => state.user.currentUser);
-
+  
   const [data, setData] = useState({ profilepic: currentUser.profilepic });
   const [formData, setFormData] = useState({
     username:currentUser.username,
