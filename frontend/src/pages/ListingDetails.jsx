@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Map, Marker } from "react-map-gl/maplibre";
 import whatsapp from "../assets/whatsapp.png"
 import "maplibre-gl/dist/maplibre-gl.css";
+import {useParams} from "react-router-dom";
 
 
 function ListingDetails()
@@ -14,6 +15,8 @@ function ListingDetails()
     const userType = useSelector((state) => state.user.currentUser.userType);
     console.log(userType);
     const currentUser = useSelector((state) => state.user.currentUser);
+
+    
     const listing1 = {
         name:"PDR The Gardens at Your Mom's House",
         postalCode:649823,
