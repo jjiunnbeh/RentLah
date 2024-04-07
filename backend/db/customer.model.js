@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const customerSchema = new mongoose.Schema(
   {
@@ -46,7 +46,11 @@ const customerSchema = new mongoose.Schema(
       type:String,
       default:"Customer",
       unmodifiable:true
-    }
+    },
+    watchList: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Property'
+    }]
   },
   { timestamps: true }
 );

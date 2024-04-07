@@ -10,6 +10,7 @@ import { fileURLToPath } from "url";
 import userRouter from "./routes/user.routes.js";
 import { error } from 'console';
 import authRouter from "./routes/auth.route.js";
+import listingRouter from "./routes/listing.route.js"
 
 
 // import propertyListingsRouter from './function/propertyListings.js'; // Import the property listings router
@@ -28,7 +29,7 @@ app.use(bodyParser.json());
 
 app.use("/api/user", userRouter);
 app.use('/api/auth', authRouter);
-app.use("/api/user", userRouter);
+app.use("/api/listing", listingRouter);
 //Middleware
 app.use((error, req, res, next)=>
 {

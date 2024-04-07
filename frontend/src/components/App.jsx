@@ -14,8 +14,11 @@ import RequireAuth from "@auth-kit/react-router/RequireAuth";
 import LoginPage from "../pages/LoginPage";
 import ProfileForm from "./ProfileForm";
 import ChangePassword from "../pages/ChangePassword";
+import ListingDetails from "../pages/ListingDetails";
 import ForgetPassword from "./ForgetPasword";
 import CreateListingForm from "./CreateListingForm";
+import ResetPassword from "./ResetPassword";
+
 
 const store = createStore({
   authName: "_auth",
@@ -39,6 +42,10 @@ function App() {
           <Route path="/forget-pass/customer" element={<ForgetPassword userType="customer"  />} />
 
           <Route path="/forget-pass/agent" element={<ForgetPassword userType="agent"  />} />
+
+          <Route path="/reset-pass/customer/:id/:token" element={<ResetPassword userType="customer"  />} />
+          
+          <Route path="/reset-pass/agent/:id/:token" element={<ResetPassword userType="agent"  />} />
 
 
       
@@ -67,8 +74,6 @@ function App() {
               </RequireAuth>
             }
           />
-
-
             <Route
             path={"/profile"}
             element={
@@ -78,11 +83,20 @@ function App() {
             }
           />
 
+
             <Route
             path={"/createlisting"}
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <CreateListingForm />
+              </RequireAuth>
+            }
+          />
+            <Route
+            path={"/ListingDetails"}
+            element={
+              <RequireAuth fallbackPath={"/login"}>
+                <ListingDetails />
               </RequireAuth>
             }
           />

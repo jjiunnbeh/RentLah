@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import "../styles/RegisterForm.css";
 import axios from "axios";
@@ -35,15 +34,19 @@ async function handleSubmit(event)
     {
         console.log(response.data);
         const email = response.data.email;
-        sendEmail(email);
+        const userType = (response.data.userType).toLowerCase();
+        const token = response.data.token;
+        const id = response.data.id;
+        sendEmail(email, userType, token,id);
+
     }
 
 }
-async function sendEmail(email)
+async function sendEmail(email, userType, token, id)
 {
     try
     {
-        const response = await axios.post(`${BASE_URL}/api/auth/forget-pass/sendemail`, {email});
+        const response = await axios.post(`${BASE_URL}/api/auth/forget-pass/sendemail`, {email, userType,token, id});
 
     }catch(error)
     {

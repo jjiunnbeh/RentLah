@@ -39,11 +39,18 @@ const propertySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    LATITUDE: 
+    {
+      type: Number,
+    },
+    LONGITUDE: {
+      type: Number,
+   },
   },
   { timestamps: true }
 );
 
-const Property = mongoose.model("Property", propertySchema);
-const ManagedListing = mongoose.model("ManagedListing", propertySchema);
-const WatchList = mongoose.model("WatchList", propertySchema);
-export default { Property, ManagedListing, WatchList };
+export const Property = mongoose.model("Property", propertySchema);
+export const ManagedListing = mongoose.model("ManagedListing", propertySchema);
+export const WatchList = mongoose.model("WatchList", propertySchema);
+

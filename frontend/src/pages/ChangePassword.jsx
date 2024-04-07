@@ -1,36 +1,90 @@
+import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import "../styles/RegisterForm.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import loginimg from '../assets/loginimg.png';
+import {
+    updateUserFailure,
+    updateUserStart,
+    updateUserSuccess,
+  } from "../redux/user/userSlice";
 
 
-
-function ChangePassword({ userType }) 
+function ChangePassword({userType}) 
 {
 
+    const navigate = useNavigate();
     const BASE_URL = 'http://localhost:3000';
-    const data = useState({
+
+    const dispatch = useDispatch();
+
+    const currentUser = useSelector((state) => state.user.currentUser);
+
+    const [data, setData] = useState({
         old:"",
-        new:""
-    })
+        newPass:"",
+        username:currentUser.username,
+        userType: String(userType)
+    });
 
-async function handleSubmit(event)
-{
-    event.preventDefault();
-    const response = await axios.post(`${BASE_URL}/api/user/changepass-${userType}`, data);
+    const [error, setError] = useState({
+        oldpassword:"",
+        password:"",
+    }
+    );
+
+    async function handleSubmit(event)
+    {
+        setError({oldpassword:"", password:""});
+
+        // if(oldpassword !==)
 
 
-}
+        event.preventDefault();
+        console.log(data)
+        try
+        {
+        dispatch(updateUserStart());
+        const response = await axios.post(`${BASE_URL}/api/user/change-password`, data);
+        if (response.status == 200)
+        {
+            navigate("/login/" + userType);
+        }
+        }
+        catch(error)
+        {
+            const e = error.response.data.message;
+            console.log(e);
+            if (e.type  === "password")
+            {
+                console.log(e.content);
+                setError({password:e.content});
+            }
+            if (e.type === "oldpassword") 
+            {
+                setError({oldpassword:e.content});
+                console.log(e.content);
+            }
+        console.log(error);
 
 
 
-   
+    }}
+    function handleChange(event) 
+    {
+        const { name, value } = event.target;
     
+        setData((prevData) => ({
+          ...prevData,
+          [name]: value,
+        }));
+    }
 
     return (
         <>
+
             <div className="formcontainer" style={{marginTop:"10%"}}>
                 <form name="changePassword" onSubmit={handleSubmit}>
                 <h1 className="text-center font-weight-bold" style={{color:"white"}}> Change Password</h1>
@@ -42,14 +96,16 @@ async function handleSubmit(event)
                             <input
                             type="password"
                             className="form-control"
-                            id="newPassword"
-                            placeholder="New Password"
-                            name="password"
+                            id="oldPassword"
+                            placeholder="Old Password"
+                            onChange={handleChange}
+                            name="old"
+                            value={data.old}
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
                         </div>
-                        {/* <span>{error.password}</span> */}
+                        <span>{error.oldpassword}</span>
                 </div>
                 <br></br>
                 <div className="row justify-content-center">
@@ -60,14 +116,16 @@ async function handleSubmit(event)
                             <input
                             type="password"
                             className="form-control"
-                            id="newPasswordConfirmation"
-                            placeholder="Confirm Password"
-                            name="passwordconfirm"
+                            id="newPassword"
+                            placeholder="New Password"
+                            onChange={handleChange} 
+                            name="newPass"
+                            value={data.newPass}
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
                         </div>
-                        {/* <span>{error.passwordconfirm}</span> */}
+                        <span>{error.password}</span>
                 </div>
                 <br></br>
 
@@ -88,7 +146,7 @@ async function handleSubmit(event)
                     style={{ height: "100%", left: "0%" }}
                 />
             </div>
-        </>
+        </> 
     );
 }
 
