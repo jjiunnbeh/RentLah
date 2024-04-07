@@ -188,11 +188,13 @@ const handleRemoveImage = (index) => {
             Upload
           </button>
 
-          {imageUploadError && imageUploadError}
+         
 
         
         </div>
-
+        <div className="row text-center">
+        <p className="text-danger">{imageUploadError && imageUploadError}</p>
+        </div>
       <div className="row" style={{marginLeft:"10%", marginRight:"10%", marginTop:"1%"}}>
         <hr className="tophr"/>
       </div>
