@@ -74,7 +74,7 @@ function Home() {
                   <h2> Pricing: {listing.price}</h2>
                 </div>
                 <div className="row">
-                  <a className="Listing" href="">
+                  <a className="Listing" href={"/listing/"+listing._id}>
                     {" "}
                     Learn more...{" "}
                   </a>
