@@ -200,3 +200,17 @@ export const resetPassword = async(req, res, next)=>
       }
 
 }
+
+export const getAgent =  async (req, res, next) => {
+    try {
+      const agent = await Agent.findOne({ username: (req.params.username)});
+      console.log(agent);
+      if (!agent) {
+        return next(errorHandler(404, "Agent not found!"));
+      }
+      res.status(200).json(agent);
+    }
+    catch (error) {
+      console.log(error);
+      return next(error);
+    } };
