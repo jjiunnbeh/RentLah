@@ -114,56 +114,7 @@ const handleRemoveImage = (index) => {
       
       
       <div className="row justify-content-center" style={{marginLeft:"20%", marginRight:"20%", marginTop:"3%", height:"500px"}}>
-        {/* <div className="col-md-auto">
-          <input
-            onChange = {(e) => setFile(e.target.files[0])}
-            type="file"
-            ref={fileRef}
-            hidden
-            accept="image/*"
-            />
-            <img 
-          onClick={() => fileRef.current.click()} 
-          src={" "} 
-          alt="listingimage1" 
-          style={{width:"300px", height:"300px", marginLeft:"100px"}}
-          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2" 
-          />
-        </div>
-        <div className="col-md-auto">
-          <input
-            onChange = {(e) => setFile(e.target.files[0])}
-            type="file"
-            ref={fileRef}
-            hidden
-            accept="image/*"
-            />
-            <img 
-          onClick={() => fileRef.current.click()} 
-          src={" "} 
-          alt="listingimage2" 
-          style={{width:"300px", height:"300px", marginLeft:"100px"}}
-          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2" 
-          />
-        </div>
-        <div className="col-md-auto">
-          <input
-            onChange = {(e) => setFile(e.target.files[0])}
-            type="file"
-            ref={fileRef}
-            hidden
-            accept="image/*"
-            />
-            <img 
-          onClick={() => fileRef.current.click()} 
-          src={" "} 
-          alt="listingimage3" 
-          style={{width:"300px", height:"300px", marginLeft:"100px"}}
-          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2" 
-          />
-        </div> */}
-
-            <Carousel activeIndex={index} onSelect={handleSelect} >
+           <Carousel activeIndex={index} onSelect={handleSelect} >
                     {
                         [...Array(formData.imageUrls.length)].map((url,i) => <Carousel.Item key={i} interval={null}>
                                                                         <div className="d-flex justify-content-center">

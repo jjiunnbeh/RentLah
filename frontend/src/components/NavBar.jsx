@@ -21,10 +21,9 @@ function NavBar() {
               
               <NavDropdown.Item href="/ListingDetails">Listing Test</NavDropdown.Item>
               
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item href="/ViewPropertiesPage">View Properties Test</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+              <NavDropdown.Item href="/Watchlist">Watchlist Test
               </NavDropdown.Item>
             </NavDropdown>
             <form>

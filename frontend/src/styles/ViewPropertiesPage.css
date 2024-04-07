@@ -1,0 +1,10 @@
+div.img-div{
+    width: 240px;
+    height: 210px;
+}
+
+div.img-div img{
+    width: 100%;
+    height:100%;
+    object-fit: fill;
+}

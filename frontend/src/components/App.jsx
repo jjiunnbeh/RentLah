@@ -18,6 +18,8 @@ import ListingDetails from "../pages/ListingDetails";
 import ForgetPassword from "./ForgetPasword";
 import CreateListingForm from "./CreateListingForm";
 import ResetPassword from "./ResetPassword";
+import ViewPropertiesPage from "../pages/ViewPropertiesPage";
+import Watchlist from "./Watchlist";
 
 
 const store = createStore({
@@ -97,6 +99,24 @@ function App() {
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <ListingDetails />
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path={"/ViewPropertiesPage"}
+            element={
+              <RequireAuth fallbackPath={"/login"}>
+                <ViewPropertiesPage />
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path={"/Watchlist"}
+            element={
+              <RequireAuth fallbackPath={"/login"}>
+                <Watchlist />
               </RequireAuth>
             }
           />

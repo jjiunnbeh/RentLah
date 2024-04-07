@@ -37,7 +37,7 @@ const SearchBar = () => {
     );
 };
 
-const ViewPropertiesPage = () => {
+const Watchlist = () => {
     const [propertyListings, setPropertyListings] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -76,8 +76,8 @@ const ViewPropertiesPage = () => {
         </div> */}
 
         <div className="col justify-content-center">
-            <div className="row" style={{marginLeft:"30%",marginRight:"30%", marginTop:"5%"}}>
-                 <SearchBar />
+            <div className="row text-center" style={{marginLeft:"30%",marginRight:"30%", marginTop:"5%"}}>
+                 <h1>Watchlist </h1>
             </div>
         </div>
 
@@ -131,4 +131,4 @@ const ViewPropertiesPage = () => {
     );
 };
 
-export default ViewPropertiesPage;
+export default Watchlist;
