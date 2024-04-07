@@ -51,8 +51,8 @@ function ListingDetails() {
     fetchAgent();
   }, [listing]);
 
+
   const [index, setindex] = useState(0);
-  const phonenumber = 6580288819;
   const handleSelect = (selectedIndex) => {
     setindex(selectedIndex);
   };
