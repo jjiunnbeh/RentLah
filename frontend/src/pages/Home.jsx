@@ -25,10 +25,11 @@ function Home()
         <h1> Hello {currentUser.username} </h1>
     </div>
 
-    <div className="col overflow-auto" id="Listingsbar" style={{marginTop: "7%", width:"100%"}} >
-        <div className="row" style={{marginLeft: "6%"}} >
-            <h2> Listings</h2>
-        </div>
+    <div className="row text-center" style={{marginTop: "5%", marginBottom: "1%"}} >
+            <h1> Listings</h1>
+    </div>
+
+    <div className="col overflow-auto" id="Listingsbar" style={{width:"100%"}} >
 
         <div className="row d-flex gap-4 flex-nowrap" style={{marginLeft: "6%"}}>
            {
