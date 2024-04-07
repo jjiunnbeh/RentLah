@@ -83,6 +83,7 @@ export const registerCustomer = async (req, res, next) => {
 //Register agent
 export const registerAgent = async (req, res, next) => {
   const { username, email, password, phoneNo,agentname, agentregnum } = req.body;
+  const strongpass = isPasswordStrong(password);
   if (password.length < 10)
   {
     return next(
