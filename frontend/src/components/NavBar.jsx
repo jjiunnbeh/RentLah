@@ -14,10 +14,13 @@ function NavBar() {
             <Nav.Link href="/">Home Page</Nav.Link>
             <Nav.Link href="/profile">Profile</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/ListingDetails">Listing Test</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
+
+              <NavDropdown.Item href="/createlisting">
+                Create Listing Test
               </NavDropdown.Item> 
+              
+              <NavDropdown.Item href="/ListingDetails">Listing Test</NavDropdown.Item>
+              
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
