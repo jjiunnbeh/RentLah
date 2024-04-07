@@ -20,7 +20,7 @@ function ListingDetails()
     const BASE_URL = "http://localhost:3000";
     const [listing, setListing] = useState({});
     const [agent, setAgent] = useState({});
- 
+
     useEffect(() => {
         const fetchListing = async () => {
         try {
