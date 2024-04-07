@@ -369,10 +369,17 @@ export const sendEmail = async (req, res) => {
 
 
 export const resetPassword = async (req, res, next) => {
-  const {password, username, userType} = req.body;
+  const {password, passwordconfirm, username, userType} = req.body;
   const strongpass = isPasswordStrong(password);
-  
-
+  const {id, token} = req.params;
+  if(password !== passwordconfirm){
+    return next(
+      errorHandler(
+        401,
+        {type:"passwordconfirm", content:"Password does not match"}
+      )
+    )
+  }
   if (password.length < 10)
   {
     return next(
@@ -407,7 +414,7 @@ export const resetPassword = async (req, res, next) => {
     const {password: pass, ...rest} = user._doc;
     res.status(200).json({rest})
     }catch(error){
-        console.log("here")
+        console.log(error);
         return next(error);
     }
 }

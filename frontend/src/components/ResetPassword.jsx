@@ -20,12 +20,16 @@ function ResetPassword({ userType })
         id:id,
         token:token,
     });
-    console.log(id);
+    const [error, setError] = useState({
+        password:"",
+        passwordconfirm:""
+    });
+    // console.log(id);
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setError({password:"", passwordconfirm:""});
         try{
                 const response = await axios.put(`${BASE_URL}/api/user/resetPassword`, data);
                 if (response.status == 200)
@@ -34,13 +38,23 @@ function ResetPassword({ userType })
                     navigate("/login/" + userType);
                 }
             
-            }    catch(error)
-    {
-      console.log(error);
-    }
-
-            
-            // const response = await axios.post(${BASE_URL}/reset-pass/${userType}/${id}/${token}, data);
+            }
+            catch(error)
+            {
+                console.log(error);
+                const e = error.response.data.message;
+                console.log(e);
+                if(e.type === "password")
+                {
+                    console.log(e.content);
+                    setError({password:e.content});
+                }
+                if(e.type === "passwordconfirm")
+                {
+                    console.log(e.content);
+                    setError({passwordconfirm:e.content});
+                }
+            }
 
            
     }
@@ -74,7 +88,7 @@ const navigate = useNavigate();
                             required
                             />
                         </div>
-                        {/* <span className="error">{error.password}</span> */}
+                        <span className="error">{error.password}</span>
                     </div>
                     <br></br>
                     <div className="row justify-content-center">
@@ -94,7 +108,7 @@ const navigate = useNavigate();
                             required
                             />
                         </div>
-                        {/* <span className="error">{error.passwordconfirm}</span> */}
+                        <span className="error">{error.passwordconfirm}</span>
                     </div>
                     <div className="row justify-content-center">
                         <button type="submit" className="btn btn-primary loginSubmit" >

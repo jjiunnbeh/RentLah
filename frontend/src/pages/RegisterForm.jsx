@@ -52,7 +52,7 @@ const [error, setError] = useState(
     //     console.log(error.license);
     //     // Add more error state variables as needed
     // }, [error.passwordconfirm, error.password, error.username, error.email, error.phoneNo, error.license]);
-    
+
 
     const handleSubmit = async (event) => 
     {    event.preventDefault();
@@ -76,7 +76,7 @@ const [error, setError] = useState(
             }));
             return;
         }
- 
+
         try {
           const response = await axios.post(`${BASE_URL}/api/auth/register-${userType}`, data);
           console.log(response);
@@ -114,15 +114,9 @@ const [error, setError] = useState(
                 {
                     console.log(e.content);
                     setError({license:e.content});
-
                 }
           // Handle register errors 
         }
-
-
-
-        
-
     }
     
 
@@ -214,8 +208,6 @@ const [error, setError] = useState(
                     </div>
 
                     </>
-                    
-                        
                         }
                     <br></br>
                     <div className="row justify-content-center">

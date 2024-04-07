@@ -14,7 +14,7 @@ router.post("/register-customer", registerCustomer);
 router.post("/register-agent", registerAgent);
 router.post("/login-agent", loginAgent);
 router.post("/login-customer", loginCustomer);
-router.post("/reset-pass/agent", resetPassword);
-router.post("/reset-pass/customer", resetPassword);
+// router.post("/reset-pass/agent/:id/:token", resetPassword);
+// router.post("/reset-pass/customer/:id/:token", resetPassword);
 export default router;
 
