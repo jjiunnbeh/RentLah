@@ -6,12 +6,12 @@ div.Listingcontainer {
 }
 
 div.Listingimg{
-    background-color: gray;
+    background-color: white;
     height:  325px;
     width: 525px;
     border-radius: 25px;
     margin-top: 10px;
-
+    overflow: hidden;
 }
 
 a.Listing {

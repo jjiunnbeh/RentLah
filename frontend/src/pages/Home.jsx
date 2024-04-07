@@ -1,68 +1,99 @@
 import NavBar from "../components/NavBar";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import Triangles from "../components/Triangles";
-import "../styles/Home.css"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import "../styles/Home.css";
 
-function Home()
-{   
-    const userType = useSelector((state) => state.user.currentUser.userType);
-    console.log(userType);
-    const currentUser = useSelector((state) => state.user.currentUser);
+function Home() {
+  const userType = useSelector((state) => state.user.currentUser.userType);
+  console.log(userType);
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const [listings, setListings] = useState([]);
+  const BASE_URL = "http://localhost:3000";
+  useEffect(() => {
+    const fetchListings = async () => {
+      try {
+        const response = await axios.get(
+          `${BASE_URL}/api/listing/get-listings`
+        );
+        setListings(response.data);
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+      }
+    };
+    fetchListings();
+  }, []);
 
-
-
-
-
-
- return (
-
+  return (
     <>
-    <header><NavBar/></header>
+      <header>
+        <NavBar />
+      </header>
 
-    <Triangles />
+      <Triangles />
 
-    <div className="row text-center"style={{marginTop: "3%"}} >
+      <div className="row text-center" style={{ marginTop: "3%" }}>
         <h1> Hello {currentUser.username} </h1>
-    </div>
+      </div>
 
-    <div className="col overflow-auto" id="Listingsbar" style={{marginTop: "7%", width:"100%"}} >
-        <div className="row" style={{marginLeft: "6%"}} >
-            <h2> Listings</h2>
+      <div className="row text-center" style={{ marginTop: "6%" }}>
+        <h2> Listings</h2>
+      </div>
+
+      <div
+        className="col overflow-auto"
+        id="Listingsbar"
+        style={{ marginTop: "1%", width: "100%" }}
+      >
+        <div
+          className="row d-flex gap-4 flex-nowrap"
+          style={{ marginLeft: "6%" }}
+        >
+          {listings.slice(0, 10).map((listing) => (
+            <div className="Listingcontainer" key={listing._id}>
+              <div
+                className="col-mx-auto d-grid gap-4"
+                style={{ width: "525px" }}
+              >
+                <div className="row justify-content-center">
+                  <div className="Listingimg">
+                    {listing.images.length > 0 && (
+                      <img src={listing.images[1]} alt="Listing image" className="img" style={{borderRadius: "25px", width:"100%", marginLeft:"0", height:"100%"}}/>
+                    )}
+                  </div>
+                </div>
+
+                <div
+                  className="row"
+                  style={{ marginTop: "20px", width: "525px" }}
+                >
+                  <h2 className="text-truncate"> Address: {listing.address}</h2>
+                </div>
+                <div className="row">
+                  <h2> Pricing: {listing.price}</h2>
+                </div>
+                <div className="row">
+                  <a className="Listing" href="">
+                    {" "}
+                    Learn more...{" "}
+                  </a>
+                </div>
+
+                <div className="row">
+                  <a className="Listing" href="">
+                    {" "}
+                    Add to watchlist...{" "}
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+          <div className="col" style={{ minWidth: "5%" }} />
         </div>
-
-        <div className="row d-flex gap-4 flex-nowrap" style={{marginLeft: "6%"}}>
-           {
-            [...Array(10)].map((e, i) => <div className="Listingcontainer" key={i}>
-                                            <div className="col-mx-auto d-grid gap-4" style={{width: "525px"}}>
-                                                <div className="row justify-content-center">
-                                                    <div className="Listingimg">
-                                                        
-                                                    </div>
-                                                </div>
-
-                                                <div className="row" style={{marginTop: "20px", width:"525px"}}>
-                                                    <h2 className="text-truncate"> Address: dskfjhsdjkfhajdshfkljsdhfjhsdafkjsadfkjdsakfhsdkjfhasdkjfsjkadhfkjsdfjksdfhkdlsajkjkadsfkhdslk</h2>
-                                                </div>
-                                                <div className="row">
-                                                    <h2> Pricing: </h2>
-                                                </div>
-                                                <div className="row">
-                                                    <a className="Listing" href=""> Learn more... </a>
-                                                </div>
-                                                    
-                                                <div className="row">
-                                                <a className="Listing" href=""> Add to watchlist... </a>
-                                                </div>
-                                            </div>
-                                        </div>)
-           }
-           <div className="col" style={{minWidth:"5%"}}/>
-        </div>
-    </div>
+      </div>
     </>
- );
-    
-
+  );
 }
 export default Home;
 

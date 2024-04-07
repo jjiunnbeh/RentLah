@@ -14,7 +14,7 @@ export const changePass= async (req, res, next) => {
     const {old, newPass, username, userType} = req.body;
     const strongpass = isPasswordStrong(newPass);
     
-  
+    
     if (newPass.length < 10)
     {
       return next(
@@ -175,3 +175,16 @@ export const resetPassword = async(req, res, next)=>
       }
 
 }
+
+export const getListings = async (req, res, next) => {
+  if (req.customer.id === req.params.id) {
+    try {
+      const listings = await Listing.find({ userRef: req.params.id });
+      res.status(200).json(listings);
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    return next(errorHandler(401, "You can only view your own listings!"));
+  }
+};

@@ -35,3 +35,73 @@ export const createListing = async(req, res, next) =>
     }
 }
 
+//get listing from database
+export const getListing = async (req, res, next) => {
+  try {
+    const listing = await Property.findById(req.params.id);
+    if (!listing) 
+    {
+      return next(errorHandler(404, "Listing not found!"));
+    }
+    res.status(200).json(listing);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+export const getWatchlistListings = async (req, res, next) => {
+    const { username } = req.body;
+    try {
+      const customer = await Customer.findOne({ username: username });
+      if (!customer) {
+        return res.status(404).json({ message: "User not found." });
+      }
+      const propertyIds = customer.watchList;
+
+      if (propertyIds.length === 0) {
+        return res.status(200).json({ message: "You don't have anything in the watchlist." });
+      }
+  
+      // Fetch properties using findById for each property ID
+      const propertyPromises = propertyIds.map(async (propertyId) => {
+        const property = await Property.findById(propertyId);
+        return property;
+      });
+  
+      // Resolve all promises to get the properties
+      const properties = await Promise.all(propertyPromises);
+  
+      res.status(200).json(properties);
+  
+    } catch (error) {
+      return next(error);
+    }
+  };
+
+  export const getAgentListings = async (req, res, next) => {
+    const {username} = req.body;
+    try
+    {
+      const listings = await Property.find({agentRef: (username.toUpperCase())});
+      res.status(200).json(listings);
+    }
+    catch(error)
+    {
+      next(error);
+    }
+
+  };
+
+  export const getAllListings = async (req, res, next) => {
+    try {
+      const listings = await Property.find();
+      res.status(200).json(listings);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+
+
+
