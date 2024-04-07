@@ -61,12 +61,10 @@ async function sendEmail(email, userType, token, id)
     try
     {
         const response = await axios.post(`${BASE_URL}/api/auth/forget-pass/sendemail`, {email, userType,token, id});
-
     }catch(error)
     {
         console.log(error);
     }
-    
 
 }
 

@@ -2,6 +2,7 @@ import NavBar from "../components/NavBar";
 import {useSelector} from "react-redux";
 import Triangles from "../components/Triangles";
 import "../styles/Home.css"
+import {useNavigate} from "react-router-dom";
 
 function Home()
 {   
@@ -9,10 +10,13 @@ function Home()
     console.log(userType);
     const currentUser = useSelector((state) => state.user.currentUser);
 
+    //newly added code
+    const navigate = useNavigate();
 
-
-
-
+    const goToPropertyDetail = (propertyId) => {
+        navigate(`/property/${propertyId}`);
+    }
+    //end of newly added code
 
  return (
 
@@ -47,7 +51,7 @@ function Home()
                                                     <h2> Pricing: </h2>
                                                 </div>
                                                 <div className="row">
-                                                    <a className="Listing" href=""> Learn more... </a>
+                                                    <a className="Listing" href="" onClick={() => goToPropertyDetail(propertyId)}> Learn more... </a>
                                                 </div>
                                                     
                                                 <div className="row">

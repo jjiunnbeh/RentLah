@@ -139,10 +139,35 @@ export const updateProfiePic = async (req, res, next) => {
 };
 export const resetPassword = async(req, res, next)=>
 {
-    const {password, id, userType} =req.body
+    const {password, passwordconfirm, id, userType} =req.body;
+    const strongpass = isPasswordStrong(password);
     const ObjectId =mongoose.Types.ObjectId;
     const validId = new ObjectId(id)
-
+    if(password !== passwordconfirm){
+      return next(
+        errorHandler(
+          401,
+          {type:"passwordconfirm", content:"Password does not match"}
+        )
+      )
+    }
+    if (password.length < 10)
+    {
+      return next(
+        errorHandler(
+          401,
+          {type:"password", content:"Password length must be greater than 10."}
+          
+        ))
+    }
+    if (!strongpass)
+    {
+      return next(
+        errorHandler(
+          401,
+          {type:"password", content:"Password must contain at least 1 upper Case letter, 1 special symbol and normal case letter"}
+        ))
+    }
     const hashedPassword = bcryptjs.hashSync(password, 10);
     try{
         let user;
