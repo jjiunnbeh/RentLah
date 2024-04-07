@@ -106,8 +106,9 @@ async function handleFileUpload(file)
 
       <Triangles />
       
+      
       <div className="row justify-content-center gap-4" style={{marginLeft:"10%", marginRight:"10%", marginTop:"3%", height:"300px"}}>
-        <div className="col-md-auto">
+        {/* <div className="col-md-auto">
           <input
             onChange = {(e) => setFile(e.target.files[0])}
             type="file"
@@ -154,11 +155,17 @@ async function handleFileUpload(file)
           style={{width:"300px", height:"300px", marginLeft:"100px"}}
           className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2" 
           />
-        </div>
+        </div> */}
         
         
       </div>
-      <div className="row" style={{marginLeft:"10%", marginRight:"10%", marginTop:"3%"}}>
+      <div className="row" style={{marginLeft:"10%", marginRight:"10%", marginTop:"4%"}}>
+
+        <div className="row justify-content-center" style={{marginBottom: "1%"}}>
+            <button type="submit" className="btn btn-primary loginSubmit" >
+                Upload images
+            </button>
+        </div>
         <hr className="tophr"/>
       </div>
       <div className="formcontainer" style={{marginLeft:"10%", marginRight:"10%"}}>
@@ -203,7 +210,7 @@ async function handleFileUpload(file)
           <div className="row overflow-visible" style={{marginLeft:"-5%", marginRight:"-5%", marginTop:"3%", marginBottom:"3%"}}>
             <hr className="tophr"/>
           </div>
-          <div className="row justify-content-center">
+          <div className="row justify-content-center" style={{ marginBottom:"1%"}}> 
             <button type="submit" className="btn btn-primary loginSubmit" >
                 Save Changes
             </button>
