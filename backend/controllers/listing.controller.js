@@ -22,8 +22,8 @@ export const createListing = async(req, res, next) =>
                 ))
         }
         // Extract latitude and longitude from the response
-        const { LATITUDE, LONGITUDE } = response.data.results[0];
-        const listing = await Property.create({name, postalCode, price, description,address, bedroom, bathroom, images, agentRef, LATITUDE: LATITUDE, LONGITUDE: LONGITUDE });
+        const { LATITUDE, LONGITUDE,ADDRESS } = response.data.results[0];
+        const listing = await Property.create({name, postalCode, price, description,address: ADDRESS, bedroom, bathroom, images, agentRef, LATITUDE: LATITUDE, LONGITUDE: LONGITUDE });
         return res.status(201).json(listing);
     }catch(error)
     {

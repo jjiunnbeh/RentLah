@@ -17,13 +17,20 @@ function Home() {
         const response = await axios.get(
           `${BASE_URL}/api/listing/get-listings`
         );
-        setListings(response.data);
+        const list = response.data;
+        const shuffledListings = list.sort(() => Math.random() - 0.5);
+        setListings(shuffledListings);
       } catch (error) {
         console.error("Error fetching listings:", error);
       }
     };
     fetchListings();
   }, []);
+
+  console.log(listings)
+
+  
+  
 
   return (
     <>
