@@ -5,7 +5,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import loginimg from '../assets/loginimg.png';
-
+import {
+    updateUserFailure,
+    updateUserStart,
+    updateUserSuccess,
+  } from "../redux/user/userSlice";
 
 
 function ChangePassword({userType}) 
@@ -33,10 +37,16 @@ function ChangePassword({userType})
 
     async function handleSubmit(event)
     {
+        setError({oldpassword:"", password:""});
+
+        // if(oldpassword !==)
+
+
         event.preventDefault();
         console.log(data)
         try
         {
+        dispatch(updateUserStart());
         const response = await axios.post(`${BASE_URL}/api/user/change-password`, data);
         if (response.status == 200)
         {
@@ -45,19 +55,21 @@ function ChangePassword({userType})
         }
         catch(error)
         {
-        // const e = error.response.data.message;
-        // console.log(e.content);
-        // if (e.type  === "password")
-        // {
-        //     console.log(e.content);
-        //     setError({password:e.content});
-        // }
-        // if (e.type === "oldpassword")
-        // {
-        //     setError({oldpassword:e.content});
-        //     console.log(e.content);
-        // }
+            const e = error.response.data.message;
+            console.log(e);
+            if (e.type  === "password")
+            {
+                console.log(e.content);
+                setError({password:e.content});
+            }
+            if (e.type === "oldpassword") 
+            {
+                setError({oldpassword:e.content});
+                console.log(e.content);
+            }
         console.log(error);
+
+
 
     }}
     function handleChange(event) 
@@ -72,6 +84,7 @@ function ChangePassword({userType})
 
     return (
         <>
+
             <div className="formcontainer" style={{marginTop:"10%"}}>
                 <form name="changePassword" onSubmit={handleSubmit}>
                 <h1 className="text-center font-weight-bold" style={{color:"white"}}> Change Password</h1>
