@@ -32,7 +32,7 @@ function ListingDetails() {
     };
     fetchListing();
   }, []);
-  listing.agentRef = "JJAG";
+//   listing.agentRef = "JJAG";
 
   console.log(listing);
   console.log(listing.agentRef);
@@ -49,7 +49,7 @@ function ListingDetails() {
       }
     };
     fetchAgent();
-  }, []);
+  }, [listing]);
 
   // const listing = {
   //     name:"PDR The Gardens at Your Mom's House",
@@ -82,7 +82,10 @@ function ListingDetails() {
   };
 
   return (
+    
     <>
+    {listing && agent && (
+        <>
       <header>
         <NavBar />
       </header>
@@ -91,13 +94,6 @@ function ListingDetails() {
 
       <div className="row">
         <div className="col mt-3 " style={{ marginLeft: "12%" }}>
-          {/* <Carousel activeIndex={index} onSelect={handleSelect}>
-                    {
-                        (listing.images).map((image,i) => <Carousel.Item key={i}>
-                                                                        <img className="d-block w-100" src={i} alt="First image" style={{height:"700px", width:"800px"}}/>
-                                                                       </Carousel.Item>)
-                    }
-                    </Carousel> */}
           <Carousel activeIndex={index} onSelect={handleSelect}>
             {listing.images &&
               listing.images.map((image, i) => (
@@ -179,14 +175,14 @@ function ListingDetails() {
             </div>
           </div>
         </div>
-
+            
         <div className="col-md-5" id="map" style={{ marginLeft: "12%" }}>
           {listing && listing.LATITUDE && listing.LONGITUDE && (
             <Map
               initialViewState={{
                 latitude: listing.LATITUDE,
                 longitude: listing.LONGITUDE,
-                zoom: 8,
+                zoom: 15,
               }}
               container="map"
               maxBounds={[103.596, 1.1443, 104.1, 1.4835]}
@@ -225,8 +221,11 @@ function ListingDetails() {
           Singapore Land Authority
         </a>
       </footer>
+      </>
+  )}
     </>
-  );
+               
+    );
 }
 
 export default ListingDetails;

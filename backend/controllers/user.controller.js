@@ -203,6 +203,7 @@ export const resetPassword = async(req, res, next)=>
 
 export const getAgent =  async (req, res, next) => {
     try {
+      console.log(req.params.username);
       const agent = await Agent.findOne({ username: (req.params.username)});
       console.log(agent);
       if (!agent) {

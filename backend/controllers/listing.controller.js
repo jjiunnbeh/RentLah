@@ -3,6 +3,7 @@ import axios from "axios";
 import express from "express";
 import bodyParser from "body-parser";
 import errorHandler from "../utils/error.js";
+import Customer from "../db/customer.model.js";
 
 export const createListing = async(req, res, next) =>
 {
