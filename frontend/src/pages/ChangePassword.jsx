@@ -5,11 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import loginimg from '../assets/loginimg.png';
-import {
-    updateUserFailure,
-    updateUserStart,
-    updateUserSuccess,
-  } from "../redux/user/userSlice";
+
 
 
 function ChangePassword({userType}) 
@@ -41,7 +37,6 @@ function ChangePassword({userType})
         console.log(data)
         try
         {
-        dispatch(updateUserStart());
         const response = await axios.post(`${BASE_URL}/api/user/change-password`, data);
         if (response.status == 200)
         {
@@ -77,7 +72,6 @@ function ChangePassword({userType})
 
     return (
         <>
-
             <div className="formcontainer" style={{marginTop:"10%"}}>
                 <form name="changePassword" onSubmit={handleSubmit}>
                 <h1 className="text-center font-weight-bold" style={{color:"white"}}> Change Password</h1>

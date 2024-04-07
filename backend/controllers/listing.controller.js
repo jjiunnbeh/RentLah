@@ -3,10 +3,6 @@ import axios from "axios";
 import express from "express";
 import bodyParser from "body-parser";
 import errorHandler from "../utils/error.js";
-const app = express();
-
-
-app.use(bodyParser.json());
 
 export const createListing = async(req, res, next) =>
 {
@@ -35,7 +31,6 @@ export const createListing = async(req, res, next) =>
             errorHandler(
               501,
               {type:"server", content:"Server error"}
-              
             ))
     }
 }
