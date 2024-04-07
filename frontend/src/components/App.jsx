@@ -16,6 +16,7 @@ import ProfileForm from "./ProfileForm";
 import ChangePassword from "../pages/ChangePassword";
 import ListingDetails from "../pages/ListingDetails";
 import ForgetPassword from "./ForgetPasword";
+import CreateListingForm from "./CreateListingForm";
 import ResetPassword from "./ResetPassword";
 
 
@@ -82,6 +83,15 @@ function App() {
             }
           />
 
+
+            <Route
+            path={"/createlisting"}
+            element={
+              <RequireAuth fallbackPath={"/login"}>
+                <CreateListingForm />
+              </RequireAuth>
+            }
+          />
             <Route
             path={"/listing/:id"}
             element={
