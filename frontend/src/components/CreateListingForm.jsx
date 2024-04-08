@@ -39,6 +39,7 @@ function CreateListingForm() {
 
 const [imageUploadError, setImageUploadError] = useState(false);
 const [uploading, setUploading] = useState(false);
+const [error, setError] = useState({postalCode:""});
 
 const [files,setFiles] = useState([]);
 const [formData, setFormData] = useState({
@@ -115,6 +116,7 @@ console.log(formData)
 const handleSubmit = async (event) =>
 {
   event.preventDefault();
+  setError({postalCode:""})
   try
   {
     const response = await axios.post(`${BASE_URL}/api/listing/create`, formData)
@@ -122,13 +124,18 @@ const handleSubmit = async (event) =>
 
   }
   catch(error)
-  {
+  {const e = error.response.data.message;
+    if (e.type == "postalcode")
+    {
+      setError({postalCode:e.content});
+    }
+
     console.log(error);
   }
   
 
 }
-
+console.log(error.postalCode);
 const handleRemoveImage = (index) => {
     setFormData({
       ...formData,
@@ -252,6 +259,7 @@ setFormData((prevData) => ({
           <div className="col-lg-4"> <h1 className="text-start font-weight-bold" >Zip code: </h1> </div>
           <div className="col"><input className="form-control" type="text" placeholder="Zip code" name="postalCode" value={formData.postalCode === 0 ? "" : formData.postalCode} onChange={handleChange} required onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}></input></div>
           </div>
+          <span className="error">{error.postalCode}</span>
 
           
           <div className="row" style={{marginBottom:"3%"}}> 
@@ -264,13 +272,13 @@ setFormData((prevData) => ({
             <h1 className="text-start font-weight-bold" >Bathrooms: </h1>
           </div>
           <div className="col-sm-1 ml-0">
-            <input className="form-control" type="number" name="bathroom" value={formData.bathroom === 0 ? "" :formData.bathroom } onChange={handleChange} onScroll={(event)=>{event.preventDefault();}} required/>
+            <input className="form-control" type="number" name="bathroom" value={formData.bathroom === 0 ? "" :formData.bathroom } onChange={handleChange} onScroll={(event)=>{event.preventDefault();}} required min="0" onWheel={(event)=>{event.preventDefault();}}/>
           </div>
           <div className="col-sm-2 text-center">
             <h1 className="text-start font-weight-bold" >Bedrooms: </h1>
           </div>
           <div className="col-sm-1 ml-0">
-            <input className="form-control" type="number" name="bedroom" value={formData.bedroom === 0 ? "" :formData.bedroom} onChange={handleChange} onScroll={(event)=>{event.preventDefault();}} required/>
+            <input className="form-control" type="number" name="bedroom" value={formData.bedroom === 0 ? "" :formData.bedroom} onChange={handleChange} onScroll={(event)=>{event.preventDefault();}} required min="0" onWheel={(event)=>{event.preventDefault();}}/>
           </div>
           <div className="col-sm-2 text-center">
             <h1 className="text-start font-weight-bold" >Pricing: </h1>
@@ -278,7 +286,7 @@ setFormData((prevData) => ({
           <div className="col-sm-2 ml-0" style={{marginLeft:"-2%"}}>
             <div className="input-group mb-0">
               <span className="input-group-text" id="basic-addon1">SGD</span>
-              <input className="form-control" type="number" name="price" value={formData.price === 0 ? "" :formData.price} onChange={handleChange} onScroll={(event)=>{event.preventDefault();}} required/>
+              <input className="form-control" type="number" name="price" value={formData.price === 0 ? "" :formData.price} onChange={handleChange} onScroll={(event)=>{event.preventDefault();}} required min="0" onWheel={(event)=>{event.preventDefault();}}/>
             </div>
             
           </div>
