@@ -1,15 +1,21 @@
 import NavBar from "../components/NavBar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Triangles from "../components/Triangles";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../styles/Home.css";
+import {
+    updateUserFailure,
+    updateUserStart,
+    updateUserSuccess,
+  } from "../redux/user/userSlice";
 
 function Home() {
   const userType = useSelector((state) => state.user.currentUser.userType);
   console.log(userType);
   const currentUser = useSelector((state) => state.user.currentUser);
   const [listings, setListings] = useState([]);
+  const dispatch = useDispatch();
   const BASE_URL = "http://localhost:3000";
   useEffect(() => {
     const fetchListings = async () => {
@@ -27,7 +33,24 @@ function Home() {
     fetchListings();
   }, []);
 
-  console.log(listings)
+  const handleAddtoWatchList = (listingID) => async (event) =>
+  {
+    event.preventDefault();
+    dispatch(updateUserStart());
+    try
+    {
+        const response = await axios.put(`${BASE_URL}/api/user/add-to-watchlist/${listingID}`, {username: currentUser.username});
+        if (response.status == 200)
+        {
+            dispatch(updateUserSuccess(response.data.rest));
+            console.log(response.data.rest);
+        }
+
+    }catch(error)
+    {
+        console.log(error.response.data.message);
+    }
+  }
 
   
   
@@ -88,7 +111,7 @@ function Home() {
                 </div>
 
                 <div className="row">
-                  <a className="Listing" href="">
+                  <a className="Listing" onClick={handleAddtoWatchList(listing._id)}>
                     {" "}
                     Add to watchlist...{" "}
                   </a>
