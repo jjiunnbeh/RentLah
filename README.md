@@ -34,6 +34,10 @@ Inside the **.env** file, key in the following:
 ```
 JWT_SECRET=<Your secret key>
 MONGO=<Your MongoDB uri>
+VITE_FIREBASE_API_KEY = "<Your firebase key>"
+PASSWORD="<Your generated app password from Google Account>"
+EMAIL="<Your gmail email address>"
+
 ```
 Then in the backend directory, run the following:  
 
