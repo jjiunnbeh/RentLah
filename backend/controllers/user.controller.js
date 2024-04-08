@@ -245,8 +245,8 @@ export const deleteFromWatchList = async (req, res, next) => {
     if (indexToRemove === -1) {
       return next(
         errorHandler(400, {
-          type: "notFound",
-          content: "The provided id is not in the watchlist.",
+          type: "database",
+          content: "The id is not in the watchlist.",
         })
       );
     }

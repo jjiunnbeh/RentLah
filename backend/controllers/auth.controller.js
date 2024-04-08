@@ -210,7 +210,7 @@ export const loginCustomer = async (req, res, next) => {
     const jwtToken = jwt.sign(
       { id: validCustomer._id },
       process.env.JWT_SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: "3h" }
     );
     validCustomer.loginAttempts = 0;
     validCustomer.accountLocked = false;
