@@ -104,14 +104,17 @@ function Home() {
                   <h2> Pricing: {listing.price}</h2>
                 </div>
                 <div className="row">
-                  <a className="Listing" href={"/listing/"+listing._id}>
+                  <h2>{listing.bathroom}🛁  {listing.bedroom}🛏️</h2>
+                </div>
+                <div className="row">
+                  <a className="Listing" href={"/listing/"+listing._id} style={{fontSize:"25px"} }>
                     {" "}
                     Learn more...{" "}
                   </a>
                 </div>
 
                 <div className="row">
-                  <a className="Listing" onClick={handleAddtoWatchList(listing._id)}>
+                  <a className="Listing" onClick={handleAddtoWatchList(listing._id)} style={{fontSize:"25px"} } >
                     {" "}
                     Add to watchlist...{" "}
                   </a>

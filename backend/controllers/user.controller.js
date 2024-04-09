@@ -77,8 +77,25 @@ export const updateCustomer = async (req, res, next) => {
     const { password: pass, ...rest } = validCustomer._doc;
     res.status(200).json({ rest });
   } catch (error) {
+    if (error.keyValue.email)
+    {
+      return next(
+        errorHandler(
+          409,
+          {type:"email",content: "Email address already existed in our database."}
+        ))
+    }
+    if (error.keyValue.phoneNo)
+    {
+      return next(
+        errorHandler(
+          409,
+          {type:"phoneNo",content: "Phone number already existed in our database."}
+        ))
+    }
     return next(error);
   }
+  
 };
 export const updateAgent = async (req, res, next) => {
   try {
@@ -98,6 +115,30 @@ export const updateAgent = async (req, res, next) => {
     const { password: pass, ...rest } = validAgent._doc;
     res.status(200).json({ rest });
   } catch (error) {
+    if (error.keyValue.email)
+    {
+      return next(
+        errorHandler(
+          409,
+          {type:"email",content: "Email address already existed in our database."}
+        ))
+    }
+     if (error.keyValue.phoneNo)
+    {
+      return next(
+        errorHandler(
+          409,
+          {type:"phoneNo",content: "Phone number already existed in our database."}
+        ))
+    }
+    if (error.keyValue.agentregnum)
+    {
+      return next(
+        errorHandler(
+          409,
+          {type:"agentregnum",content: "Registration number already existed in our database."}
+        ))
+    }
     return next(error);
   }
 };

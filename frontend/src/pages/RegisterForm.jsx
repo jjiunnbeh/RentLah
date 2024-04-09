@@ -32,6 +32,18 @@ const [error, setError] = useState(
         ...(userType==="agent" && {license:""})
     }
 )
+const [hideconfirm, setHideConfirm] = useState(true);
+    const [hide, setHide] = useState(true);
+    function handleClickHide(event) 
+    {
+      event.preventDefault();
+      setHide(!hide);
+    }
+    function handleClickHideConfirm(event) 
+    {
+      event.preventDefault();
+      setHideConfirm(!hideconfirm);
+    }
 
   
     function handleChange(event) 
@@ -246,6 +258,10 @@ const [error, setError] = useState(
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
+                            <button className="btn" onClick={handleClickHide} id="monkey-emoji" style={{backgroundColor: "white", marginBottom:"20px"}}>
+              {hide ? "🙈" : "🙊"}
+              </button>
+                            
                         </div>
                         <span className="error">{error.password}</span>
                     </div>
@@ -266,6 +282,9 @@ const [error, setError] = useState(
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
+                            <button className="btn" onClick={handleClickHideConfirm} id="monkey-emoji" style={{backgroundColor: "white", marginBottom:"20px"}}>
+              {hideconfirm ? "🙈" : "🙊"}
+              </button>
                         </div>
                         <span className="error">{error.passwordconfirm}</span>
                     </div>
