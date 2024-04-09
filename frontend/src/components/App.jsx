@@ -59,7 +59,7 @@ function App() {
             }
           />
           <Route
-            path={"/change-password/Agent"}
+            path={"/change-password/agent"}
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <ChangePassword userType="agent"/>
@@ -67,7 +67,7 @@ function App() {
             }
           />
           <Route
-            path={"/change-password/Customer"}
+            path={"/change-password/customer"}
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <ChangePassword userType="customer"/>

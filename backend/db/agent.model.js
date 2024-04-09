@@ -44,7 +44,8 @@ const agentSchema = new mongoose.Schema(
     agentname:
     {
       type:String,
-      required:true
+      required:true,
+      uppercase:true,
     },
     agentregnum:
     {

@@ -54,7 +54,7 @@ function ProfileForm() {
   }, [file]);
 
   function handleChangePassword() {
-    navigate("/change-password/" + userType);
+    navigate("/change-password/" + userType.toLowerCase());
   }
   async function saveProfileImage(downloadURL) {
     try {
