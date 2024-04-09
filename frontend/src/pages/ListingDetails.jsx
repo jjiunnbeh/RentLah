@@ -32,7 +32,7 @@ function ListingDetails() {
     };
     fetchListing();
   }, []);
-//   listing.agentRef = "JJAG";
+
 
   console.log(listing);
   console.log(listing.agentRef);
@@ -148,11 +148,11 @@ function ListingDetails() {
             <div className="card-body">
               <h2 className="card-title">{agent.agentname}</h2>
               <h4 className="card-text" style={{ whiteSpace: "pre-line" }}>
-                {`Agent Registration Number: ${agent.agentregnum}\nAgent Contact Number`}
+                {`Agent Registration Number: ${agent.agentregnum}\nAgent Contact Number: ${agent.phoneNo}`}
               </h4>
             </div>
             <div className="card-body">
-              <h5 className="card-text text-decoration-underline">Contact:</h5>
+              <h5 className="card-text text-decoration-underline">Contact by Whatsapp</h5>
               <a
                 href={`https://api.whatsapp.com/send/?phone=65${agent.phoneNo}&text&type=phone_number&app_absent=0`}
                 target="_blank"
