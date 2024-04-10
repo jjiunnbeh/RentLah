@@ -104,7 +104,15 @@ function App() {
           />
 
           <Route
-            path={"/search"}
+            path={"/search/:searchTerm/:bedroom/:bathroom/:lowerPrice/:upperPrice"}
+            element={
+              <RequireAuth fallbackPath={"/login"}>
+                <SearchResults/>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={"/search/:searchTerm"}
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <SearchResults />
