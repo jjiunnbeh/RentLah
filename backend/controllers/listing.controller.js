@@ -52,9 +52,10 @@ export const getListing = async (req, res, next) => {
 
 
 export const getWatchlistListings = async (req, res, next) => {
-    const { username } = req.body;
+   
     try {
-      const customer = await Customer.findOne({ username: username });
+      
+      const customer = await Customer.findById(req.params.id);
       if (!customer) {
         return res.status(404).json({ message: "User not found." });
       }

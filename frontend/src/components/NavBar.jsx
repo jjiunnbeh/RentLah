@@ -45,7 +45,7 @@ function NavBar() {
               
               <NavDropdown.Item href="/search">search test</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/Watchlist">Watchlist Test
+              <NavDropdown.Item href="/watchlist">Watchlist Test
               </NavDropdown.Item>
             </NavDropdown>
             <form onSubmit={handleSubmit}>

@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/create", createListing);
 router.get("/get-listing/:id", getListing);
 router.get("/get-listings" ,getAllListings);
-router.get("/get-watchlist", getWatchlistListings);
+router.get("/get-watchlist/:id", getWatchlistListings);
 router.get("/get-managed-listings", getAgentListings);
 router.delete("/delete-listing/:id", deleteListing);
 router.get("/search/:searchterm", searchListingByNameandAddress);
