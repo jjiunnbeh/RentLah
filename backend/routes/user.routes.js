@@ -15,7 +15,7 @@ router.put("/update/Agent", updateAgent);
 router.put("/resetPassword", resetPassword);
 router.get("/get-agent/:username", getAgent);
 router.put("/add-to-watchlist/:id", addToWatchList);
-router.delete("/delete-from-watchlist/:id", deleteFromWatchList);
+router.delete("/delete-from-watchlist/:id/:userid", deleteFromWatchList);
 
 
 

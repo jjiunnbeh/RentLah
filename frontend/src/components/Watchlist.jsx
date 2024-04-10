@@ -105,7 +105,7 @@ const Watchlist = () => {
 
         <div className="d-grid gap-3" style={{marginTop:"3%", marginLeft:"17%",marginRight:"17%"}}>
             
-        {propertyListings.slice(0, 10).map((listing) =>( <div className="row" key={listing._id}>
+        {propertyListings && Array(propertyListings).slice(0, 10).map((listing) =>( <div className="row" key={listing._id}>
                                                     <div className='col-sm-auto'>
                                                         <div className="img-div">
                                                             <img  src={listing.images[0]}></img>
