@@ -4,6 +4,8 @@ import NavBar from "../components/NavBar";
 import "../styles/SearchResults.css";
 import PaginationComponent from "../components/PageNavigator";
 //import { fetchPropertyListings } from './propertyListings'; // Import the fetchPropertyListings function from your backend API file
+import axios from 'axios';
+
 
 const PropertyListings = ({ listings }) => {
     return (
@@ -22,17 +24,27 @@ const PropertyListings = ({ listings }) => {
     );
 };
 
-const SearchBar = () => {
+const SearchBar = ({onSearch}) => {
     const [searchQuery, setSearchQuery] = useState('');
 
-    const handleSearch = () => {
-        // Implement search functionality here
+    const handleSearch = async () => {
+        try {
+            const response = await axios.get(`/api/listing/search/${searchQuery}`);
+            console.log(response.data);
+            // Do something with the response data
+        } catch (error) {
+            console.error('Error searching for properties:', error);
+        }
     };
 
     return (
-        <div className='input-group'>
-            <input className="form-control" type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-            <button className="btn btn-dark" style={{fontSize:"25px"}} onClick={handleSearch}>🔍</button>
+        <div>
+            <input 
+                type="text" 
+                value={searchQuery} 
+                onChange={e => setSearchQuery(e.target.value)} 
+            />
+            <button onClick={handleSearch}>Search</button>
         </div>
     );
 };
@@ -42,19 +54,19 @@ const SearchResults = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
 
-    const listing1 = {
-        name:"PDR The Gardens at Your Mom's House",
-        postalCode:649823,
-        price:69.69,
-        description:"ARC",
-        address:'This is\nsupposed to be\nannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn ',
-        bedroom:3,
-        bathroom:2,
-        images:["https://firebasestorage.googleapis.com/v0/b/rentlah-667e3.appspot.com/o/1711687189301download%20(1).jpeg?alt=media&token=359100cb-2c18-4666-8ba8-ccc80c88e025","https://firebasestorage.googleapis.com/v0/b/rentlah-667e3.appspot.com/o/1711687215981download.jpeg?alt=media&token=d05befb6-d255-4bc9-b217-fe8e05ce5a45"],
-        agentRef:"agent1",
-        latitude: 1.4332513,
-        longitude: 103.7874458
-      };
+    // const listing1 = {
+    //     name:"PDR The Gardens at Your Mom's House",
+    //     postalCode:649823,
+    //     price:69.69,
+    //     description:"ARC",
+    //     address:'This is\nsupposed to be\nannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn ',
+    //     bedroom:3,
+    //     bathroom:2,
+    //     images:["https://firebasestorage.googleapis.com/v0/b/rentlah-667e3.appspot.com/o/1711687189301download%20(1).jpeg?alt=media&token=359100cb-2c18-4666-8ba8-ccc80c88e025","https://firebasestorage.googleapis.com/v0/b/rentlah-667e3.appspot.com/o/1711687215981download.jpeg?alt=media&token=d05befb6-d255-4bc9-b217-fe8e05ce5a45"],
+    //     agentRef:"agent1",
+    //     latitude: 1.4332513,
+    //     longitude: 103.7874458
+    //   };
 
     // useEffect(() => {
     //     // Fetch property listings when the component mounts
@@ -81,46 +93,46 @@ const SearchResults = () => {
             </div>
         </div>
 
-        <div className="d-grid gap-3" style={{marginTop:"3%", marginLeft:"17%",marginRight:"17%"}}>
-            {
-                [...Array(10)].map((e,i) => <div className="row" key={i}>
-                                                    <div className='col-sm-auto'>
-                                                        <div className="img-div">
-                                                            <img  src={listing1.images[0]}></img>
-                                                        </div>
-                                                    </div>
+        <div className="d-grid gap-3" style={{ marginTop: "3%", marginLeft: "17%", marginRight: "17%" }}>
+    {propertyListings.map((listing, index) => (
+        <div className="row" key={index}>
+            <div className='col-sm-auto'>
+                <div className="img-div">
+                    <img src={listing.images[0]} alt={listing.name} />
+                </div>
+            </div>
 
-                                                    <div className="col d-grid mt-2 gap-2">
-                                                        <div className="row" style={{width:"545px"}}>
-                                                            <h2 className="text-truncate"> {listing1.name} </h2>
-                                                        </div>
-                                                        <div className="row" style={{width:"545px"}}>
-                                                            <h2 className="text-truncate"> Address: {listing1.address} </h2>
-                                                        </div>
-                                                        <div className="row" style={{width:"545px"}}>
-                                                        <h2> ${listing1.price} </h2>
-                                                        </div>
-                                                    </div>
+            <div className="col d-grid mt-2 gap-2">
+                <div className="row" style={{ width: "545px" }}>
+                    <h2 className="text-truncate"> {listing.name} </h2>
+                </div>
+                <div className="row" style={{ width: "545px" }}>
+                    <h2 className="text-truncate"> Address: {listing.address} </h2>
+                </div>
+                <div className="row" style={{ width: "545px" }}>
+                    <h2> ${listing.price} </h2>
+                </div>
+            </div>
 
-                                                    <div className="col d-grid align-self-end gap-2">
-                                                        <div className="row text-end">
-                                                            <a className="Listing" href="">
-                                                            {" "}
-                                                            Learn more...{" "}
-                                                            </a>
-                                                        </div>
+            <div className="col d-grid align-self-end gap-2">
+                <div className="row text-end">
+                    <a className="Listing" href="">
+                        {" "}
+                        Learn more...{" "}
+                    </a>
+                </div>
 
-                                                        <div className="row mb-5 text-end">
-                                                            <a className="Listing" href="">
-                                                            {" "}
-                                                            Add to watchlist{" "}
-                                                            </a>
-                                                        </div>
-
-                                                    </div>
-                                                </div>)
-            }
+                <div className="row mb-5 text-end">
+                    <a className="Listing" href="">
+                        {" "}
+                        Add to watchlist{" "}
+                    </a>
+                </div>
+            </div>
         </div>
+    ))}
+</div>
+
 
         <div className="row justify-content-center" style={{marginBottom:"3%", marginTop:"3%"}}>
             <div className='col-4 d-flex justify-content-center' >
