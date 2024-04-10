@@ -74,7 +74,7 @@ function ListingDetails() {
     {listing && agent && (
         <>
       <header>
-        <NavBar />
+        <NavBar userType={userType}/>
       </header>
 
       <Triangles />

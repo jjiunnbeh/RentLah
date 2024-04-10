@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Triangles from "../components/Triangles";
-import NavBar from "../components/NavBar";
+import Triangles from "./Triangles";
+import NavBar from "./NavBar";
 import "../styles/SearchResults.css";
-import PaginationComponent from "../components/PageNavigator";
+import PaginationComponent from "./PageNavigator";
 import { useSelector, useDispatch } from "react-redux";
 //import { fetchPropertyListings } from './propertyListings'; // Import the fetchPropertyListings function from your backend API file
 
@@ -38,7 +38,7 @@ const SearchBar = () => {
     );
 };
 
-const Watchlist = () => {
+const AgentListings = () => {
     const [propertyListings, setPropertyListings] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const userType = useSelector((state) => state.user.currentUser.userType);
@@ -77,9 +77,14 @@ const Watchlist = () => {
             <PropertyListings listings={propertyListings} />
         </div> */}
 
-        <div className="col justify-content-center">
-            <div className="row text-center" style={{marginLeft:"30%",marginRight:"30%", marginTop:"5%"}}>
-                 <h1>Watchlist </h1>
+        <div className="col" style={{marginLeft:"30%",marginRight:"30%", marginTop:"5%"}}>
+            <div className="row text-center" >
+                 <h1>Your Created Listings </h1>
+            </div>
+            <div className ="row justify-content-end" style={{marginLeft: "90%", marginRight:"-30%"}}>
+                <button type="submit" className="btn btn-primary btn" style={{}}>
+                    Create Listing
+                </button>
             </div>
         </div>
 
@@ -115,7 +120,7 @@ const Watchlist = () => {
                                                         <div className="row mb-5 text-end">
                                                             <a className="Listing" href="">
                                                             {" "}
-                                                            Delete from watchlist{" "}
+                                                            Edit Listing{" "}
                                                             </a>
                                                         </div>
 
@@ -133,4 +138,4 @@ const Watchlist = () => {
     );
 };
 
-export default Watchlist;
+export default AgentListings;

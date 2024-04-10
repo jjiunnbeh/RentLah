@@ -145,7 +145,7 @@ function ProfileForm() {
   return (
     <>
       <header>
-        <NavBar />
+        <NavBar userType={userType}/>
       </header>
 
       <Triangles />
