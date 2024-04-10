@@ -136,12 +136,12 @@ const Watchlist = () => {
 
         <div className="d-grid gap-3" style={{marginTop:"3%", marginLeft:"17%",marginRight:"17%"}}>
             
-        {(propertyListings.length > 0) && Array(propertyListings).slice(0, 10).map((listing) =>( <div className="row" key={listing._id}>
-                                                    <div className='col-sm-auto'>
+        {propertyListings.length > 0 && propertyListings.slice(0, 10).map((listing) =>( <div className="row" key={listing._id}>
+                                                   {listing.images && <div className='col-sm-auto'>
                                                         <div className="img-div">
                                                             <img  src={listing.images[0]}></img>
                                                         </div>
-                                                    </div>
+                                                    </div>}
 
                                                     <div className="col d-grid mt-2 gap-2">
                                                         <div className="row" style={{width:"545px"}}>
