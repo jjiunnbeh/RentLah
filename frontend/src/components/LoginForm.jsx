@@ -25,8 +25,7 @@ function LoginForm({ userType })
 // const [errorMessage,setErrorMessage] = useState("");
 const navigate = useNavigate();
 const dispatch = useDispatch();
-const {loading, errorMessage} = useSelector((state)=>state.user)
-
+const {loading, errorMessage} = useSelector((state)=>state.user);
 
 
 

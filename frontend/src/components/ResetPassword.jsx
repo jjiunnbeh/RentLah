@@ -24,6 +24,18 @@ function ResetPassword({ userType })
         password:"",
         passwordconfirm:""
     });
+    const [hideconfirm, setHideConfirm] = useState(true);
+    const [hide, setHide] = useState(true);
+    function handleClickHide(event) 
+    {
+      event.preventDefault();
+      setHide(!hide);
+    }
+    function handleClickHideConfirm(event) 
+    {
+      event.preventDefault();
+      setHideConfirm(!hideconfirm);
+    }
     // console.log(id);
 
 
@@ -77,7 +89,7 @@ const navigate = useNavigate();
                         </label>
                         <div className="col-sm-8">
                             <input
-                            type="password"
+                            type={hide ? "password" : "text"}
                             className="form-control"
                             id="inputPassword"
                             placeholder="Password"
@@ -87,6 +99,9 @@ const navigate = useNavigate();
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
+                            <button className="btn" onClick={handleClickHide} id="monkey-emoji" style={{backgroundColor: "white", marginBottom:"20px"}}>
+              {hide ? "🙈" : "🙊"}
+              </button>
                         </div>
                         <span className="error">{error.password}</span>
                     </div>
@@ -97,7 +112,7 @@ const navigate = useNavigate();
                         </label>
                         <div className="col-sm-8">
                             <input
-                            type="password"
+                            type={hideconfirm ? "password" : "text"}
                             className="form-control"
                             id="inputPasswordConfirmation"
                             placeholder="Password Confirmation"
@@ -107,6 +122,9 @@ const navigate = useNavigate();
                             onKeyDown= {(event)=> (event.key === "Enter"  ||event.key ===" ") && event.preventDefault()}
                             required
                             />
+                            <button className="btn" onClick={handleClickHideConfirm} id="monkey-emoji" style={{backgroundColor: "white", marginBottom:"20px"}}>
+              {hideconfirm ? "🙈" : "🙊"}
+              </button>
                         </div>
                         <span className="error">{error.passwordconfirm}</span>
                     </div>

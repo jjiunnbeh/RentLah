@@ -1,15 +1,21 @@
 import NavBar from "../components/NavBar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Triangles from "../components/Triangles";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../styles/Home.css";
+import {
+    updateUserFailure,
+    updateUserStart,
+    updateUserSuccess,
+  } from "../redux/user/userSlice";
 
 function Home() {
   const userType = useSelector((state) => state.user.currentUser.userType);
   console.log(userType);
   const currentUser = useSelector((state) => state.user.currentUser);
   const [listings, setListings] = useState([]);
+  const dispatch = useDispatch();
   const BASE_URL = "http://localhost:3000";
   useEffect(() => {
     const fetchListings = async () => {
@@ -17,13 +23,37 @@ function Home() {
         const response = await axios.get(
           `${BASE_URL}/api/listing/get-listings`
         );
-        setListings(response.data);
+        const list = response.data;
+        const shuffledListings = list.sort(() => Math.random() - 0.5);
+        setListings(shuffledListings);
       } catch (error) {
         console.error("Error fetching listings:", error);
       }
     };
     fetchListings();
   }, []);
+
+  const handleAddtoWatchList = (listingID) => async (event) =>
+  {
+    event.preventDefault();
+    dispatch(updateUserStart());
+    try
+    {
+        const response = await axios.put(`${BASE_URL}/api/user/add-to-watchlist/${listingID}`, {username: currentUser.username});
+        if (response.status == 200)
+        {
+            dispatch(updateUserSuccess(response.data.rest));
+            console.log(response.data.rest);
+        }
+
+    }catch(error)
+    {
+        console.log(error.response.data.message);
+    }
+  }
+
+  
+  
 
   return (
     <>
@@ -74,14 +104,17 @@ function Home() {
                   <h2> Pricing: {listing.price}</h2>
                 </div>
                 <div className="row">
-                  <a className="Listing" href="">
+                  <h2>{listing.bathroom}🛁  {listing.bedroom}🛏️</h2>
+                </div>
+                <div className="row">
+                  <a className="Listing" href={"/listing/"+listing._id} style={{fontSize:"25px"} }>
                     {" "}
                     Learn more...{" "}
                   </a>
                 </div>
 
                 <div className="row">
-                  <a className="Listing" href="">
+                  <a className="Listing" onClick={handleAddtoWatchList(listing._id)} style={{fontSize:"25px"} } >
                     {" "}
                     Add to watchlist...{" "}
                   </a>

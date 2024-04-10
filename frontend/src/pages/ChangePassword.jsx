@@ -18,6 +18,8 @@ function ChangePassword({userType})
     const navigate = useNavigate();
     const BASE_URL = 'http://localhost:3000';
 
+
+
     const dispatch = useDispatch();
 
     const currentUser = useSelector((state) => state.user.currentUser);
@@ -28,12 +30,26 @@ function ChangePassword({userType})
         username:currentUser.username,
         userType: String(userType)
     });
+    const [hidenew, setHideNew] = useState(true);
+    const [hideold, setHideOld] = useState(true);
+    function handleClickHideOld(event) 
+    {
+      event.preventDefault();
+      setHideOld(!hideold);
+    }
+    function handleClickHideNew(event) 
+    {
+      event.preventDefault();
+      setHideNew(!hidenew);
+    }
+    
 
     const [error, setError] = useState({
         oldpassword:"",
         password:"",
     }
     );
+    
 
     async function handleSubmit(event)
     {
@@ -91,7 +107,7 @@ function ChangePassword({userType})
                         </label>
                         <div className="col-sm-8">
                             <input
-                            type="password"
+                            type={hideold ? "password" : "text"}
                             className="form-control"
                             id="oldPassword"
                             placeholder="Old Password"
@@ -101,6 +117,9 @@ function ChangePassword({userType})
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
+                            <button className="btn" onClick={handleClickHideOld} id="monkey-emoji" style={{backgroundColor: "white", marginBottom:"20px"}}>
+              {hideold ? "🙈" : "🙊"}
+              </button>
                         </div>
                         <span>{error.oldpassword}</span>
                 </div>
@@ -111,7 +130,7 @@ function ChangePassword({userType})
                         </label>
                         <div className="col-sm-8">
                             <input
-                            type="password"
+                            type={hidenew ? "password" : "text"}
                             className="form-control"
                             id="newPassword"
                             placeholder="New Password"
@@ -121,6 +140,9 @@ function ChangePassword({userType})
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
+                            <button className="btn" onClick={handleClickHideNew} id="monkey-emoji" style={{backgroundColor: "white", marginBottom:"20px"}}>
+              {hidenew ? "🙈" : "🙊"}
+              </button>
                         </div>
                         <span>{error.password}</span>
                 </div>
