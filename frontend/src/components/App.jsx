@@ -131,7 +131,7 @@ function App() {
           />
 
           <Route
-            path={"/EditListing"}
+            path={"/edit-listing/:id"}
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <EditListing />

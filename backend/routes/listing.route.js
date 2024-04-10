@@ -3,6 +3,7 @@ import express, { Router } from "express";
 import { createListing, deleteListing, editListing, fullSearch, getAgentListings, getAllListings, getListing, getWatchlistListings, searchListingByNameandAddress } from "../controllers/listing.controller.js";
 
 
+
 const router = express.Router();
 
 router.post("/create", createListing);
