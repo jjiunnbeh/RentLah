@@ -155,10 +155,9 @@ const SearchResults = () => {
 
                                                     </div>
                                                 </div>)
-            }
+
+                        }
         </div>
-    ))}
-</div>
 
 
         <div className="row justify-content-center" style={{marginBottom:"3%", marginTop:"3%"}}>

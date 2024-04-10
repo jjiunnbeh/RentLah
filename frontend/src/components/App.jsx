@@ -122,7 +122,7 @@ function App() {
           />
 
           <Route
-            path={"/Watchlist"}
+            path={"/watchlist"}
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <Watchlist />
