@@ -1,10 +1,7 @@
 import express, { Router } from "express";
-<<<<<<< HEAD
+
 import { createListing, deleteListing, editListing, fullSearch, getAgentListings, getAllListings, getListing, getWatchlistListings, searchListingByNameandAddress } from "../controllers/listing.controller.js";
-=======
-import { createListing, deleteListing, fullSearch, getAgentListings, getAllListings, getListing, getWatchlistListings, searchListingByNameandAddress } from "../controllers/listing.controller.js";
-import { deleteFromWatchList } from "../controllers/user.controller.js";
->>>>>>> 3e109d90448ac94a3f6835fecebe6bcb98c007bd
+
 
 
 const router = express.Router();
