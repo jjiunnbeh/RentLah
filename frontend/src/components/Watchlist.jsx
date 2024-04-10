@@ -5,6 +5,12 @@ import "../styles/SearchResults.css";
 import PaginationComponent from "../components/PageNavigator";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios"
+import {useNavigate} from "react-router-dom";
+import {
+    updateUserFailure,
+    updateUserStart,
+    updateUserSuccess,
+  } from "../redux/user/userSlice";
 //import { fetchPropertyListings } from './propertyListings'; // Import the fetchPropertyListings function from your backend API file
 
 // const PropertyListings = ({ listings }) => {
@@ -43,7 +49,32 @@ const Watchlist = () => {
     const [propertyListings, setPropertyListings] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const currentUser = useSelector((state) => state.user.currentUser);
+    const BASE_URL = "http://localhost:3000";  
+    const dispatch = useDispatch();
+    const navigate= useNavigate();
 
+    
+
+    const handleDeleteWatchList = (listingID) => async (event) => {
+        
+        // const listingID = listing._id;
+
+        event.preventDefault();
+        dispatch(updateUserStart());
+
+        try{
+            const response = await axios.delete(`${BASE_URL}/api/user/delete-from-watchlist/${listingID}/${currentUser._id}`, {username: currentUser.username});
+            if (response.status == 200)
+            {
+                dispatch(updateUserSuccess(response.data.rest));
+                console.log(response.data.rest);
+                window.location.reload();
+            }
+        }catch(error){
+            console.log(error.response.data.message);
+        }
+        
+    }
 
 
     // const listing1 = {
@@ -105,7 +136,7 @@ const Watchlist = () => {
 
         <div className="d-grid gap-3" style={{marginTop:"3%", marginLeft:"17%",marginRight:"17%"}}>
             
-        {propertyListings && Array(propertyListings).slice(0, 10).map((listing) =>( <div className="row" key={listing._id}>
+        {!propertyListings && Array(propertyListings).slice(0, 10).map((listing) =>( <div className="row" key={listing._id}>
                                                     <div className='col-sm-auto'>
                                                         <div className="img-div">
                                                             <img  src={listing.images[0]}></img>
@@ -133,7 +164,7 @@ const Watchlist = () => {
                                                         </div>
 
                                                         <div className="row mb-5 text-end">
-                                                            <a className="Listing" href="">
+                                                            <a className="Listing" onClick={handleDeleteWatchList(listing._id)}>
                                                             {" "}
                                                             Delete from watchlist{" "}
                                                             </a>
