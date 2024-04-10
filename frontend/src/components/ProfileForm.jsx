@@ -23,18 +23,23 @@ function ProfileForm() {
   const signOut = useSignOut();
   const BASE_URL = "http://localhost:3000";
   const navigate = useNavigate();
-  const userType = useSelector((state) => state.user.currentUser.userType)
+  const userType = useSelector((state) => state.user.currentUser.userType);
 
   const dispatch = useDispatch();
 
   const currentUser = useSelector((state) => state.user.currentUser);
-  
+  const [error, setError] = useState({
+    email: "",
+    phoneNo: "",
+    ...(userType === "Agent" && { agentregnum: "" }),
+  });
+
   const [data, setData] = useState({ profilepic: currentUser.profilepic });
   const [formData, setFormData] = useState({
-    username:currentUser.username,
-    email:"",
-    phoneNo:"",
-    ...(userType==="Agent" && { agentregnum: "" })
+    username: currentUser.username,
+    email: "",
+    phoneNo: "",
+    ...(userType === "Agent" && { agentregnum: "" }),
   });
   const [file, setFile] = useState(undefined);
 
@@ -49,7 +54,7 @@ function ProfileForm() {
   }, [file]);
 
   function handleChangePassword() {
-    navigate("/change-password/" + userType);
+    navigate("/change-password/" + userType.toLowerCase());
   }
   async function saveProfileImage(downloadURL) {
     try {
@@ -95,33 +100,47 @@ function ProfileForm() {
       }
     );
   }
-  const handleChange= (event) =>
-  {
+  const handleChange = (event) => {
     const { name, value } = event.target;
 
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
-
-  }
-  const handleSubmit = async (event) =>
-  {
+  };
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    try
-    {
+    setError({
+      email: "",
+      phoneNo: "",
+      ...(userType === "Agent" && { agentregnum: "" }),
+    });
+    try {
       dispatch(updateUserStart());
-      const response = await axios.put(`${BASE_URL}/api/user/update/${userType}`,formData);
-      if (response.status == 200)
-      {
+      const response = await axios.put(
+        `${BASE_URL}/api/user/update/${userType}`,
+        formData
+      );
+      if (response.status == 200) {
         dispatch(updateUserSuccess(response.data.rest));
       }
-    }
-    catch(error)
-    {
+    } catch (error) {
       console.log(error);
+      const e = error.response.data.message;
+      if (e.type === "email") {
+        console.log(e.content);
+        setError({ email: e.content });
+      }
+      if (e.type === "phoneNo") {
+        console.log(e.content);
+        setError({ phoneNo: e.content });
+      }
+      if (e.type === "agentregnum") {
+        console.log(e.content);
+        setError({ agentregnum: e.content });
+      }
     }
-  }
+  };
 
   return (
     <>
@@ -203,6 +222,7 @@ function ProfileForm() {
                 onChange={handleChange}
               ></input>
             </div>
+            <span className="error">{error.email}</span>
           </div>
 
           <div className="row" style={{ marginBottom: "3%" }}>
@@ -222,6 +242,7 @@ function ProfileForm() {
                 onChange={handleChange}
               ></input>
             </div>
+            <span className="error">{error.phoneNo}</span>
           </div>
 
           {userType === "Agent" && (
@@ -243,6 +264,7 @@ function ProfileForm() {
                     onChange={handleChange}
                   ></input>
                 </div>
+                <span className="error">{error.agentregnum}</span>
               </div>
             </>
           )}

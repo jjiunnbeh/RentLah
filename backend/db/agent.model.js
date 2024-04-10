@@ -44,7 +44,8 @@ const agentSchema = new mongoose.Schema(
     agentname:
     {
       type:String,
-      required:true
+      required:true,
+      uppercase:true,
     },
     agentregnum:
     {
@@ -60,10 +61,6 @@ const agentSchema = new mongoose.Schema(
       unmodifiable:true
     }
     ,
-    managedList: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Property'
-    }]
   },
   { timestamps: true }
 );

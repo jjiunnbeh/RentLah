@@ -18,6 +18,8 @@ import ListingDetails from "../pages/ListingDetails";
 import ForgetPassword from "./ForgetPasword";
 import CreateListingForm from "./CreateListingForm";
 import ResetPassword from "./ResetPassword";
+import SearchResults from "../pages/SearchResults";
+import Watchlist from "./Watchlist";
 
 
 const store = createStore({
@@ -59,7 +61,7 @@ function App() {
             }
           />
           <Route
-            path={"/change-password/Agent"}
+            path={"/change-password/agent"}
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <ChangePassword userType="agent"/>
@@ -67,7 +69,7 @@ function App() {
             }
           />
           <Route
-            path={"/change-password/Customer"}
+            path={"/change-password/customer"}
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <ChangePassword userType="customer"/>
@@ -97,6 +99,24 @@ function App() {
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <ListingDetails />
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path={"/search"}
+            element={
+              <RequireAuth fallbackPath={"/login"}>
+                <SearchResults />
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path={"/Watchlist"}
+            element={
+              <RequireAuth fallbackPath={"/login"}>
+                <Watchlist />
               </RequireAuth>
             }
           />

@@ -7,40 +7,56 @@ import { useState } from "react";
 import "../styles/ProfileForm.css";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { app } from "../firebase";
+import axios from "axios";
 
 
 
 
 
 function CreateListingForm() {
+  const currentAgent = useSelector((state) => state.user.currentUser.username);
   const [index, setindex] = useState(0);
-  const listing1 = {
-    name:"PDR The Gardens at Your Mom's House",
-    postalCode:649823,
-    price:69.69,
-    description:"ARC",
-    address:'This is\nsupposed to be\nan address',
-    bedroom:3,
-    bathroom:2,
-    images:["https://firebasestorage.googleapis.com/v0/b/rentlah-667e3.appspot.com/o/1711687189301download%20(1).jpeg?alt=media&token=359100cb-2c18-4666-8ba8-ccc80c88e025","https://firebasestorage.googleapis.com/v0/b/rentlah-667e3.appspot.com/o/1711687215981download.jpeg?alt=media&token=d05befb6-d255-4bc9-b217-fe8e05ce5a45"],
-    agentRef:"agent1",
-    latitude: 1.4332513,
-    longitude: 103.7874458
-  };
+  const BASE_URL = "http://localhost:3000";
+  // const listing1 = {
+  //   name:"PDR The Gardens at Your Mom's House",
+  //   postalCode:649823,
+  //   price:69.69,
+  //   description:"ARC",
+  //   address:'This is\nsupposed to be\nan address',
+  //   bedroom:3,
+  //   bathroom:2,
+  //   images:["https://firebasestorage.googleapis.com/v0/b/rentlah-667e3.appspot.com/o/1711687189301download%20(1).jpeg?alt=media&token=359100cb-2c18-4666-8ba8-ccc80c88e025","https://firebasestorage.googleapis.com/v0/b/rentlah-667e3.appspot.com/o/1711687215981download.jpeg?alt=media&token=d05befb6-d255-4bc9-b217-fe8e05ce5a45"],
+  //   agentRef:"agent1",
+  //   latitude: 1.4332513,
+  //   longitude: 103.7874458
+  // };
+  // const images = [];
 
   const handleSelect = (selectedIndex) => {
     setindex(selectedIndex);
 };
 
+
 const [imageUploadError, setImageUploadError] = useState(false);
 const [uploading, setUploading] = useState(false);
+const [error, setError] = useState({postalCode:""});
 
 const [files,setFiles] = useState([]);
 const [formData, setFormData] = useState({
-  imageUrls: [], 
+  name:"",
+  postalCode:0,
+  description:"",
+  bathroom:0,
+  bedroom:0,
+  price:0,
+  agentRef:String(currentAgent),
+  images: [], 
 });
 
-
+// const save = (downloadURL)=>
+// {
+//    images.push(downloadURL);
+// }
 const handleImageSubmit = (e) => {
   if (files.length > 0 && files.length<4) {
     setUploading(true);
@@ -53,7 +69,7 @@ const handleImageSubmit = (e) => {
     Promise.all(promises).then((urls) => {
       setFormData({
         ...formData,
-        imageUrls: formData.imageUrls.concat(urls),
+        images: formData.images.concat(urls),
       });
       setUploading(false);
       setImageUploadError(false);
@@ -68,6 +84,7 @@ const handleImageSubmit = (e) => {
   }
 };
 
+console.log(formData.images);
 
 const storeImage = async (file) => {
     return new Promise ((resolve,reject) => {
@@ -89,21 +106,54 @@ const storeImage = async (file) => {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             resolve(downloadURL);
+          
           });
         }
       );
     });
 };
+console.log(formData)
+const handleSubmit = async (event) =>
+{
+  event.preventDefault();
+  setError({postalCode:""})
+  try
+  {
+    const response = await axios.post(`${BASE_URL}/api/listing/create`, formData)
+  console.log(response.data);
 
+  }
+  catch(error)
+  {const e = error.response.data.message;
+    if (e.type == "postalcode")
+    {
+      setError({postalCode:e.content});
+    }
 
+    console.log(error);
+  }
+  
+
+}
+console.log(error.postalCode);
 const handleRemoveImage = (index) => {
     setFormData({
       ...formData,
-      imageUrls: formData.imageUrls.filter((_blank,i) => (i !==index))
+      images: formData.images.filter((_blank,i) => (i !==index))
     });
 };
 
+const handleChange = (event) =>
+{
+  const { name, value } = event.target;
 
+setFormData((prevData) => ({
+  ...prevData,
+  [name]: value,
+}));
+
+}
+// console.log(images);
   return (
     <>
       <header>
@@ -114,60 +164,11 @@ const handleRemoveImage = (index) => {
       
       
       <div className="row justify-content-center" style={{marginLeft:"20%", marginRight:"20%", marginTop:"3%", height:"500px"}}>
-        {/* <div className="col-md-auto">
-          <input
-            onChange = {(e) => setFile(e.target.files[0])}
-            type="file"
-            ref={fileRef}
-            hidden
-            accept="image/*"
-            />
-            <img 
-          onClick={() => fileRef.current.click()} 
-          src={" "} 
-          alt="listingimage1" 
-          style={{width:"300px", height:"300px", marginLeft:"100px"}}
-          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2" 
-          />
-        </div>
-        <div className="col-md-auto">
-          <input
-            onChange = {(e) => setFile(e.target.files[0])}
-            type="file"
-            ref={fileRef}
-            hidden
-            accept="image/*"
-            />
-            <img 
-          onClick={() => fileRef.current.click()} 
-          src={" "} 
-          alt="listingimage2" 
-          style={{width:"300px", height:"300px", marginLeft:"100px"}}
-          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2" 
-          />
-        </div>
-        <div className="col-md-auto">
-          <input
-            onChange = {(e) => setFile(e.target.files[0])}
-            type="file"
-            ref={fileRef}
-            hidden
-            accept="image/*"
-            />
-            <img 
-          onClick={() => fileRef.current.click()} 
-          src={" "} 
-          alt="listingimage3" 
-          style={{width:"300px", height:"300px", marginLeft:"100px"}}
-          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2" 
-          />
-        </div> */}
-
-            <Carousel activeIndex={index} onSelect={handleSelect} >
+           <Carousel activeIndex={index} onSelect={handleSelect} >
                     {
-                        [...Array(formData.imageUrls.length)].map((url,i) => <Carousel.Item key={i} interval={null}>
+                        [...Array(formData.images.length)].map((url,i) => <Carousel.Item key={i} interval={null}>
                                                                         <div className="d-flex justify-content-center">
-                                                                          <img src={formData.imageUrls[i]} alt="Listing image" style={{height:"500px", width:"800px"}}/>
+                                                                          <img src={formData.images[i]} alt="Listing image" style={{height:"500px", width:"800px"}}/>
                                                                           <button type="button" className="btn btn-danger text-center" onClick={ () => handleRemoveImage(index)} style={{position:"absolute", marginRight:"-60%", marginTop:"2%"}}>
                                                                             Delete
                                                                           </button>
@@ -199,21 +200,22 @@ const handleRemoveImage = (index) => {
         <hr className="tophr"/>
       </div>
       <div className="formcontainer" style={{marginLeft:"10%", marginRight:"10%"}}>
-          <form name="createListingForm" style={{paddingTop:"3%", paddingBottom:"0"}}>
+          <form name="createListingForm" style={{paddingTop:"3%", paddingBottom:"0"}} onSubmit={handleSubmit}>
           <div className="row" style={{marginBottom:"3%"}}> 
           <div className="col-lg-4"> <h1 className="text-start font-weight-bold" >Property Name: </h1> </div>
-          <div className="col"><input className="form-control" type="text" placeholder="Name"></input></div>
+          <div className="col"><input className="form-control" type="text" placeholder="Name" name="name" value={formData.name} onChange={handleChange} required onKeyDown= {(event)=> (event.key === "Enter" ) && event.preventDefault()}></input></div>
           </div>
 
           <div className="row" style={{marginBottom:"3%"}}> 
-          <div className="col-lg-4"> <h1 className="text-start font-weight-bold" >Property Address: </h1> </div>
-          <div className="col"><input className="form-control" type="text" placeholder="Address"></input></div>
+          <div className="col-lg-4"> <h1 className="text-start font-weight-bold" >Zip code: </h1> </div>
+          <div className="col"><input className="form-control" type="text" placeholder="Zip code" name="postalCode" value={formData.postalCode === 0 ? "" : formData.postalCode} onChange={handleChange} required onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}></input></div>
           </div>
+          <span className="error">{error.postalCode}</span>
 
           
           <div className="row" style={{marginBottom:"3%"}}> 
           <div className="col-lg-4"> <h1 className="text-start font-weight-bold" >Description: </h1> </div>
-          <div className="col"><input className="form-control" type="text" placeholder="Property Description"></input></div>
+          <div className="col"><input className="form-control" type="text" placeholder="Property Description" name="description" value={formData.description} onChange={handleChange} required onKeyDown= {(event)=> (event.key === "Enter" ) && event.preventDefault()}></input></div>
           </div>
 
           <div className="row gap-5" style={{marginBottom:"3%"}}>
@@ -221,13 +223,13 @@ const handleRemoveImage = (index) => {
             <h1 className="text-start font-weight-bold" >Bathrooms: </h1>
           </div>
           <div className="col-sm-1 ml-0">
-            <input className="form-control" type="number"/>
+            <input className="form-control" type="number" name="bathroom" value={formData.bathroom === 0 ? "" :formData.bathroom } onChange={handleChange} onScroll={(event)=>{event.preventDefault();}} required min="0" onWheel={(event)=>{event.preventDefault();}}/>
           </div>
           <div className="col-sm-2 text-center">
             <h1 className="text-start font-weight-bold" >Bedrooms: </h1>
           </div>
           <div className="col-sm-1 ml-0">
-            <input className="form-control" type="number"/>
+            <input className="form-control" type="number" name="bedroom" value={formData.bedroom === 0 ? "" :formData.bedroom} onChange={handleChange} onScroll={(event)=>{event.preventDefault();}} required min="0" onWheel={(event)=>{event.preventDefault();}}/>
           </div>
           <div className="col-sm-2 text-center">
             <h1 className="text-start font-weight-bold" >Pricing: </h1>
@@ -235,7 +237,7 @@ const handleRemoveImage = (index) => {
           <div className="col-sm-2 ml-0" style={{marginLeft:"-2%"}}>
             <div className="input-group mb-0">
               <span className="input-group-text" id="basic-addon1">SGD</span>
-              <input className="form-control" type="number"/>
+              <input className="form-control" type="number" name="price" value={formData.price === 0 ? "" :formData.price} onChange={handleChange} onScroll={(event)=>{event.preventDefault();}} required min="0" onWheel={(event)=>{event.preventDefault();}}/>
             </div>
             
           </div>
@@ -246,7 +248,7 @@ const handleRemoveImage = (index) => {
           </div>
           <div className="row justify-content-center" style={{ marginBottom:"1%"}}> 
             <button type="submit" className="btn btn-primary loginSubmit" >
-                Save Changes
+                Create Listing
             </button>
           </div>
           </form>

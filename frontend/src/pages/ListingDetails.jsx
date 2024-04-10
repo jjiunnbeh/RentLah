@@ -32,7 +32,7 @@ function ListingDetails() {
     };
     fetchListing();
   }, []);
-//   listing.agentRef = "JJAG";
+
 
   console.log(listing);
   console.log(listing.agentRef);
@@ -99,27 +99,28 @@ function ListingDetails() {
         <div
           className="card bg-primary text-white"
           id="detailcard"
-          style={{ width: "30%", marginRight: "12%" }}
+          style={{ width: "30%", marginRight: "12%"}}
         >
           <div className="card-body">
-            <h1 className="Card Title"> {listing.name} </h1>
+            <h1 className="Card Title" > {listing.name} </h1>
 
             <ul className="list-group list-group-flush">
               <li className="list-group-item ">
+                <h3 className="card-text"> Description: <br></br>{listing.description}</h3>
                 <hr className="cardhr"></hr>
-                <h2 className="card-text" style={{ whiteSpace: "pre-line" }}>
+                <h2 className="card-text" style={{ whiteSpace: "pre-line"}}>
                   {" "}
                   {listing.address}{" "}
                 </h2>
-                <h2> {listing.postalCode} </h2>
+                {/* <h2> {listing.postalCode} </h2> */}
               </li>
             </ul>
 
             <ul className="list-group list-group-flush">
               <li className="list-group-item">
                 <hr className="cardhr"></hr>
-                <h2> Monthly Rent: </h2>
-                <h2> {listing.price} </h2>
+                <h2 style={{ whiteSpace: "pre-line"}}> Monthly Rent: <br></br>
+                SGD {listing.price} </h2>
               </li>
             </ul>
 
@@ -148,11 +149,11 @@ function ListingDetails() {
             <div className="card-body">
               <h2 className="card-title">{agent.agentname}</h2>
               <h4 className="card-text" style={{ whiteSpace: "pre-line" }}>
-                {`Agent Registration Number: ${agent.agentregnum}\nAgent Contact Number`}
+                {`Agent Registration Number: ${agent.agentregnum}\nAgent Contact Number: ${agent.phoneNo}`}
               </h4>
             </div>
             <div className="card-body">
-              <h5 className="card-text text-decoration-underline">Contact:</h5>
+              <h5 className="card-text text-decoration-underline">Contact by Whatsapp</h5>
               <a
                 href={`https://api.whatsapp.com/send/?phone=65${agent.phoneNo}&text&type=phone_number&app_absent=0`}
                 target="_blank"

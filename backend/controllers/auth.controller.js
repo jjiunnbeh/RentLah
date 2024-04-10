@@ -8,7 +8,7 @@ import nodemailer from 'nodemailer';
 import Mailgen from 'mailgen';
 
 function isPasswordStrong(password) {     
-  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Example regular expression
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   return regex.test(password);
 }
 
@@ -16,6 +16,10 @@ function isPasswordStrong(password) {
 export const registerCustomer = async (req, res, next) => {
   const { username, email, password, phoneNo } = req.body;
   const strongpass = isPasswordStrong(password);
+  if (username.length < 6)
+  {
+    return next(errorHandler(401, {type:"username", content:"Username must consists at least 6 characters."}))
+  }
 
   if (password.length < 10)
   {
@@ -210,7 +214,7 @@ export const loginCustomer = async (req, res, next) => {
     const jwtToken = jwt.sign(
       { id: validCustomer._id },
       process.env.JWT_SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: "3h" }
     );
     validCustomer.loginAttempts = 0;
     validCustomer.accountLocked = false;
