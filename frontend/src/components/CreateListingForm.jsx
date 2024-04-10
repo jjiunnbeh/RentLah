@@ -234,7 +234,7 @@ const handleRemoveImage = (index) => {
           </div>
           <div className="col-sm-2 ml-0" style={{marginLeft:"-2%"}}>
             <div className="input-group mb-0">
-              <span class="input-group-text" id="basic-addon1">SGD</span>
+              <span className="input-group-text" id="basic-addon1">SGD</span>
               <input className="form-control" type="number"/>
             </div>
             
