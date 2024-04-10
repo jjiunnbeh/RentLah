@@ -41,7 +41,7 @@ function NavBar() {
                 Create Listing Test
               </NavDropdown.Item> 
               
-              <NavDropdown.Item href="/listing/:id">Listing Test</NavDropdown.Item>
+              <NavDropdown.Item href="/EditListing"> Edit Listing </NavDropdown.Item>
               
               <NavDropdown.Item href="/search">search test</NavDropdown.Item>
               <NavDropdown.Divider />
