@@ -248,7 +248,7 @@ setFormData((prevData) => ({
           </div>
           <div className="row justify-content-center" style={{ marginBottom:"1%"}}> 
             <button type="submit" className="btn btn-primary loginSubmit" >
-                Create Lisitng
+                Create Listing
             </button>
           </div>
           </form>

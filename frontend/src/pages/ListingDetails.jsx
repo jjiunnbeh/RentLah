@@ -99,27 +99,27 @@ function ListingDetails() {
         <div
           className="card bg-primary text-white"
           id="detailcard"
-          style={{ width: "30%", marginRight: "12%" }}
+          style={{ width: "30%", marginRight: "12%"}}
         >
           <div className="card-body">
-            <h1 className="Card Title"> {listing.name} </h1>
+            <h1 className="Card Title" > {listing.name} </h1>
 
             <ul className="list-group list-group-flush">
               <li className="list-group-item ">
                 <hr className="cardhr"></hr>
-                <h2 className="card-text" style={{ whiteSpace: "pre-line" }}>
+                <h2 className="card-text" style={{ whiteSpace: "pre-line"}}>
                   {" "}
                   {listing.address}{" "}
                 </h2>
-                <h2> {listing.postalCode} </h2>
+                {/* <h2> {listing.postalCode} </h2> */}
               </li>
             </ul>
 
             <ul className="list-group list-group-flush">
               <li className="list-group-item">
                 <hr className="cardhr"></hr>
-                <h2> Monthly Rent: </h2>
-                <h2> {listing.price} </h2>
+                <h2 style={{ whiteSpace: "pre-line"}}> Monthly Rent: <br></br>
+                SGD {listing.price} </h2>
               </li>
             </ul>
 

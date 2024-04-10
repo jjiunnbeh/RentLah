@@ -81,7 +81,10 @@ function Home() {
           style={{ marginLeft: "6%" }}
         >
           {listings.slice(0, 10).map((listing) => (
+            
+            
             <div className="Listingcontainer" key={listing._id}>
+              <a href={"/listing/"+listing._id} style={{textDecoration: "none"}}>
               <div
                 className="col-mx-auto d-grid gap-4"
                 style={{ width: "525px" }}
@@ -98,28 +101,29 @@ function Home() {
                   className="row"
                   style={{ marginTop: "20px", width: "525px" }}
                 >
-                  <h2 className="text-truncate"> Address: {listing.address}</h2>
+                  <h1 className="text-truncate"> Address: {listing.address}</h1>
                 </div>
                 <div className="row">
-                  <h2> Pricing: {listing.price}</h2>
+                  <h1> Pricing: {listing.price}</h1>
                 </div>
                 <div className="row">
-                  <h2>{listing.bathroom}🛁  {listing.bedroom}🛏️</h2>
+                  <h1>{listing.bathroom}🛁 {listing.bedroom}🛏️</h1>
                 </div>
                 <div className="row">
-                  <a className="Listing" href={"/listing/"+listing._id} style={{fontSize:"25px"} }>
+                  {/* { <a className="Listing" href={"/listing/"+listing._id} style={{fontSize:"25px"} }>
                     {" "}
                     Learn more...{" "}
-                  </a>
+                  </a> } */}
                 </div>
 
                 <div className="row">
-                  <a className="Listing" onClick={handleAddtoWatchList(listing._id)} style={{fontSize:"25px"} } >
+                  <a className="Listing" onClick={handleAddtoWatchList(listing._id)} style={{fontSize:"30px"} } >
                     {" "}
                     Add to watchlist...{" "}
                   </a>
                 </div>
               </div>
+              </a>
             </div>
           ))}
           <div className="col" style={{ minWidth: "5%" }} />
