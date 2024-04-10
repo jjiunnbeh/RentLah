@@ -113,7 +113,7 @@ const Watchlist = () => {
                                                         <div className="row mb-5 text-end">
                                                             <a className="Listing" href="">
                                                             {" "}
-                                                            Add to watchlist{" "}
+                                                            Delete from watchlist{" "}
                                                             </a>
                                                         </div>
 
