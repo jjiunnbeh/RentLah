@@ -176,7 +176,7 @@ const listing1 = {
   return (
     <>
       <header>
-        <NavBar />
+        <NavBar userType={userType}/>
       </header>
 
       <Triangles />

@@ -21,6 +21,7 @@ import ResetPassword from "./ResetPassword";
 import SearchResults from "../pages/SearchResults";
 import Watchlist from "./Watchlist";
 import EditListing from "./EditListing";
+import AgentListings from "./AgentListings";
 
 
 const store = createStore({
@@ -135,6 +136,15 @@ function App() {
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <EditListing />
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path={"/AgentList"}
+            element={
+              <RequireAuth fallbackPath={"/login"}>
+                <AgentListings />
               </RequireAuth>
             }
           />

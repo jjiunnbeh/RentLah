@@ -58,7 +58,7 @@ function Home() {
   return (
     <>
       <header>
-        <NavBar />
+        <NavBar userType={userType} />
       </header>
 
       <Triangles />
@@ -116,12 +116,16 @@ function Home() {
                   </a> } */}
                 </div>
 
+                {
+                  userType==='Customer' && (
                 <div className="row">
                   <a className="Listing" onClick={handleAddtoWatchList(listing._id)} style={{fontSize:"30px"} } >
                     {" "}
                     Add to watchlist...{" "}
                   </a>
                 </div>
+                     )
+                } 
               </div>
               </a>
             </div>

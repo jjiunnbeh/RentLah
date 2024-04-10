@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import Triangles from "../components/Triangles";
 import NavBar from "../components/NavBar";
 import "../styles/SearchResults.css";
@@ -11,6 +12,8 @@ import {
   updateUserStart,
   updateUserSuccess,
 } from "../redux/user/userSlice";
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 //import { fetchPropertyListings } from './propertyListings'; // Import the fetchPropertyListings function from your backend API file
 
 // const PropertyListings = ({ listings }) => {
@@ -56,29 +59,93 @@ const SearchBar = () => {
   );
 };
 
+// const SearchResults = () => {
+//   const [propertyListings, setPropertyListings] = useState([]);
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const { searchTerm, bedroom, bathroom, lowerPrice, upperPrice } = useParams();
+//   const BASE_URL = "http://localhost:3000";
+//   const dispatch = useDispatch();
+//   const currentUser = useSelector((state) => state.user.currentUser);
+//   const handleAddtoWatchList = (listingID) => async (event) => {
+//     event.preventDefault();
+//     dispatch(updateUserStart());
+//     try {
+//       const response = await axios.put(
+//         `${BASE_URL}/api/user/add-to-watchlist/${listingID}`,
+//         { username: currentUser.username }
+//       );
+//       if (response.status == 200) {
+//         dispatch(updateUserSuccess(response.data.rest));
+//         console.log(response.data.rest);
+//       }
+//     } catch (error) {
+//       console.log(error.response.data.message);
+//     }
+//   };
+//     return (
+//         <>
+//         <div className='input-group'>
+//             <input className="form-control" type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+//             <button className="btn btn-dark" style={{fontSize:"25px"}} onClick={handleSearch}>🔍</button>
+//         </div>
+//         <Dropdown autoClose={false}>
+//             <Dropdown.Toggle variant="link" id="dropdown-basic" align="end" style={{fontSize:"20px"}}>
+//                 Filter
+//             </Dropdown.Toggle>
+
+//             <Dropdown.Menu style={{background:"lightblue"}}>
+//                 <form className="px-2 py-1">
+//                     <div className='row justify-content-center'>
+//                         <div className="form-group col-md-3">
+//                             <label for="inputbedroom">Bedroom</label>
+//                             <input type="number" className="form-control" id="inputbedroom" style={{fontSize:"10px"}}/>
+//                         </div>
+//                         <div className='col-md-4'/>
+//                         <div className="form-group col-md-3">
+//                             <label for="inputbathroom">Bathroom</label>
+//                             <input type="number" className="form-control" id="inputbathroom" style={{fontSize:"10px"}}/>
+//                         </div>
+//                     </div>
+//                     <div className='row justify-content-center mt-2'>
+//                         <div className="form-group col-md-3">
+//                             <input type="number" className="form-control" id="minprice" style={{fontSize:"10px"}}/>
+//                         </div>
+//                         <div className="form-group col-md-4 text-center mt-1">
+//                             <h5>&lt; &nbsp;  Price &nbsp; &gt;</h5>
+//                         </div>
+//                         <div className="form-group col-md-3">
+//                             <input type="number" className="form-control" id="maxprice" style={{fontSize:"10px"}}/>
+//                         </div>
+//                     </div>
+//                 </form>
+//             </Dropdown.Menu>
+//         </Dropdown>
+//         </>
+//     );
+// };
+
 const SearchResults = () => {
-  const [propertyListings, setPropertyListings] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const { searchTerm, bedroom, bathroom, lowerPrice, upperPrice } = useParams();
-  const BASE_URL = "http://localhost:3000";
-  const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.user.currentUser);
-  const handleAddtoWatchList = (listingID) => async (event) => {
-    event.preventDefault();
-    dispatch(updateUserStart());
-    try {
-      const response = await axios.put(
-        `${BASE_URL}/api/user/add-to-watchlist/${listingID}`,
-        { username: currentUser.username }
-      );
-      if (response.status == 200) {
-        dispatch(updateUserSuccess(response.data.rest));
-        console.log(response.data.rest);
+    const [propertyListings, setPropertyListings] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const userType = useSelector((state) => state.user.currentUser.userType);
+    const dispatch = useDispatch();
+    const currentUser = useSelector((state) => state.user.currentUser);
+    const handleAddtoWatchList = (listingID) => async (event) => {
+      event.preventDefault();
+      dispatch(updateUserStart());
+      try {
+        const response = await axios.put(
+          `${BASE_URL}/api/user/add-to-watchlist/${listingID}`,
+          { username: currentUser.username }
+        );
+        if (response.status == 200) {
+          dispatch(updateUserSuccess(response.data.rest));
+          console.log(response.data.rest);
+        }
+      } catch (error) {
+        console.log(error.response.data.message);
       }
-    } catch (error) {
-      console.log(error.response.data.message);
-    }
-  };
+    };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -108,10 +175,25 @@ const SearchResults = () => {
   return (
     <>
       <header>
-        <NavBar />
+        <NavBar userType={userType}/>
       </header>
       <Triangles />
       {/* <div>
+    // useEffect(() => {
+    //     // Fetch property listings when the component mounts
+    //     fetchPropertyListings()
+    //         .then((listings) => setPropertyListings(listings))
+    //         .catch((error) => console.error('Error fetching property listings:', error.message));
+    // }, []);
+
+    return (
+        <>
+        
+            <header>
+                <NavBar userType={userType} />
+            </header>
+            <Triangles />
+        {/* <div>
             <SearchBar />
             <PropertyListings listings={propertyListings} />
         </div> */}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Triangles from "../components/Triangles";
 import NavBar from "../components/NavBar";
 import "../styles/SearchResults.css";
@@ -75,6 +75,7 @@ const Watchlist = () => {
         }
         
     }
+    const userType = useSelector((state) => state.user.currentUser.userType);
 
 
     // const listing1 = {
@@ -120,7 +121,7 @@ const Watchlist = () => {
         <>
         
             <header>
-                <NavBar />
+                <NavBar userType={userType}/>
             </header>
             <Triangles />
         {/* <div>
