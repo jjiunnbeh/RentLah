@@ -263,8 +263,7 @@ export const addToWatchList = async (req, res, next) => {
 
 export const deleteFromWatchList = async (req, res, next) => {
   try {
-    const {username} = req.body;
-    const customer = await Customer.findOne({username:username});
+    const customer = await Customer.findById(req.params.userid);
     if (!customer) {
       return next(
         errorHandler(404, {

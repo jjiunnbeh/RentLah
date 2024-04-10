@@ -1,5 +1,6 @@
 import express, { Router } from "express";
 import { createListing, deleteListing, fullSearch, getAgentListings, getAllListings, getListing, getWatchlistListings, searchListingByNameandAddress } from "../controllers/listing.controller.js";
+import { deleteFromWatchList } from "../controllers/user.controller.js";
 
 
 const router = express.Router();
@@ -13,7 +14,6 @@ router.delete("/delete-listing/:id", deleteListing);
 router.get("/search/:searchterm", searchListingByNameandAddress);
 router.get("/search/:searchTerm/:bedroom/:bathroom/:lowerPrice/:upperPrice", fullSearch);
 router.put("edit-listing/:id");
-
 
 
 
