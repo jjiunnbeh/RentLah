@@ -8,7 +8,7 @@ import Customer from "../db/customer.model.js";
 export const createListing = async(req, res, next) =>
 {
     try{
-        const {name, postalCode, price, description, address, bedroom, bathroom, images, agentRef} = req.body;
+        const {name, postalCode, price, description, bedroom, bathroom, images, agentRef} = req.body;
         //convert postalCode into coordinates
         const response = await axios.get(`https://www.onemap.gov.sg/api/common/elastic/search?searchVal=${postalCode}&returnGeom=Y&getAddrDetails=Y&pageNum=1`);
         console.log(response.data.results[0]);
@@ -135,6 +135,67 @@ export const getWatchlistListings = async (req, res, next) => {
     }
   };
 
+  export const editListing = async (req, res, next) =>
+  {
+    try
+    {
+      const listingID = req.params.id;
+      const listing = await Property.findById(listingID);
+      if (!listing)
+      {
+        return next(errorHandler(400, {type:"database", content:"Property is not in the database."}));
+      }
+      const {name, postalCode, price, description, bedroom, bathroom} = req.body;
+      if (postalCode != 0)
+      {
+        const response = await axios.get(`https://www.onemap.gov.sg/api/common/elastic/search?searchVal=${postalCode}&returnGeom=Y&getAddrDetails=Y&pageNum=1`);
+        console.log(response.data.results[0]);
+        if (!response.data.results[0])
+        {
+            return next(
+                errorHandler(
+                  401,
+                  {type:"postalcode", content:"Invalid postal code"}
+                  
+                ))
+        }
+        // Extract latitude and longitude from the response
+        const { LATITUDE, LONGITUDE,ADDRESS } = response.data.results[0];
+        listing.postalCode = postalCode;
+        listing.LATITUDE = LATITUDE;
+        listing.address = ADDRESS;
+        listing.LONGITUDE = LONGITUDE;
+      }
+      if (name)
+      {
+        listing.name = name;
+      }
+      if (price != 0)
+      {
+        listing.price = price;
+      }
+      if(description)
+      {
+        listing.description = description;
+      }
+      if(bedroom != 0)
+      {
+        listing.bedroom = bedroom;
+      }
+      if (bathroom != 0)
+      {
+        listing.bathroom = bathroom;
+      }
+      await listing.save();
+      res.status(200).json(listing);
+
+    }catch(error)
+    {
+      return next(error);
+
+    }
+  }
+
 
   export const searchListingByNameandAddress = async (req, res, next) => {
     try {
@@ -199,4 +260,5 @@ export const getWatchlistListings = async (req, res, next) => {
       next(error);
     }
   };
-  
+
+

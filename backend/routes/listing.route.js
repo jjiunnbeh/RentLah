@@ -12,6 +12,7 @@ router.get("/get-managed-listings", getAgentListings);
 router.delete("/delete-listing/:id", deleteListing);
 router.get("/search/:searchterm", searchListingByNameandAddress);
 router.get("/search/:searchTerm/:bedroom/:bathroom/:lowerPrice/:upperPrice", fullSearch);
+router.put("edit-listing/:id");
 
 
 

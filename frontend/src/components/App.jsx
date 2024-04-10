@@ -20,6 +20,7 @@ import CreateListingForm from "./CreateListingForm";
 import ResetPassword from "./ResetPassword";
 import SearchResults from "../pages/SearchResults";
 import Watchlist from "./Watchlist";
+import EditListing from "./EditListing";
 
 
 const store = createStore({
@@ -104,7 +105,15 @@ function App() {
           />
 
           <Route
-            path={"/search"}
+            path={"/search/:searchTerm/:bedroom/:bathroom/:lowerPrice/:upperPrice"}
+            element={
+              <RequireAuth fallbackPath={"/login"}>
+                <SearchResults/>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={"/search/:searchTerm"}
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <SearchResults />
@@ -117,6 +126,15 @@ function App() {
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <Watchlist />
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path={"/EditListing"}
+            element={
+              <RequireAuth fallbackPath={"/login"}>
+                <EditListing />
               </RequireAuth>
             }
           />
