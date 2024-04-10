@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Triangles from "../components/Triangles";
 import NavBar from "../components/NavBar";
-import "../styles/ViewPropertiesPage.css";
+import "../styles/SearchResults.css";
 import PaginationComponent from "../components/PageNavigator";
 //import { fetchPropertyListings } from './propertyListings'; // Import the fetchPropertyListings function from your backend API file
 

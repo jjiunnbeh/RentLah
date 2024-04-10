@@ -19,9 +19,9 @@ function NavBar() {
                 Create Listing Test
               </NavDropdown.Item> 
               
-              <NavDropdown.Item href="/ListingDetails">Listing Test</NavDropdown.Item>
+              <NavDropdown.Item href="/listing/:id">Listing Test</NavDropdown.Item>
               
-              <NavDropdown.Item href="/ViewPropertiesPage">View Properties Test</NavDropdown.Item>
+              <NavDropdown.Item href="/search">search test</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/Watchlist">Watchlist Test
               </NavDropdown.Item>

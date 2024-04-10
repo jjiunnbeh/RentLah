@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Triangles from "../components/Triangles";
 import NavBar from "../components/NavBar";
-import "../styles/ViewPropertiesPage.css";
+import "../styles/SearchResults.css";
 import PaginationComponent from "../components/PageNavigator";
 //import { fetchPropertyListings } from './propertyListings'; // Import the fetchPropertyListings function from your backend API file
 
@@ -37,7 +37,7 @@ const SearchBar = () => {
     );
 };
 
-const ViewPropertiesPage = () => {
+const SearchResults = () => {
     const [propertyListings, setPropertyListings] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -131,4 +131,4 @@ const ViewPropertiesPage = () => {
     );
 };
 
-export default ViewPropertiesPage;
+export default SearchResults;

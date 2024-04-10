@@ -106,6 +106,7 @@ function ListingDetails() {
 
             <ul className="list-group list-group-flush">
               <li className="list-group-item ">
+                <h3 className="card-text"> Description: <br></br>{listing.description}</h3>
                 <hr className="cardhr"></hr>
                 <h2 className="card-text" style={{ whiteSpace: "pre-line"}}>
                   {" "}

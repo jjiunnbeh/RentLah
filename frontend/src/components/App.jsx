@@ -18,7 +18,7 @@ import ListingDetails from "../pages/ListingDetails";
 import ForgetPassword from "./ForgetPasword";
 import CreateListingForm from "./CreateListingForm";
 import ResetPassword from "./ResetPassword";
-import ViewPropertiesPage from "../pages/ViewPropertiesPage";
+import SearchResults from "../pages/SearchResults";
 import Watchlist from "./Watchlist";
 
 
@@ -104,10 +104,10 @@ function App() {
           />
 
           <Route
-            path={"/ViewPropertiesPage"}
+            path={"/search"}
             element={
               <RequireAuth fallbackPath={"/login"}>
-                <ViewPropertiesPage />
+                <SearchResults />
               </RequireAuth>
             }
           />
