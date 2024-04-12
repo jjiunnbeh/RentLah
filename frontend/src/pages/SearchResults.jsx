@@ -134,6 +134,7 @@ const SearchBar = () => {
 
 const SearchResults = () => {
   const [propertyListings, setPropertyListings] = useState([]);
+  const userType = useSelector((state) => state.user.currentUser.userType);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const { searchTerm, bedroom, bathroom, lowerPrice, upperPrice } = useParams();
@@ -163,14 +164,19 @@ const SearchResults = () => {
         let searchQuery = "";
         if (searchTerm) {
           if (bedroom && bathroom && lowerPrice && upperPrice) {
-            searchQuery = `${searchTerm}/${bedroom}/${bathroom}/${lowerPrice}/${upperPrice}`;
+            searchQuery = `search/${searchTerm}/${bedroom}/${bathroom}/${lowerPrice}/${upperPrice}`;
           } else {
-            searchQuery = searchTerm;
+            if (searchTerm === "all")
+            {
+                searchQuery = `get-listings`
+            }
+            searchQuery = `search/${searchTerm}`;
+            
           }
         }
         // Fetch property listings based on the constructed search query
         const listings = await axios.get(
-          `${BASE_URL}/api/listing/search/${searchQuery}`
+          `${BASE_URL}/api/listing/${searchQuery}`
         );
         console.log(listings.data);
         setPropertyListings(listings.data);
@@ -186,7 +192,7 @@ const SearchResults = () => {
   return (
     <>
       <header>
-        <NavBar />
+        <NavBar userType={userType}/>
       </header>
       <Triangles />
       {/* <div>

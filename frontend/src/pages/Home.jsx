@@ -10,6 +10,7 @@ import {
     updateUserSuccess,
   } from "../redux/user/userSlice";
   import {useNavigate} from "react-router-dom";
+  import Alert from 'react-bootstrap/Alert';
   function Home() {
     const userType = useSelector((state) => state.user.currentUser.userType);
     console.log(userType);
@@ -18,6 +19,8 @@ import {
   const [listings, setListings] = useState([]);
   const dispatch = useDispatch();
   const BASE_URL = "http://localhost:3000";
+  const [success, setSuccess] = useState(false);
+  const [notIn, setNotIn] = useState(true);
   useEffect(() => {
     const fetchListings = async () => {
       try {
@@ -43,20 +46,34 @@ import {
         const response = await axios.put(`${BASE_URL}/api/user/add-to-watchlist/${listingID}`, {username: currentUser.username});
         if (response.status == 200)
         {
+          console.log("Added to watchlist")
             dispatch(updateUserSuccess(response.data.rest));
             console.log(response.data.rest);
+            setSuccess(true);
+            setTimeout(() => {
+              setSuccess(false);
+            }, 2000);
+
         }
 
     }catch(error)
     {
         console.log(error.response.data.message);
+        const e = error.response.data.message;
+        if (e.type == "watchlist")
+        {
+          setSuccess(true);
+          setNotIn(false);
+          setTimeout(() => {
+            setSuccess(false);
+            setNotIn(true);
+          }, 2000);
+        }
     }
   }
 
 
   
-  
-
   return (
     <>
       <header>
@@ -64,13 +81,18 @@ import {
       </header>
 
       <Triangles />
+      {success && (
+            <Alert  variant={notIn ? "success" : 'primary'} >
+              {notIn ? "Property added to Watchlist." : "Property already in your watchlist."}
+            </Alert>
+          )}
 
       <div className="row text-center" style={{ marginTop: "3%" }}>
-        <h1> Hello {currentUser.username} </h1>
+        <h1 style={{fontSize:"5rem"}}> Welcome, {currentUser.username} </h1>
       </div>
 
       <div className="row text-center" style={{ marginTop: "6%" }}>
-        <h2> Listings</h2>
+        <h2 style={{fontSize:"3rem"}}>Properties</h2>
       </div>
 
       <div
@@ -85,7 +107,11 @@ import {
           {listings.slice(0, 10).map((listing) => (
             
             
-            <div className="Listingcontainer" key={listing._id} onClick={()=>{navigate("/listing/"+listing._id)}}>
+            <div className="Listingcontainer" key={listing._id}  onClick={(e) => {
+              if (!e.target.classList.contains('btn-link')) {
+                navigate("/listing/" + listing._id);
+              }
+            }}>
               
               <div
                 className="col-mx-auto d-grid gap-4"
@@ -112,19 +138,15 @@ import {
                   <h1>{listing.bathroom}🛁 {listing.bedroom}🛏️</h1>
                 </div>
                 <div className="row">
-                  {/* { <a className="Listing" href={"/listing/"+listing._id} style={{fontSize:"25px"} }>
-                    {" "}
-                    Learn more...{" "}
-                  </a> } */}
                 </div>
 
                 {
                   userType==='Customer' && (
                 <div className="row">
-                  <a className="Listing" onClick={handleAddtoWatchList(listing._id)} style={{fontSize:"30px"} } >
-                    {" "}
-                    Add to watchlist...{" "}
-                  </a>
+                  <button type="button" className="btn btn-link Listing"
+                   style={{fontSize:"30px"}} onClick={handleAddtoWatchList(listing._id)}>Add to Watchlist</button>
+                 
+                    
                 </div>
                      )
                 } 
@@ -140,11 +162,3 @@ import {
 }
 export default Home;
 
-/*    <div>
-        <NavBar />
-            <div className="main-content">
-                <h1>Welcome to RentLah!</h1>
-                <p>A one-stop platform for renting properties in Singapore!</p>
-            </div>
-        </div>
-*/
