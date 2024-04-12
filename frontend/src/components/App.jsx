@@ -89,7 +89,7 @@ function App() {
 
 
             <Route
-            path={"/createlisting"}
+            path={"/create-listing"}
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <CreateListingForm />
@@ -141,7 +141,7 @@ function App() {
           />
 
           <Route
-            path={"/AgentList"}
+            path={"/agent-listings"}
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <AgentListings />

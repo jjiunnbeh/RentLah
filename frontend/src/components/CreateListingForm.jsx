@@ -8,6 +8,7 @@ import "../styles/ProfileForm.css";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { app } from "../firebase";
 import axios from "axios";
+import Alert from 'react-bootstrap/Alert';
 
 
 
@@ -15,6 +16,7 @@ import axios from "axios";
 
 function CreateListingForm() {
   const currentAgent = useSelector((state) => state.user.currentUser.username);
+  const userType = useSelector((state) => state.user.currentUser.userType);
   const [index, setindex] = useState(0);
   const BASE_URL = "http://localhost:3000";
   // const listing1 = {
@@ -40,6 +42,7 @@ function CreateListingForm() {
 const [imageUploadError, setImageUploadError] = useState(false);
 const [uploading, setUploading] = useState(false);
 const [error, setError] = useState({postalCode:""});
+const [success, setSuccess] = useState(false);
 
 const [files,setFiles] = useState([]);
 const [formData, setFormData] = useState({
@@ -119,7 +122,14 @@ const handleSubmit = async (event) =>
   setError({postalCode:""})
   try
   {
-    const response = await axios.post(`${BASE_URL}/api/listing/create`, formData)
+    const response = await axios.post(`${BASE_URL}/api/listing/create`, formData);
+    if (response.status === 201) {
+      setSuccess(true);
+      setTimeout(() => {
+          setSuccess(false);
+          window.location.reload(); 
+      }, 3000); 
+  }
   console.log(response.data);
 
   }
@@ -154,15 +164,21 @@ setFormData((prevData) => ({
 
 }
 // console.log(images);
+
+
+
+
   return (
-    <>
+    <> 
+    {userType === "Agent" ? (
+      <>
       <header>
         <NavBar userType={userType}/>
       </header>
 
       <Triangles />
       
-      
+      {success && <Alert variant="success">Listing created sucessfully</Alert>}
       <div className="row justify-content-center" style={{marginLeft:"20%", marginRight:"20%", marginTop:"3%", height:"500px"}}>
            <Carousel activeIndex={index} onSelect={handleSelect} >
                     {
@@ -255,6 +271,13 @@ setFormData((prevData) => ({
       </div>
       
     </>
+     ) : (
+      <div>
+          <h1>Error 404: Page not found</h1>
+          <p>The page you are looking for does not exist.</p>
+      </div>
+  )}
+  </>
   );
 }
 

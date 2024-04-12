@@ -119,6 +119,8 @@ const Watchlist = () => {
 
     return (
         <>
+                {userType === "Customer" ? (
+            <>
         
             <header>
                 <NavBar userType={userType}/>
@@ -158,7 +160,7 @@ const Watchlist = () => {
 
                                                     <div className="col d-grid align-self-end gap-2">
                                                         <div className="row text-end">
-                                                            <a className="Listing" href="">
+                                                            <a className="Listing" href={"/listing/"+listing._id} >
                                                             {" "}
                                                             Learn more...{" "}
                                                             </a>
@@ -181,6 +183,13 @@ const Watchlist = () => {
             <PaginationComponent itemsCount={5} itemsPerPage={10} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
             </div>
         </div>
+        </>
+        ) : (
+            <div>
+                <h1>Error 404: Page not found</h1>
+                <p>The page you are looking for does not exist.</p>
+            </div>
+        )}
         </>
     );
 };

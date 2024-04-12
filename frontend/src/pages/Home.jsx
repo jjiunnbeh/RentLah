@@ -9,10 +9,11 @@ import {
     updateUserStart,
     updateUserSuccess,
   } from "../redux/user/userSlice";
-
-function Home() {
-  const userType = useSelector((state) => state.user.currentUser.userType);
-  console.log(userType);
+  import {useNavigate} from "react-router-dom";
+  function Home() {
+    const userType = useSelector((state) => state.user.currentUser.userType);
+    console.log(userType);
+    const navigate = useNavigate();
   const currentUser = useSelector((state) => state.user.currentUser);
   const [listings, setListings] = useState([]);
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ function Home() {
     }
   }
 
+
   
   
 
@@ -83,8 +85,8 @@ function Home() {
           {listings.slice(0, 10).map((listing) => (
             
             
-            <div className="Listingcontainer" key={listing._id}>
-              <a href={"/listing/"+listing._id} style={{textDecoration: "none"}}>
+            <div className="Listingcontainer" key={listing._id} onClick={()=>{navigate("/listing/"+listing._id)}}>
+              
               <div
                 className="col-mx-auto d-grid gap-4"
                 style={{ width: "525px" }}
@@ -127,7 +129,7 @@ function Home() {
                      )
                 } 
               </div>
-              </a>
+              
             </div>
           ))}
           <div className="col" style={{ minWidth: "5%" }} />

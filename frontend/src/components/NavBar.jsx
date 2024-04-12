@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import {useNavigate} from 'react-router-dom';
 
 
 function NavBar({userType}) {
@@ -35,7 +36,7 @@ function NavBar({userType}) {
             <Nav.Link href="/profile" style={{fontSize:"1.5em"}}>Profile</Nav.Link>
 
             
-            <Nav.Link href={userType == "Agent" ? "/AgentList" : "/Watchlist"} style={{fontSize:"1.5em"}}>{userType =="Agent" ? "Your Properties" : "WatchList"}</Nav.Link>
+            <Nav.Link href={userType == "Agent" ? "/agent-listings" : "/watchlist"} style={{fontSize:"1.5em"}}>{userType =="Agent" ? "Your Properties" : "WatchList"}</Nav.Link>
             {/* <Nav.Link href="/AgentList" style={{fontSize:"1.5em"}}>Your Properties</Nav.Link> */}
             <Nav.Link href="/search" style={{fontSize:"1.5em"}}>Browse</Nav.Link>
 
