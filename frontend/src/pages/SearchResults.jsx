@@ -3,7 +3,7 @@ import Triangles from "../components/Triangles";
 import NavBar from "../components/NavBar";
 import "../styles/SearchResults.css";
 import PaginationComponent from "../components/PageNavigator";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import {
@@ -11,6 +11,9 @@ import {
   updateUserStart,
   updateUserSuccess,
 } from "../redux/user/userSlice";
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+
 //import { fetchPropertyListings } from './propertyListings'; // Import the fetchPropertyListings function from your backend API file
 
 // const PropertyListings = ({ listings }) => {
@@ -31,30 +34,103 @@ import {
 // };
 
 const SearchBar = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+    const navigate = useNavigate();
+  const [form, setForm] = useState({
+    searchTerm:"",
+    bedroom:0,
+    bathroom:0,
+    lowerPrice:0,
+    upperPrice:0
+  })
  
-  const handleSearch = () => {
-    // Implement search functionality here
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setForm((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
+  const handleSearch = (event) => {
+    event.preventDefault();
+    if (form.searchTerm)
+    {
+        if(form.bedroom > 0 && form.bathroom > 0 && form.lowerPrice > 0 && form.upperPrice > 0)
+        {
+            navigate(`/search/${form.searchTerm}/${form.bedroom}/${form.bathroom}/${form.lowerPrice}/${form.upperPrice}`);
+        }
+        else
+        {
+            navigate(`/search/${form.searchTerm}`);
+        }
+    }
+    
+  }
+
+  const handleEnter = (event) =>
+  {
+    if (event.key == "Enter")
+    {
+        if (form.searchTerm)
+        {
+            if(form.bedroom > 0 && form.bathroom > 0 && form.lowerPrice > 0 && form.upperPrice > 0)
+            {
+                navigate(`/search/${form.searchTerm}/${form.bedroom}/${form.bathroom}/${form.lowerPrice}/${form.upperPrice}`);
+            }
+            else
+            {
+                navigate(`/search/${form.searchTerm}`);
+            }
+        }
+        
+    }
+  }
+
+
+
   return (
-    <div className="input-group">
-      <input
-        className="form-control"
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      <button
-        className="btn btn-dark"
-        style={{ fontSize: "25px" }}
-        onClick={handleSearch}
-      >
-        🔍
-      </button>
+    <>
+    <div className='input-group'>
+        <input className="form-control" type="text" value={form.searchTerm} onChange={handleChange} name="searchTerm" onKeyDown={handleEnter}/>
+        <button className="btn btn-dark" style={{fontSize:"25px"}} type="submit" onClick={handleSearch}>🔍</button>
     </div>
-  );
+    <Dropdown autoClose={false}>
+        <Dropdown.Toggle variant="link" id="dropdown-basic" align="end" style={{fontSize:"20px"}}>
+            Filter
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu style={{background:"lightblue"}}>
+            <form className="px-2 py-1">
+                <div className='row justify-content-center'>
+                    <div className="form-group col-md-3">
+                        <label htmlFor="inputbedroom">Bedroom</label>
+                        <input type="number" className="form-control" id="inputbedroom" style={{fontSize:"10px"}} value={form.bedroom} name="bedroom" min="0" onChange={handleChange}/>
+                    </div>
+                    <div className='col-md-4'/>
+                    <div className="form-group col-md-3">
+                        <label htmlFor="inputbathroom">Bathroom</label>
+                        <input type="number" className="form-control" id="inputbathroom" style={{fontSize:"10px"}} name="bathroom" value={form.bathroom} min="0" onChange={handleChange}/>
+                    </div>
+                </div>
+                <div className='row justify-content-center mt-2'>
+                    <div className="form-group col-md-3">
+                        <input type="number" className="form-control" id="minprice" style={{fontSize:"10px"}} name="lowerPrice" value={form.lowerPrice} min="0" onChange={handleChange}/>
+                    </div>
+                    <div className="form-group col-md-4 text-center mt-1">
+                        <h5>&lt; &nbsp;  Price &nbsp; &gt;</h5>
+                    </div>
+                    <div className="form-group col-md-3">
+                        <input type="number" className="form-control" id="maxprice" style={{fontSize:"10px"}} name="upperPrice" value={form.upperPrice} min="0" onChange={handleChange}/>
+                    </div>
+                </div>
+            </form>
+        </Dropdown.Menu>
+    </Dropdown>
+    </>
+);
 };
+
 
 const SearchResults = () => {
   const [propertyListings, setPropertyListings] = useState([]);
@@ -98,6 +174,7 @@ const SearchResults = () => {
         );
         console.log(listings.data);
         setPropertyListings(listings.data);
+        setCurrentPage(1);
       } catch (error) {
         console.error(error);
       }
@@ -130,7 +207,7 @@ const SearchResults = () => {
         className="d-grid gap-3"
         style={{ marginTop: "3%", marginLeft: "17%", marginRight: "17%" }}
       >
-        {propertyListings
+        {propertyListings.length> 0 && propertyListings
           .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
           .map((listing) => (
             <div className="row" key={listing._id}>
@@ -187,6 +264,7 @@ const SearchResults = () => {
                 itemsPerPage={itemsPerPage}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
+                alwaysShown
               />
         </div>
       </div>

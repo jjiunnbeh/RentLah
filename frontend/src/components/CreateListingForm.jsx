@@ -273,8 +273,8 @@ setFormData((prevData) => ({
     </>
      ) : (
       <div>
-          <h1>Error 404: Page not found</h1>
-          <p>The page you are looking for does not exist.</p>
+          <h1>Error 403 </h1>
+      <p>You don't have permission to access this page.</p>
       </div>
   )}
   </>
