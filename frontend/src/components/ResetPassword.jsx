@@ -82,12 +82,16 @@ const navigate = useNavigate();
     }
 
     return (
+        <>
+        <div className="formcontainer" style={{marginTop:"10%"}}>
         <form onSubmit={handleSubmit}>
-   <div className="row justify-content-center">
+        <div className="row justify-content-center">
                         <label htmlFor="inputPassword" className="col-sm-8 col-sm-7 col-form-label ">
                             Password
                         </label>
+                        
                         <div className="col-sm-8">
+                        <div className="input-group">
                             <input
                             type={hide ? "password" : "text"}
                             className="form-control"
@@ -99,9 +103,10 @@ const navigate = useNavigate();
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
-                            <button className="btn" onClick={handleClickHide} id="monkey-emoji" style={{backgroundColor: "white", marginBottom:"20px"}}>
+                            <button className="btn" onClick={handleClickHide} id="monkey-emoji" style={{backgroundColor: "white"}}>
               {hide ? "🙈" : "🙊"}
               </button>
+                        </div>
                         </div>
                         <span className="error">{error.password}</span>
                     </div>
@@ -111,6 +116,7 @@ const navigate = useNavigate();
                             Password Confirmation
                         </label>
                         <div className="col-sm-8">
+                        <div className="input-group">
                             <input
                             type={hideconfirm ? "password" : "text"}
                             className="form-control"
@@ -122,18 +128,29 @@ const navigate = useNavigate();
                             onKeyDown= {(event)=> (event.key === "Enter"  ||event.key ===" ") && event.preventDefault()}
                             required
                             />
-                            <button className="btn" onClick={handleClickHideConfirm} id="monkey-emoji" style={{backgroundColor: "white", marginBottom:"20px"}}>
+                            <button className="btn" onClick={handleClickHideConfirm} id="monkey-emoji" style={{backgroundColor: "white"}}>
               {hideconfirm ? "🙈" : "🙊"}
               </button>
                         </div>
+                        </div>
                         <span className="error">{error.passwordconfirm}</span>
                     </div>
-                    <div className="row justify-content-center">
+                    <div className="row justify-content-center mt-4">
                         <button type="submit" className="btn btn-primary loginSubmit" >
                             Confirm
                         </button>
                     </div>
         </form>
+        </div>
+
+        <div className="imagecontainer">
+                <img
+                    src={loginimg}
+                    alt="City landscape"
+                    style={{ height: "100%", left: "0%" }}
+                />
+        </div>
+        </>
     );
 }
 export default ResetPassword;

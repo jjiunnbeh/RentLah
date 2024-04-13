@@ -101,7 +101,7 @@ function ListingDetails() {
         <div
           className="card text-white"
           id="detailcard"
-          style={{ width: "30%", marginRight: "12%", background:"rgb(30,61,99)"}}
+          style={{ width: "30%", height: "700px", marginRight: "12%", background:"rgb(30,61,99)", overflow:"auto"}}
         >
           <div className="card-body">
             <h1 className="Card Title" > {listing.name} </h1>
