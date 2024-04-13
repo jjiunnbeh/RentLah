@@ -139,7 +139,7 @@ const {loading, errorMessage} = useSelector((state)=>state.user);
               {errorMessage && <span id="errormsg">{errorMessage}</span>} 
               </div>
               <div htmlFor="inputPassword3" className="col-sm-8 col-form-label">
-              <a href = {"/forget-pass/"+ userType} style={{color: "white"}}>Forget Password</a>
+              <a href = {"/forget-pass/"+ userType} style={{color: "white"}}> <h4>Forget Password</h4></a>
               </div>
             </div>
 
@@ -148,7 +148,7 @@ const {loading, errorMessage} = useSelector((state)=>state.user);
 
         </div>
         <div className="row justify-content-center">
-        <button type="submit" className="btn btn-primary loginSubmit" >
+        <button type="submit" className="btn btn-primary loginSubmit"  style={{fontSize: "30px"}}>
           {loading? "Loading..." : `Login as ${userType.charAt(0).toUpperCase() + userType.slice(1)}`}
         </button>
         </div>

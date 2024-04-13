@@ -92,7 +92,7 @@ import {
       </div>
 
       <div className="row text-center" style={{ marginTop: "6%" }}>
-        <h2 style={{fontSize:"2rem"}}>Properties</h2>
+        <h2 style={{fontSize:"2.5rem"}}>Properties</h2>
       </div>
 
       <div

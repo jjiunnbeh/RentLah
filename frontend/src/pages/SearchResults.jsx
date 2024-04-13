@@ -109,6 +109,7 @@ const SearchBar = () => {
 
   return (
     <>
+    <div className="row">
       <div className="input-group">
         <input
           className="form-control"
@@ -127,40 +128,41 @@ const SearchBar = () => {
           🔍
         </button>
       </div>
-      <Dropdown autoClose={false}>
+    </div>
+      <Dropdown autoClose={false} drop="start" style={{marginLeft:"86%"}}>
         <Dropdown.Toggle
           variant="link"
           id="dropdown-basic"
-          align="end"
+          align="start"
           style={{ fontSize: "20px" }}
         >
           Filter
         </Dropdown.Toggle>
 
-        <Dropdown.Menu style={{ background: "lightblue" }}>
-          <form className="px-2 py-1">
+        <Dropdown.Menu style={{ background: "silver" }}>
+          <form className="px-0 py-1">
             <div className="row justify-content-center">
               <div className="form-group col-md-3">
-                <label htmlFor="inputbedroom">Bedroom</label>
+                <label htmlFor="inputbedroom" style={{fontSize:"20px"}}>Bedroom</label>
                 <input
                   type="number"
                   className="form-control"
                   id="inputbedroom"
-                  style={{ fontSize: "10px" }}
+                  style={{ fontSize: "20px" }}
                   value={form.bedroom}
                   name="bedroom"
                   min="0"
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-md-4" />
+              <div className="col-md-3" />
               <div className="form-group col-md-3">
-                <label htmlFor="inputbathroom">Bathroom</label>
+                <label htmlFor="inputbathroom" style={{fontSize:"20px"}}>Bathroom</label>
                 <input
                   type="number"
                   className="form-control"
                   id="inputbathroom"
-                  style={{ fontSize: "10px" }}
+                  style={{ fontSize: "20px" }}
                   name="bathroom"
                   value={form.bathroom}
                   min="0"
@@ -174,22 +176,22 @@ const SearchBar = () => {
                   type="number"
                   className="form-control"
                   id="minprice"
-                  style={{ fontSize: "10px" }}
+                  style={{ fontSize: "20px" }}
                   name="lowerPrice"
                   value={form.lowerPrice}
                   min="0"
                   onChange={handleChange}
                 />
               </div>
-              <div className="form-group col-md-4 text-center mt-1">
-                <h5>&lt; &nbsp; Price &nbsp; &gt;</h5>
+              <div className="form-group col-md-3 text-center mt-1">
+                <h5>&lt; &nbsp; &nbsp; &nbsp; Price &nbsp; &nbsp; &nbsp; &gt;</h5>
               </div>
               <div className="form-group col-md-3">
                 <input
                   type="number"
                   className="form-control"
                   id="maxprice"
-                  style={{ fontSize: "10px" }}
+                  style={{ fontSize: "20px" }}
                   name="upperPrice"
                   value={form.upperPrice}
                   min="0"

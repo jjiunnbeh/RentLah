@@ -247,6 +247,7 @@ const [hideconfirm, setHideConfirm] = useState(true);
                             Password
                         </label>
                         <div className="col-sm-8">
+                        <div className="input-group">
                             <input
                             type="password"
                             className="form-control"
@@ -258,9 +259,10 @@ const [hideconfirm, setHideConfirm] = useState(true);
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
-                            <button className="btn" onClick={handleClickHide} id="monkey-emoji" style={{backgroundColor: "white", marginBottom:"20px"}}>
+                            <button className="btn" onClick={handleClickHide} id="monkey-emoji" style={{backgroundColor: "white"}}>
               {hide ? "🙈" : "🙊"}
-              </button>
+                            </button>
+                            </div>
                             
                         </div>
                         <span className="error">{error.password}</span>
@@ -271,6 +273,7 @@ const [hideconfirm, setHideConfirm] = useState(true);
                             Password Confirmation
                         </label>
                         <div className="col-sm-8">
+                            <div className="input-group">
                             <input
                             type="password"
                             className="form-control"
@@ -282,9 +285,10 @@ const [hideconfirm, setHideConfirm] = useState(true);
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
-                            <button className="btn" onClick={handleClickHideConfirm} id="monkey-emoji" style={{backgroundColor: "white", marginBottom:"20px"}}>
+                            <button className="btn" onClick={handleClickHideConfirm} id="monkey-emoji" style={{backgroundColor: "white"}}>
               {hideconfirm ? "🙈" : "🙊"}
               </button>
+                        </div>
                         </div>
                         <span className="error">{error.passwordconfirm}</span>
                     </div>
