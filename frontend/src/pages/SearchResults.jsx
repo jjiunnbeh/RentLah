@@ -352,8 +352,8 @@ const SearchResults = () => {
                         style={{
                           color: "black",
                           backgroundColor: "transparent",
-                          marginLeft:"60%",
-                          width: "40%",
+                          marginLeft:"50%",
+                          width: "50%",
                           height: "2.3em",
                           display: "flex",
                           alignItems: "center",
@@ -384,9 +384,9 @@ const SearchResults = () => {
                         className="btn btn-secondary Listing"
                         style={{
                           color: "black",
-                          width: "40%",
+                          width: "50%",
                           backgroundColor:"transparent",
-                          marginLeft:"60%",
+                          marginLeft:"50%",
                           height: "2.3em",
                           display: "flex",
                           alignItems: "center",

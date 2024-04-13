@@ -142,8 +142,8 @@ const Watchlist = () => {
                         style={{
                           color: "black",
                           backgroundColor: "transparent",
-                          marginLeft:"55%",
-                          width: "45%",
+                          marginLeft:"40%",
+                          width: "60%",
                           height: "2.3em",
                           display: "flex",
                           alignItems: "center",
@@ -172,9 +172,9 @@ const Watchlist = () => {
                         className="btn btn-secondary Listing"
                         style={{
                           color: "black",
-                          width: "45%",
+                          width: "60%",
                           backgroundColor:"transparent",
-                          marginLeft:"55%",
+                          marginLeft:"40%",
                           height: "2.3em",
                           display: "flex",
                           alignItems: "center",

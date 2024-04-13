@@ -47,10 +47,10 @@ const AgentListings = () => {
 
           <div
             className="col"
-            style={{ marginLeft: "30%", marginRight: "30%", marginTop: "5%" }}
+            style={{ marginLeft: "30%", marginRight: "30%", marginTop: "0%" }}
           >
             <div className="row text-center">
-              <h1>Listings managed by you</h1>
+              <h1>My Listings</h1>
             </div>
             <div
               className="row justify-content-end"
@@ -58,6 +58,7 @@ const AgentListings = () => {
             >
               <button
                 className="btn btn-primary btn"
+                style={{backgroundColor:"rgb(62, 94, 133)"}}
                 onClick={() => {
                   navigate("/create-listing");
                 }}
@@ -69,7 +70,7 @@ const AgentListings = () => {
 
           <div
             className="d-grid gap-3"
-            style={{ marginTop: "3%", marginLeft: "17%", marginRight: "17%" }}
+            style={{ marginTop: "0%", marginLeft: "17%", marginRight: "17%" }}
           >
             {propertyListings.length > 0 &&
               propertyListings
@@ -113,21 +114,21 @@ const AgentListings = () => {
                           Learn more...{" "}
                         </a>
                       </div> */}
-                      <div className="row " style={{ marginTop: "-26%" }}>
+                      <div className="row ">
                       <button
                         type="button"
                         className="btn btn-secondary Listing"
                         style={{
                           color: "black",
                           backgroundColor: "transparent",
-                          marginLeft:"60%",
-                          width: "40%",
+                          marginLeft:"55%",
+                          width: "45%",
                           height: "2.3em",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
                           fontSize: "25px",
-                          marginBottom:"-3%",
+                          marginTop:"-20%"
                         }}
                         onClick={(e)=>{navigate(`/listing/${listing._id}`)}}
                       >
@@ -145,21 +146,22 @@ const AgentListings = () => {
                           Manage Listing{" "}
                         </a>
                       </div> */}
-                      <div className="row " style={{ marginTop: "-16%" }}>
+                      <div className="row " >
                       <button
                         type="button"
                         className="btn btn-secondary Listing"
                         style={{
                           color: "black",
                           backgroundColor: "transparent",
-                          marginLeft:"60%",
-                          width: "40%",
+                          marginLeft:"55%",
+                          width: "45%",
                           height: "2.3em",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
                           fontSize: "25px",
-                          marginBottom:"-3%",
+                          marginTop:"-10%"
+
                         }}
                         onClick={(e)=>{navigate(`/edit-listing/${listing._id}`)}}
                       >
