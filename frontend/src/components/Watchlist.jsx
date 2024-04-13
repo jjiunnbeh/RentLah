@@ -23,10 +23,7 @@ const Watchlist = () => {
   const dispatch = useDispatch();
   const itemsPerPage = 10;
   const navigate = useNavigate();
-
   const handleDeleteWatchList = (listingID) => async (event) => {
-    // const listingID = listing._id;
-
     event.preventDefault();
     dispatch(updateUserStart());
 
@@ -173,5 +170,4 @@ const Watchlist = () => {
     </>
   );
 };
-
 export default Watchlist;

@@ -7,14 +7,15 @@ import loginimg from '../assets/loginimg.png';
 
 
 
+
 function ForgetPassword({ userType }) 
 {
-
     const BASE_URL = 'http://localhost:3000';
     const [data,setData] = useState({
         email:"",
         userType,
     })
+    const navigate = useNavigate();
 
     function handleChange(event) 
     {
@@ -38,12 +39,13 @@ async function handleSubmit(event)
     if (response.status == 200)
     {
         console.log(response.data);
+        sendEmail(email, userType, token,id, username);
         setMsg({email:"Email sent successfully"});
         const email = response.data.email;
         const userType = (response.data.userType).toLowerCase();
         const token = response.data.token;
         const id = response.data.id;
-        sendEmail(email, userType, token,id);
+        const username = response.data.username;
     }
         }catch(error)
         {
@@ -56,11 +58,11 @@ async function handleSubmit(event)
             }
         }
 }
-async function sendEmail(email, userType, token, id)
+async function sendEmail(email, userType, token, id, username)
 {
     try
     {
-        const response = await axios.post(`${BASE_URL}/api/auth/forget-pass/sendemail`, {email, userType,token, id});
+        const response = await axios.post(`${BASE_URL}/api/auth/forget-pass/sendemail`, {email, userType,token, id, username});
     }catch(error)
     {
         console.log(error);
@@ -105,6 +107,12 @@ async function sendEmail(email, userType, token, id)
                     <div className="row justify-content-center">
                         <button type="submit" className="btn btn-primary loginSubmit" >
                             Confirm
+                        </button>
+                    </div>
+                    <br></br>
+                    <div className="row justify-content-center">
+                        <button className="btn btn-primary loginSubmit" style={{backgroundColor:"grey"}} onClick={()=>{navigate(`/login/${userType}`)}}>
+                            Go to Login Page
                         </button>
                     </div>
 

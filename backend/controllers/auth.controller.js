@@ -309,7 +309,7 @@ export const forgetPassword = async (req, res, next) => {
       { expiresIn: "1h" }
     );
     const token =jwtToken;
-    res.status(200).json({message:"user found", email:validUser.email, userType:validUser.userType, token:token, id:validUser._id});
+    res.status(200).json({message:"user found", email:validUser.email, userType:validUser.userType, token:token, id:validUser._id, username:validUser.username});
   }
 
 
@@ -317,7 +317,7 @@ export const forgetPassword = async (req, res, next) => {
 
 export const sendEmail = async (req, res) => {
   const BASE_URL = 'http://localhost:5173';
-    const { email ,userType, token,id} = req.body;
+    const { email ,userType, token,id, username} = req.body;
     let config = {
         service : 'gmail',
         auth : {
@@ -338,7 +338,7 @@ export const sendEmail = async (req, res) => {
 
     let response = {
         body: {
-            name : "user",
+            name : `${username}`,
             intro: "Here is your reset password link",
             table : {
                 data : [
