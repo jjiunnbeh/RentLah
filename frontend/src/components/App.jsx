@@ -6,7 +6,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "../styles/App.css";
 import LoginForm from "./LoginForm";
 import Home from "../pages/Home";
-import RegisterForm from '../pages/RegisterForm';
+import RegisterForm from "../pages/RegisterForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import createStore from "react-auth-kit/createStore";
 import AuthProvider from "react-auth-kit";
@@ -23,7 +23,6 @@ import Watchlist from "./Watchlist";
 import EditListing from "./EditListing";
 import AgentListings from "./AgentListings";
 
-
 const store = createStore({
   authName: "_auth",
   authType: "cookie",
@@ -39,20 +38,39 @@ function App() {
           <Route path="/login" element={<LoginChoice />} />
           <Route path="/register" element={<RegisterChoice />} />
 
-          <Route path="/login/customer" element={<LoginForm userType="customer" />} />
-         <Route path="/login/agent" element={<LoginForm userType="agent" />} />
-          <Route path="/register/agent" element={<RegisterForm userType="agent" />} />
-          <Route path="/register/customer" element={<RegisterForm userType="customer"  />} />
-          <Route path="/forget-pass/customer" element={<ForgetPassword userType="customer"  />} />
+          <Route
+            path="/login/customer"
+            element={<LoginForm userType="customer" />}
+          />
+          <Route path="/login/agent" element={<LoginForm userType="agent" />} />
+          <Route
+            path="/register/agent"
+            element={<RegisterForm userType="agent" />}
+          />
+          <Route
+            path="/register/customer"
+            element={<RegisterForm userType="customer" />}
+          />
+          <Route
+            path="/forget-pass/customer"
+            element={<ForgetPassword userType="customer" />}
+          />
 
-          <Route path="/forget-pass/agent" element={<ForgetPassword userType="agent"  />} />
+          <Route
+            path="/forget-pass/agent"
+            element={<ForgetPassword userType="agent" />}
+          />
 
-          <Route path="/reset-pass/customer/:id/:token" element={<ResetPassword userType="customer"  />} />
-          
-          <Route path="/reset-pass/agent/:id/:token" element={<ResetPassword userType="agent"  />} />
+          <Route
+            path="/reset-pass/customer/:id/:token"
+            element={<ResetPassword userType="customer" />}
+          />
 
+          <Route
+            path="/reset-pass/agent/:id/:token"
+            element={<ResetPassword userType="agent" />}
+          />
 
-      
           {/* Protected routes */}
           <Route
             path={"/"}
@@ -66,7 +84,7 @@ function App() {
             path={"/change-password/agent"}
             element={
               <RequireAuth fallbackPath={"/login"}>
-                <ChangePassword userType="agent"/>
+                <ChangePassword userType="agent" />
               </RequireAuth>
             }
           />
@@ -74,11 +92,11 @@ function App() {
             path={"/change-password/customer"}
             element={
               <RequireAuth fallbackPath={"/login"}>
-                <ChangePassword userType="customer"/>
+                <ChangePassword userType="customer" />
               </RequireAuth>
             }
           />
-            <Route
+          <Route
             path={"/profile"}
             element={
               <RequireAuth fallbackPath={"/login"}>
@@ -87,16 +105,15 @@ function App() {
             }
           />
 
-
-            <Route
-            path={"/createlisting"}
+          <Route
+            path={"/create-listing"}
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <CreateListingForm />
               </RequireAuth>
             }
           />
-            <Route
+          <Route
             path={"/listing/:id"}
             element={
               <RequireAuth fallbackPath={"/login"}>
@@ -106,10 +123,12 @@ function App() {
           />
 
           <Route
-            path={"/search/:searchTerm/:bedroom/:bathroom/:lowerPrice/:upperPrice"}
+            path={
+              "/search/:searchTerm/:bedroom/:bathroom/:lowerPrice/:upperPrice"
+            }
             element={
               <RequireAuth fallbackPath={"/login"}>
-                <SearchResults/>
+                <SearchResults />
               </RequireAuth>
             }
           />
@@ -121,6 +140,7 @@ function App() {
               </RequireAuth>
             }
           />
+
 
           <Route
             path={"/watchlist"}
@@ -141,7 +161,7 @@ function App() {
           />
 
           <Route
-            path={"/AgentList"}
+            path={"/my-listings"}
             element={
               <RequireAuth fallbackPath={"/login"}>
                 <AgentListings />

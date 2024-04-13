@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import {useNavigate} from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
 
 
 function NavBar({userType}) {
@@ -29,26 +29,29 @@ function NavBar({userType}) {
   return (
     <Navbar expand="lg" bg="primary" data-bs-theme="dark">
       <Container>
-        <Navbar.Brand href="/" style={{fontSize:"2.5em"}}>Rentlah</Navbar.Brand>
+        <Navbar.Brand href="/" style={{fontSize:"2.5em"} } >Rentlah</Navbar.Brand>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/" style={{fontSize:"1.5em"}}>Home Page</Nav.Link>
+            <Nav.Link href="/" style={{fontSize:"1.5em"}}>Home</Nav.Link>
             <Nav.Link href="/profile" style={{fontSize:"1.5em"}}>Profile</Nav.Link>
 
             
-            <Nav.Link href={userType == "Agent" ? "/AgentList" : "/watchlist"} style={{fontSize:"1.5em"}}>{userType =="Agent" ? "Your Properties" : "WatchList"}</Nav.Link>
+            <Nav.Link href={userType == "Agent" ? "/my-listings" : "/watchlist"} style={{fontSize:"1.5em"}}>{userType =="Agent" ? "My Listing" : "My Watchlist"}</Nav.Link>
             {/* <Nav.Link href="/AgentList" style={{fontSize:"1.5em"}}>Your Properties</Nav.Link> */}
-            <Nav.Link href="/search/:searchTerm" style={{fontSize:"1.5em"}}>Browse</Nav.Link>
+            <Nav.Link href="/search/all" style={{fontSize:"1.5em"}}>View All Properties</Nav.Link>
 
-            {/* <form className="d-flex">
+            <form className="d-flex" onSubmit={handleSubmit}> 
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Search ⌕"
               className="form-control me-2"
               aria-label="Search"
+              onChange={handleChange}
+              value={data.searchTerm}
+              name="searchTerm"
             />
-            <button className='btn outline-secondary'>Search</button>
-          </form> */}
+            <button className='btn outline-secondary' type='submit' style={{fontSize:"1.5em"}}>Search</button>
+          </form>
           </Nav>
         </Navbar.Collapse>
       </Container>

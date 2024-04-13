@@ -93,15 +93,17 @@ export const getWatchlistListings = async (req, res, next) => {
   };
 
   export const getAgentListings = async (req, res, next) => {
-    const {username} = req.body;
+    const {username} = req.query;
+    console.log(username);
     try
     {
-      const listings = await Property.find({agentRef: (username.toUpperCase())});
+      const listings = await Property.find({agentRef: username});
       if (!listings)
       {
         return next(errorHandler(400, {type:"managedList", content:"There is no property managed by you."}))
       }
       res.status(200).json(listings);
+      console.log(listings);
     }
     catch(error)
     {
