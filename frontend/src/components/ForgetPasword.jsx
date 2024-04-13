@@ -45,7 +45,7 @@ async function handleSubmit(event)
         const id = response.data.id;
         const username = response.data.username;
         sendEmail(email, userType, token,id, username);
-        setMsg({email:"Email sent successfully"});
+        
     }
         }catch(error)
         {
@@ -63,6 +63,10 @@ async function sendEmail(email, userType, token, id, username)
     try
     {
         const response = await axios.post(`${BASE_URL}/api/auth/forget-pass/sendemail`, {email, userType,token, id, username});
+        if (response.status == 200 || response.status == 201)
+        {
+            setMsg({email:"Email sent successfully"});
+        }
     }catch(error)
     {
         console.log(error);
