@@ -149,7 +149,7 @@ const {loading, errorMessage} = useSelector((state)=>state.user);
         </div>
         <div className="row justify-content-center">
         <button type="submit" className="btn btn-primary loginSubmit"  style={{fontSize: "30px"}}>
-          {loading? "Loading..." : `Login as ${userType.charAt(0).toUpperCase() + userType.slice(1)}`}
+          {`Login as ${userType.charAt(0).toUpperCase() + userType.slice(1)}`}
         </button>
         </div>
       </form>

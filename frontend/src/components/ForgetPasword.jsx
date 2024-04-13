@@ -39,13 +39,13 @@ async function handleSubmit(event)
     if (response.status == 200)
     {
         console.log(response.data);
-        sendEmail(email, userType, token,id, username);
-        setMsg({email:"Email sent successfully"});
         const email = response.data.email;
         const userType = (response.data.userType).toLowerCase();
         const token = response.data.token;
         const id = response.data.id;
         const username = response.data.username;
+        sendEmail(email, userType, token,id, username);
+        setMsg({email:"Email sent successfully"});
     }
         }catch(error)
         {

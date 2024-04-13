@@ -9,6 +9,10 @@ export const createListing = async(req, res, next) =>
 {
     try{
         const {name, postalCode, price, description, bedroom, bathroom, images, agentRef} = req.body;
+        if (images.length == 0)
+        {
+          return next(errorHandler(401, {type:"images", content:"You must at least upload one picture."}));
+        }
         //convert postalCode into coordinates
         const response = await axios.get(`https://www.onemap.gov.sg/api/common/elastic/search?searchVal=${postalCode}&returnGeom=Y&getAddrDetails=Y&pageNum=1`);
         console.log(response.data.results[0]);
