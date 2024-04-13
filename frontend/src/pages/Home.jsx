@@ -108,7 +108,7 @@ import {
             
             
             <div className="Listingcontainer" key={listing._id}  onClick={(e) => {
-              if (!e.target.classList.contains('btn-link')) {
+              if (!e.target.classList.contains('btn-secondary')) {
                 navigate("/listing/" + listing._id);
               }
             }}>
@@ -138,16 +138,28 @@ import {
                   <h3>{listing.bathroom}🛁 {listing.bedroom}🛏️</h3>
                 </div>
 
-                {
-                  userType==='Customer' && (
-                <div className="row">
-                  <button type="button" className="btn btn-link Listing"
-                   style={{fontSize:"25px"}} onClick={handleAddtoWatchList(listing._id)}>Add to Watchlist</button>
-                 
-                    
-                </div>
-                     )
-                } 
+                {userType === "Customer" && (
+                    <div className="row " style={{ marginTop: "3.5%" }}>
+                      <button
+                        type="button"
+                        className="btn btn-secondary Listing"
+                        style={{
+                          color: "black",
+                          border:"none",
+                          backgroundColor: "transparent",
+                          width: "100%",
+                          height: "2.3em",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontSize: "25px",
+                        }}
+                        onClick={handleAddtoWatchList(listing._id)}
+                      >
+                        ♡ Add to Watchlist
+                      </button>
+                    </div>
+                  )}
               </div>
               
             </div>

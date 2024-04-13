@@ -243,9 +243,9 @@ function EditListing() {
 
               <div className="row gap-5" style={{ marginBottom: "3%" }}>
                 <div className="col-sm-2 text-center">
-                  <h1 className="text-start font-weight-bold">
+                  <h2 className="text-start font-weight-bold">
                     Bathrooms: {listing.bathroom}
-                  </h1>
+                  </h2>
                 </div>
                 <div className="col-sm-1 ml-0" style={{ marginTop: "2%" }}>
                   <input
@@ -264,9 +264,9 @@ function EditListing() {
                   />
                 </div>
                 <div className="col-sm-2 text-center">
-                  <h1 className="text-start font-weight-bold">
+                  <h2 className="text-start font-weight-bold">
                     Bedrooms: {listing.bedroom}
-                  </h1>
+                  </h2>
                 </div>
                 <div className="col-sm-1 ml-0" style={{ marginTop: "2%" }}>
                   <input
@@ -285,9 +285,9 @@ function EditListing() {
                   />
                 </div>
                 <div className="col-sm-2 text-center">
-                  <h1 className="text-start font-weight-bold">
-                    Pricing: {listing.price}
-                  </h1>
+                  <h2 className="text-start font-weight-bold">
+                    Monthly Rent: {listing.price}
+                  </h2>
                 </div>
                 <div
                   className="col-sm-2 ml-0"

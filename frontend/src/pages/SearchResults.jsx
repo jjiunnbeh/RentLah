@@ -217,6 +217,7 @@ const SearchResults = () => {
   const BASE_URL = "http://localhost:3000";
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser);
+  const navigate = useNavigate();
   const handleAddtoWatchList = (listingID) => async (event) =>
   {
     event.preventDefault();
@@ -318,7 +319,7 @@ const SearchResults = () => {
               <div className="row" key={listing._id}>
                 <div className="col-sm-auto">
                   <div className="img-div">
-                    {listing.images.length > 0 &&<img src={listing.images[0]} onClick={()=>{navigate("/listing/" + listing._id)}}></img>}
+                    {listing.images.length > 0 &&<img src={listing.images[0]} style={{borderRadius:"18px"}} onClick={()=>{navigate("/listing/" + listing._id)}}></img>}
                   </div>
                 </div>
 
@@ -333,19 +334,41 @@ const SearchResults = () => {
                     </h2>
                   </div>
                   <div className="row" style={{ width: "545px" }}>
-                    <h2> ${listing.price} </h2>
+                    <h2> Price: S${listing.price} </h2>
                   </div>
                 </div>
 
                 <div className="col d-grid align-self-end gap-2">
-                  <div className="row text-end">
+                  {/* <div className="row text-end">
                     <a className="Listing" href={"/listing/" + listing._id}>
                       {" "}
                       Learn more...{" "}
                     </a>
-                  </div>
+                  </div> */}
+                  <div className="row " style={{ marginTop: "3.5%" }}>
+                      <button
+                        type="button"
+                        className="btn btn-secondary Listing"
+                        style={{
+                          color: "black",
+                          backgroundColor: "transparent",
+                          marginLeft:"60%",
+                          width: "40%",
+                          height: "2.3em",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontSize: "25px",
+                          marginBottom:"-3%",
+                          ...(userType==="Agent" &&{marginTop:"-23%"})
+                        }}
+                        onClick={(e)=>{navigate(`/listing/${listing._id}`)}}
+                      >
+                        Learn More
+                      </button>
+                    </div>
 
-                 {userType =="Customer" && <div className="row mb-5 text-end">
+                 {/* {userType =="Customer" && <div className="row mb-5 text-end">
                     <a
                       className="Listing"
                       onClick={handleAddtoWatchList(listing._id)}
@@ -353,7 +376,32 @@ const SearchResults = () => {
                       {" "}
                       Add to watchlist{" "}
                     </a>
-                  </div>}
+                  </div>} */}
+                  {userType === "Customer" && (
+                    <div className="row " style={{ marginTop: "3.5%" }}>
+                      <button
+                        type="button"
+                        className="btn btn-secondary Listing"
+                        style={{
+                          color: "black",
+                          width: "40%",
+                          backgroundColor:"transparent",
+                          marginLeft:"60%",
+                          height: "2.3em",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontSize: "25px",
+                        }}
+                        onClick={handleAddtoWatchList(listing._id)}
+                      >
+                        ♡ Add to Watchlist
+                      </button>
+                    </div>
+                  )}
+
+
+
                 </div>
               </div>
             ))}

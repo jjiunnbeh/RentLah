@@ -237,7 +237,7 @@ function CreateListingForm() {
               style={{ paddingTop: "3%", paddingBottom: "0" }}
               onSubmit={handleSubmit}
             >
-              <div className="row" style={{ marginBottom: "3%" }}>
+              <div className="row" style={{ marginBottom: "1%" }}>
                 <div className="col-lg-4">
                   {" "}
                   <h1 className="text-start font-weight-bold">
@@ -350,7 +350,7 @@ function CreateListingForm() {
                   />
                 </div>
                 <div className="col-sm-2 text-center">
-                  <h1 className="text-start font-weight-bold">Pricing: </h1>
+                  <h1 className="text-start font-weight-bold">Monthly Rent: </h1>
                 </div>
                 <div className="col-sm-2 ml-0" style={{ marginLeft: "-2%" }}>
                   <div className="input-group mb-0">
