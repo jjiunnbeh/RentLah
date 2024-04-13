@@ -255,6 +255,7 @@ const SearchResults = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setPropertyListings([]);
         let searchQuery = "";
         if (searchTerm) {
           if (bedroom && bathroom && lowerPrice && upperPrice) {
@@ -290,10 +291,7 @@ const SearchResults = () => {
         <NavBar userType={userType} />
       </header>
       <Triangles />
-      {/* <div>
-            <SearchBar />
-            <PropertyListings listings={propertyListings} />
-        </div> */}
+
         {success && (
             <Alert  variant={notIn ? "success" : 'primary'} >
               {notIn ? "Property added to Watchlist." : "Property already in your watchlist."}
@@ -320,7 +318,7 @@ const SearchResults = () => {
               <div className="row" key={listing._id}>
                 <div className="col-sm-auto">
                   <div className="img-div">
-                    <img src={listing.images[0]}></img>
+                    <img src={listing.images[0]} onClick={()=>{navigate("/listing/" + listing._id)}}></img>
                   </div>
                 </div>
 
