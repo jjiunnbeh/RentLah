@@ -200,17 +200,20 @@ export const getWatchlistListings = async (req, res, next) => {
 
   export const searchListingByNameandAddress = async (req, res, next) => {
     try {
+      let finalList;
       const searchTerm = req.params.searchterm;
-  
-      const addressMatches = await Property.find({ address: { $regex: searchTerm, $options: 'i' } });
-      const nameMatches = await Property.find({ name: { $regex: searchTerm, $options: 'i' } });
-  
-      const addressMatchesSet = new Set(addressMatches.map(property => property._id.toString()));
-      const nameMatchesSet = new Set(nameMatches.map(property => property._id.toString()));
-  
-      let finalList = [...addressMatchesSet, ...nameMatchesSet].map(id => {
-        return [...addressMatches, ...nameMatches].find(property => property._id.toString() === id);
-      });
+      if (searchTerm === "all") {
+        const response = await Property.find();
+        finalList = response;
+      } else {
+        const addressMatches = await Property.find({ address: { $regex: searchTerm, $options: 'i' } });
+        const nameMatches = await Property.find({ name: { $regex: searchTerm, $options: 'i' } });
+      
+        const allMatches = [...addressMatches, ...nameMatches];
+        const uniqueMatches = Array.from(new Set(allMatches.map(property => property._id.toString())));
+      
+        finalList = uniqueMatches.map(id => allMatches.find(property => property._id.toString() === id));
+      }
       console.log("Query length: " + finalList.length);
       res.status(200).json(finalList);
     } catch (error) {
@@ -219,24 +222,23 @@ export const getWatchlistListings = async (req, res, next) => {
   };
 
   export const fullSearch = async (req, res, next) => {
-    try {
-      let finalList;
-      const { searchTerm, bedroom, bathroom, lowerPrice, upperPrice } = req.params;
   
-      if (searchTerm === "all") {
-        const response = await Property.find();
-        finalList = response;
-      } else {
-        const addressMatches = await Property.find({ address: { $regex: searchTerm, $options: 'i' } });
-        const nameMatches = await Property.find({ name: { $regex: searchTerm, $options: 'i' } });
-  
-        const addressMatchesSet = new Set(addressMatches.map(property => property._id.toString()));
-        const nameMatchesSet = new Set(nameMatches.map(property => property._id.toString()));
-  
-        finalList = [...addressMatchesSet, ...nameMatchesSet].map(id => {
-          return [...addressMatches, ...nameMatches].find(property => property._id.toString() === id);
-        });
-      }
+
+      try {
+        let finalList;
+        const { searchTerm, bedroom, bathroom, lowerPrice, upperPrice } = req.params;
+        if (searchTerm === "all") {
+          const response = await Property.find();
+          finalList = response;
+        } else {
+          const addressMatches = await Property.find({ address: { $regex: searchTerm, $options: 'i' } });
+          const nameMatches = await Property.find({ name: { $regex: searchTerm, $options: 'i' } });
+        
+          const allMatches = [...addressMatches, ...nameMatches];
+          const uniqueMatches = Array.from(new Set(allMatches.map(property => property._id.toString())));
+        
+          finalList = uniqueMatches.map(id => allMatches.find(property => property._id.toString() === id));
+        }
   
       finalList = finalList.filter(property => {
         let isValid = true;

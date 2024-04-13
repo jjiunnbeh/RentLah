@@ -318,7 +318,7 @@ const SearchResults = () => {
               <div className="row" key={listing._id}>
                 <div className="col-sm-auto">
                   <div className="img-div">
-                    <img src={listing.images[0]} onClick={()=>{navigate("/listing/" + listing._id)}}></img>
+                    {listing.images.length > 0 &&<img src={listing.images[0]} onClick={()=>{navigate("/listing/" + listing._id)}}></img>}
                   </div>
                 </div>
 
