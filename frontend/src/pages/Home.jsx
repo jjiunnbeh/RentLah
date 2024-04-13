@@ -88,11 +88,11 @@ import {
           )}
 
       <div className="row text-center" style={{ marginTop: "3%" }}>
-        <h1 style={{fontSize:"5rem"}}> Welcome, {currentUser.username} </h1>
+        <h1 style={{fontSize:"3rem"}}> Welcome, {currentUser.username} </h1>
       </div>
 
       <div className="row text-center" style={{ marginTop: "6%" }}>
-        <h2 style={{fontSize:"3rem"}}>Properties</h2>
+        <h2 style={{fontSize:"2rem"}}>Properties</h2>
       </div>
 
       <div
