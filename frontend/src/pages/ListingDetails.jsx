@@ -158,7 +158,7 @@ function ListingDetails() {
               maxBounds={[103.596, 1.1443, 104.1, 1.4835]}
               mapStyle="https://www.onemap.gov.sg/maps/json/raster/mbstyle/Default.json"
               attributionControl={false}
-              style={{ height: "350px", width: "970px" }}
+              style={{ height: "350px", width: "109%" }}
             >
               <Marker
                 latitude={listing.LATITUDE}
@@ -168,8 +168,8 @@ function ListingDetails() {
           )}
         </div>
 
-        <div className="col" style={{marginLeft:"0.5%", marginTop:"1%"}}>
-          <div className="card text-white" id="agentcard" style={{ width: "650px", background:"rgb(62, 94, 133)"}}>
+        <div className="col" style={{marginLeft:"4%", marginTop:"1%" }}>
+          <div className="card text-white" id="agentcard" style={{ width:"72%" ,background:"rgb(62, 94, 133)"}}>
             <div className="card-body">
               <h2 className="card-title">{agent.agentname}</h2>
               <h4 className="card-text" style={{ whiteSpace: "pre-line" }}>

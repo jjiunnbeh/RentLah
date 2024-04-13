@@ -120,7 +120,7 @@ import {
                 <div className="row justify-content-center">
                   <div className="Listingimg">
                     {listing.images.length > 0 && (
-                      <img src={listing.images[1]} alt="Listing image" className="img" style={{borderRadius: "25px", width:"100%", marginLeft:"0", height:"100%"}}/>
+                      <img src={listing.images[0]} alt="Listing image" className="img" style={{borderRadius: "25px", width:"100%", marginLeft:"0", height:"100%"}}/>
                     )}
                   </div>
                 </div>
