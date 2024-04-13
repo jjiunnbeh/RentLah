@@ -255,6 +255,7 @@ const SearchResults = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setPropertyListings([]);
         let searchQuery = "";
         if (searchTerm) {
           if (bedroom && bathroom && lowerPrice && upperPrice) {
