@@ -9,6 +9,7 @@ import whatsapp from "../assets/whatsapp.png";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function ListingDetails() {
   const userType = useSelector((state) => state.user.currentUser.userType);
@@ -18,6 +19,7 @@ function ListingDetails() {
   const BASE_URL = "http://localhost:3000";
   const [listing, setListing] = useState({});
   const [agent, setAgent] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -97,9 +99,9 @@ function ListingDetails() {
         </div>
 
         <div
-          className="card bg-primary text-white"
+          className="card text-white"
           id="detailcard"
-          style={{ width: "30%", marginRight: "12%"}}
+          style={{ width: "30%", marginRight: "12%", background:"rgb(30,61,99)"}}
         >
           <div className="card-body">
             <h1 className="Card Title" > {listing.name} </h1>
@@ -143,28 +145,8 @@ function ListingDetails() {
         </div>
       </div>
 
-      <div className="row mt-3" style={{ marginLeft: "12%", maxHeight: "400" }}>
-        <div className="col-md-3">
-          <div className="card bg-primary text-white" id="agentcard">
-            <div className="card-body">
-              <h2 className="card-title">{agent.agentname}</h2>
-              <h4 className="card-text" style={{ whiteSpace: "pre-line" }}>
-                {`Agent Registration Number: ${agent.agentregnum}\nAgent Contact Number: ${agent.phoneNo}`}
-              </h4>
-            </div>
-            <div className="card-body">
-              <h5 className="card-text text-decoration-underline">Contact by Whatsapp</h5>
-              <a
-                href={`https://api.whatsapp.com/send/?phone=65${agent.phoneNo}&text&type=phone_number&app_absent=0`}
-                target="_blank"
-              >
-                <img src={whatsapp} alt="Whatsapp" style={{ height: "2em" }} />
-              </a>
-            </div>
-          </div>
-        </div>
-            
-        <div className="col-md-5" id="map" style={{ marginLeft: "12%" }}>
+      <div className="row mt-3" style={{ marginLeft: "11.5%", maxHeight: "700", marginBottom:"1%"}}>
+        <div className="col" id="map" style={{ width:"970px" }}>
           {listing && listing.LATITUDE && listing.LONGITUDE && (
             <Map
               initialViewState={{
@@ -176,7 +158,7 @@ function ListingDetails() {
               maxBounds={[103.596, 1.1443, 104.1, 1.4835]}
               mapStyle="https://www.onemap.gov.sg/maps/json/raster/mbstyle/Default.json"
               attributionControl={false}
-              style={{ height: "400px" }}
+              style={{ height: "350px", width: "970px" }}
             >
               <Marker
                 latitude={listing.LATITUDE}
@@ -184,6 +166,30 @@ function ListingDetails() {
               />
             </Map>
           )}
+        </div>
+
+        <div className="col" style={{marginLeft:"0.5%", marginTop:"1%"}}>
+          <div className="card text-white" id="agentcard" style={{ width: "650px", background:"rgb(62, 94, 133)"}}>
+            <div className="card-body">
+              <h2 className="card-title">{agent.agentname}</h2>
+              <h4 className="card-text" style={{ whiteSpace: "pre-line" }}>
+                {`Agent Registration Number: ${agent.agentregnum}\nAgent Contact Number: ${agent.phoneNo}`}
+              </h4>
+            </div>
+            <div className="card-body">
+              
+              <button className="btn"
+             onClick={() => {
+              const url = `https://api.whatsapp.com/send/?phone=65${agent.phoneNo}&text=&type=phone_number&app_absent=0`;
+              window.open(url, '_blank');
+            }}
+                target="_blank"
+                style={{background:"silver"}}
+              >
+                  <h5 style={{color:"black"}}>Contact by <img src={whatsapp} alt="Whatsapp" style={{ height: "2em" }}/></h5>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 

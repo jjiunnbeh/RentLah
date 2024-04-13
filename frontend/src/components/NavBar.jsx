@@ -27,7 +27,7 @@ function NavBar({userType}) {
     }));
   };
   return (
-    <Navbar expand="lg" bg="primary" data-bs-theme="dark">
+    <Navbar expand="lg"  data-bs-theme="dark" style={{background:"rgb(30,61,99)"}}>
       <Container>
         <Navbar.Brand href="/" style={{fontSize:"2.5em"} } >Rentlah</Navbar.Brand>
         <Navbar.Collapse id="basic-navbar-nav">

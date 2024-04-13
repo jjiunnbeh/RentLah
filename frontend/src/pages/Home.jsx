@@ -80,7 +80,7 @@ import {
         <NavBar userType={userType} />
       </header>
 
-      <Triangles />
+      {/* <Triangles /> */}
       {success && (
             <Alert  variant={notIn ? "success" : 'primary'} >
               {notIn ? "Property added to Watchlist." : "Property already in your watchlist."}
@@ -102,7 +102,7 @@ import {
       >
         <div
           className="row d-flex gap-4 flex-nowrap"
-          style={{ marginLeft: "6%" }}
+          style={{ marginLeft: "1%" }}
         >
           {listings.slice(0, 10).map((listing) => (
             
@@ -152,7 +152,7 @@ import {
               
             </div>
           ))}
-          <div className="col" style={{marginLeft:"4%"}}/>
+          <div className="col" style={{marginLeft:"-1%"}}/>
         </div>
       </div>
     </>
