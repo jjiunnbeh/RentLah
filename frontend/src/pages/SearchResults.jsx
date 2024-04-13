@@ -69,6 +69,22 @@ const SearchBar = () => {
         navigate(`/search/${form.searchTerm}`);
       }
     }
+    if (form.searchTerm == "")
+    {
+      if (
+        form.bedroom > 0 &&
+        form.bathroom > 0 &&
+        form.lowerPrice > 0 &&
+        form.upperPrice > 0
+      ) {
+        navigate(
+          `/search/all/${form.bedroom}/${form.bathroom}/${form.lowerPrice}/${form.upperPrice}`
+        );
+      } else {
+        navigate(`/search/all`);
+      }
+
+    }
   };
 
   const handleEnter = (event) => {
@@ -242,9 +258,7 @@ const SearchResults = () => {
           if (bedroom && bathroom && lowerPrice && upperPrice) {
             searchQuery = `search/${searchTerm}/${bedroom}/${bathroom}/${lowerPrice}/${upperPrice}`;
           } else {
-            if (searchTerm === "all") {
-              searchQuery = `get-listings`;
-            }
+           
             searchQuery = `search/${searchTerm}`;
           }
         }

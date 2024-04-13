@@ -158,7 +158,6 @@ export const getWatchlistListings = async (req, res, next) => {
         console.log(response.data.results[0]);
         if (!response.data.results[0])
         {
-          savePostalCode=false;
             return next(
                 errorHandler(
                   401,
@@ -221,18 +220,24 @@ export const getWatchlistListings = async (req, res, next) => {
 
   export const fullSearch = async (req, res, next) => {
     try {
+      let finalList;
       const { searchTerm, bedroom, bathroom, lowerPrice, upperPrice } = req.params;
   
-      const addressMatches = await Property.find({ address: { $regex: searchTerm, $options: 'i' } });
-      const nameMatches = await Property.find({ name: { $regex: searchTerm, $options: 'i' } });
+      if (searchTerm === "all") {
+        const response = await Property.find();
+        finalList = response;
+      } else {
+        const addressMatches = await Property.find({ address: { $regex: searchTerm, $options: 'i' } });
+        const nameMatches = await Property.find({ name: { $regex: searchTerm, $options: 'i' } });
   
-      const addressMatchesSet = new Set(addressMatches.map(property => property._id.toString()));
-      const nameMatchesSet = new Set(nameMatches.map(property => property._id.toString()));
+        const addressMatchesSet = new Set(addressMatches.map(property => property._id.toString()));
+        const nameMatchesSet = new Set(nameMatches.map(property => property._id.toString()));
   
-      let finalList = [...addressMatchesSet, ...nameMatchesSet].map(id => {
-        return [...addressMatches, ...nameMatches].find(property => property._id.toString() === id);
-      });
-      console.log(finalList)
+        finalList = [...addressMatchesSet, ...nameMatchesSet].map(id => {
+          return [...addressMatches, ...nameMatches].find(property => property._id.toString() === id);
+        });
+      }
+  
       finalList = finalList.filter(property => {
         let isValid = true;
         if (bedroom !== undefined && property.bedroom !== parseInt(bedroom)) {
@@ -249,12 +254,10 @@ export const getWatchlistListings = async (req, res, next) => {
         }
         return isValid;
       });
-      console.log(finalList);
   
       if (finalList.length === 0) {
         return next(errorHandler(400, { message: "No property found" }));
       }
-      console.log("Query length: " + finalList.length);
   
       res.status(200).json(finalList);
     } catch (error) {
@@ -262,5 +265,4 @@ export const getWatchlistListings = async (req, res, next) => {
       next(error);
     }
   };
-
-
+  
