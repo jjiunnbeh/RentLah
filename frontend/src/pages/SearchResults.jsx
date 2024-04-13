@@ -256,6 +256,11 @@ const SearchResults = () => {
         setPropertyListings(listings.data);
         setCurrentPage(1);
       } catch (error) {
+        const e = error.response.data.message;
+        if (e.message == "No property found")
+        {
+          setPropertyListings([]);
+        }
         console.error(error);
       }
     };
@@ -326,7 +331,7 @@ const SearchResults = () => {
                     </a>
                   </div>
 
-                  <div className="row mb-5 text-end">
+                 {userType =="Customer" && <div className="row mb-5 text-end">
                     <a
                       className="Listing"
                       onClick={handleAddtoWatchList(listing._id)}
@@ -334,7 +339,7 @@ const SearchResults = () => {
                       {" "}
                       Add to watchlist{" "}
                     </a>
-                  </div>
+                  </div>}
                 </div>
               </div>
             ))}
