@@ -38,7 +38,7 @@ const Watchlist = () => {
         setTimeout(() => {
           setDeleted(false);
           window.location.reload();
-        }, 300);
+        }, 500);
         
       }
     } catch (error) {
@@ -166,7 +166,7 @@ const Watchlist = () => {
                           Delete from watchlist{" "}
                         </a>
                       </div> */}
-                    <div className="row " style={{ marginTop: "-15%" }}>
+                    <div className="row " style={{ marginTop: "-12%" }}>
                       <button
                         type="button"
                         className="btn btn-secondary Listing"

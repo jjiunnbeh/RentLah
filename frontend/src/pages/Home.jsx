@@ -52,7 +52,7 @@ import {
             setSuccess(true);
             setTimeout(() => {
               setSuccess(false);
-            }, 2000);
+            }, 500);
 
         }
 
@@ -67,7 +67,7 @@ import {
           setTimeout(() => {
             setSuccess(false);
             setNotIn(true);
-          }, 2000);
+          }, 500);
         }
     }
   }
@@ -132,7 +132,7 @@ import {
                   <h3 className="text-truncate"> Address: {listing.address}</h3>
                 </div>
                 <div className="row">
-                  <h3> Pricing: {listing.price}</h3>
+                  <h3> Monthly Rent: S${listing.price}</h3>
                 </div>
                 <div className="row">
                   <h3>{listing.bathroom}🛁 {listing.bedroom}🛏️</h3>

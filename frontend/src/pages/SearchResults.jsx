@@ -233,7 +233,7 @@ const SearchResults = () => {
             setSuccess(true);
             setTimeout(() => {
               setSuccess(false);
-            }, 2000);
+            }, 500);
 
         }
 
@@ -248,7 +248,7 @@ const SearchResults = () => {
           setTimeout(() => {
             setSuccess(false);
             setNotIn(true);
-          }, 2000);
+          }, 500);
         }
     }
   }
@@ -294,7 +294,7 @@ const SearchResults = () => {
       <Triangles />
 
         {success && (
-            <Alert  variant={notIn ? "success" : 'primary'} >
+            <Alert  variant={notIn ? "success" : 'warning'} >
               {notIn ? "Property added to Watchlist." : "Property already in your watchlist."}
             </Alert>
           )}
