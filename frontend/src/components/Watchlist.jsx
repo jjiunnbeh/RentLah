@@ -107,6 +107,7 @@ const Watchlist = () => {
                             onClick={() => {
                               navigate("/listing/" + listing._id);
                             }}
+                            style={{borderRadius:"18px"}}
                           ></img>
                         </div>
                       </div>
