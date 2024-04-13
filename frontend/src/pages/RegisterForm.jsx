@@ -33,7 +33,7 @@ const [error, setError] = useState(
     }
 )
 const [hideconfirm, setHideConfirm] = useState(true);
-    const [hide, setHide] = useState(true);
+const [hide, setHide] = useState(true);
     function handleClickHide(event) 
     {
       event.preventDefault();
@@ -249,7 +249,7 @@ const [hideconfirm, setHideConfirm] = useState(true);
                         <div className="col-sm-8">
                         <div className="input-group">
                             <input
-                            type="password"
+                            type={hide? "password" : "text"}
                             className="form-control"
                             id="inputPassword"
                             placeholder="Password"
@@ -275,7 +275,7 @@ const [hideconfirm, setHideConfirm] = useState(true);
                         <div className="col-sm-8">
                             <div className="input-group">
                             <input
-                            type="password"
+                            type={hideconfirm? "password" : "text"}
                             className="form-control"
                             id="inputPasswordConfirmation"
                             placeholder="Password Confirmation"
