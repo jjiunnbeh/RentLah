@@ -326,7 +326,7 @@ const SearchResults = () => {
                     </a>
                   </div>
 
-                  <div className="row mb-5 text-end">
+                 {userType =="Customer" && <div className="row mb-5 text-end">
                     <a
                       className="Listing"
                       onClick={handleAddtoWatchList(listing._id)}
@@ -334,7 +334,7 @@ const SearchResults = () => {
                       {" "}
                       Add to watchlist{" "}
                     </a>
-                  </div>
+                  </div>}
                 </div>
               </div>
             ))}
