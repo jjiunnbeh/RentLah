@@ -26,11 +26,10 @@ import {
     const fetchListings = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL}/api/listing/get-listings`
+          `${BASE_URL}/api/listing/home/get-listings`
         );
         const list = response.data;
-        const shuffledListings = list.sort(() => Math.random() - 0.5);
-        setListings(shuffledListings);
+        setListings(list);
       } catch (error) {
         console.error("Error fetching listings:", error);
       }

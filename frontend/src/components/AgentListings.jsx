@@ -3,7 +3,7 @@ import Triangles from "./Triangles";
 import NavBar from "./NavBar";
 import "../styles/SearchResults.css";
 import PaginationComponent from "./PageNavigator";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -81,7 +81,12 @@ const AgentListings = () => {
                   <div className="row" key={listing._id}>
                     <div className="col-sm-auto">
                       <div className="img-div">
-                        <img src={listing.images[0]} onClick={()=>{navigate("/listing/" + listing._id)}}></img>
+                        <img
+                          src={listing.images[0]}
+                          onClick={() => {
+                            navigate("/listing/" + listing._id);
+                          }}
+                        ></img>
                       </div>
                     </div>
 
@@ -127,19 +132,24 @@ const AgentListings = () => {
             style={{ marginBottom: "3%", marginTop: "3%" }}
           >
             <div className="col-4 d-flex justify-content-center">
-            {propertyListings.length > 0 && <PaginationComponent
-                itemsCount={propertyListings.length}
-                itemsPerPage={itemsPerPage}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-              />}
+              {propertyListings.length > 0 && (
+                <PaginationComponent
+                  itemsCount={propertyListings.length}
+                  itemsPerPage={itemsPerPage}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                />
+              )}
             </div>
           </div>
         </>
       ) : (
-        <div>
-          <h1>Error 403 </h1>
-      <p>You don't have permission to access this page.</p>
+        <div style={{ textAlign: "center" }}>
+          <h1 style={{ fontSize: "15em" }}>Error 403</h1>
+          <p style={{ fontSize: "3em" }}>
+            You don't have permission to access this page.
+          </p>
+          
         </div>
       )}
     </>

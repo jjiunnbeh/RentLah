@@ -399,9 +399,12 @@ function CreateListingForm() {
           </div>
         </>
       ) : (
-        <div>
-          <h1>Error 403 </h1>
-          <p>You don't have permission to access this page.</p>
+        <div style={{ textAlign: "center" }}>
+          <h1 style={{ fontSize: "15em" }}>Error 403</h1>
+          <p style={{ fontSize: "3em" }}>
+            You don't have permission to access this page.
+          </p>
+          
         </div>
       )}
     </>

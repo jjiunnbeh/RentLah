@@ -4,6 +4,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import errorHandler from "../utils/error.js";
 import Customer from "../db/customer.model.js";
+import { createReadStream } from "fs";
 
 export const createListing = async(req, res, next) =>
 {
@@ -124,6 +125,16 @@ export const getWatchlistListings = async (req, res, next) => {
       next(error);
     }
   };
+
+  export const getHomeListings = async (req, res, next) => {
+    try {
+      const listings = await Property.find().sort({ createdAt: -1 });
+      res.status(200).json(listings);
+    } catch (error) {
+      next(error);
+    }
+  };
+
 
 
   export const deleteListing = async (req, res, next) => {

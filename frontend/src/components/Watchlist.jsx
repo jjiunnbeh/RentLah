@@ -11,8 +11,7 @@ import {
   updateUserStart,
   updateUserSuccess,
 } from "../redux/user/userSlice";
-import Alert from 'react-bootstrap/Alert';
-
+import Alert from "react-bootstrap/Alert";
 
 const Watchlist = () => {
   const [propertyListings, setPropertyListings] = useState([]);
@@ -36,9 +35,9 @@ const Watchlist = () => {
         dispatch(updateUserSuccess(response.data.rest));
         console.log(response.data.rest);
         setDeleted(true);
-          setTimeout(() => {
-            setDeleted(false);
-          }, 5000);
+        setTimeout(() => {
+          setDeleted(false);
+        }, 5000);
         window.location.reload();
       }
     } catch (error) {
@@ -46,7 +45,6 @@ const Watchlist = () => {
     }
   };
   const userType = useSelector((state) => state.user.currentUser.userType);
-
 
   useEffect(() => {
     const BASE_URL = "http://localhost:3000";
@@ -75,10 +73,8 @@ const Watchlist = () => {
             <NavBar userType={userType} />
           </header>
           <Triangles />
-        {deleted && (
-            <Alert  variant="info" >
-              Property deleted from Watchlist.
-            </Alert>
+          {deleted && (
+            <Alert variant="info">Property deleted from Watchlist.</Alert>
           )}
 
           <div className="col justify-content-center">
@@ -105,7 +101,12 @@ const Watchlist = () => {
                     {listing.images && (
                       <div className="col-sm-auto">
                         <div className="img-div">
-                          <img src={listing.images[0]} onClick={()=>{navigate("/listing/" + listing._id)}}></img>
+                          <img
+                            src={listing.images[0]}
+                            onClick={() => {
+                              navigate("/listing/" + listing._id);
+                            }}
+                          ></img>
                         </div>
                       </div>
                     )}
@@ -152,19 +153,24 @@ const Watchlist = () => {
             style={{ marginBottom: "3%", marginTop: "3%" }}
           >
             <div className="col-4 d-flex justify-content-center">
-            {propertyListings.length > 0 && <PaginationComponent
-                itemsCount={propertyListings.length}
-                itemsPerPage={itemsPerPage}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-              />}
+              {propertyListings.length > 0 && (
+                <PaginationComponent
+                  itemsCount={propertyListings.length}
+                  itemsPerPage={itemsPerPage}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                />
+              )}
             </div>
           </div>
         </>
       ) : (
-        <div>
-          <h1>Error 403 </h1>
-      <p>You don't have permission to access this page.</p>
+        <div style={{ textAlign: "center" }}>
+          <h1 style={{ fontSize: "15em" }}>Error 403</h1>
+          <p style={{ fontSize: "3em" }}>
+            You don't have permission to access this page.
+          </p>
+          
         </div>
       )}
     </>
