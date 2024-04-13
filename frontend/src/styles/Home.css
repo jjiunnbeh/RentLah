@@ -1,14 +1,15 @@
 div.Listingcontainer {
     background-color: white;
-    height:  700px;
-    width: 550px;
-    border-radius: 30px;
+    height:  600px;
+    width: 450px;
+    border-radius: 25px;
+    overflow-y: hidden;
 }
 
 div.Listingimg{
     background-color: white;
-    height:  325px;
-    width: 525px;
+    height:  279px;
+    width: 450px;
     border-radius: 25px;
     margin-top: 10px;
     overflow: hidden;
@@ -17,6 +18,7 @@ div.Listingimg{
 a.Listing {
     font-size: 30px;
 }
+
 
 /* width */
 #Listingsbar::-webkit-scrollbar {

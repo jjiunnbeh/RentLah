@@ -98,7 +98,7 @@ import {
       <div
         className="col overflow-auto"
         id="Listingsbar"
-        style={{ marginTop: "1%", width: "100%" }}
+        style={{ marginTop: "3%", width: "100%" }}
       >
         <div
           className="row d-flex gap-4 flex-nowrap"
@@ -115,7 +115,7 @@ import {
               
               <div
                 className="col-mx-auto d-grid gap-4"
-                style={{ width: "525px" }}
+                style={{ width: "300px" }}
               >
                 <div className="row justify-content-center">
                   <div className="Listingimg">
@@ -127,15 +127,15 @@ import {
 
                 <div
                   className="row"
-                  style={{ marginTop: "20px", width: "525px" }}
+                  style={{ marginTop: "20px", width: "315px" }}
                 >
-                  <h1 className="text-truncate"> Address: {listing.address}</h1>
+                  <h3 className="text-truncate"> Address: {listing.address}</h3>
                 </div>
                 <div className="row">
-                  <h1> Pricing: {listing.price}</h1>
+                  <h3> Pricing: {listing.price}</h3>
                 </div>
                 <div className="row">
-                  <h1>{listing.bathroom}🛁 {listing.bedroom}🛏️</h1>
+                  <h3>{listing.bathroom}🛁 {listing.bedroom}🛏️</h3>
                 </div>
                 <div className="row">
                 </div>
@@ -144,7 +144,7 @@ import {
                   userType==='Customer' && (
                 <div className="row">
                   <button type="button" className="btn btn-link Listing"
-                   style={{fontSize:"30px"}} onClick={handleAddtoWatchList(listing._id)}>Add to Watchlist</button>
+                   style={{fontSize:"25px"}} onClick={handleAddtoWatchList(listing._id)}>Add to Watchlist</button>
                  
                     
                 </div>
@@ -154,7 +154,7 @@ import {
               
             </div>
           ))}
-          <div className="col" style={{ minWidth: "5%" }} />
+          <div className="col" style={{marginLeft:"4%"}}/>
         </div>
       </div>
     </>

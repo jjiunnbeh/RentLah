@@ -6,7 +6,7 @@ function Triangles() {
   return (
 
 
-    <div>
+    <div style={{}}>
       <div className="lefttriangle"/>
       <div className="rightriangle"/>
     
