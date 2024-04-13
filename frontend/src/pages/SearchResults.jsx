@@ -13,6 +13,7 @@ import {
 } from "../redux/user/userSlice";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import Alert from 'react-bootstrap/Alert';
 
 //import { fetchPropertyListings } from './propertyListings'; // Import the fetchPropertyListings function from your backend API file
 
@@ -88,6 +89,7 @@ const SearchBar = () => {
       }
     }
   };
+  
 
   return (
     <>
@@ -192,25 +194,45 @@ const SearchResults = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const { searchTerm, bedroom, bathroom, lowerPrice, upperPrice } = useParams();
+  const [success, setSuccess] = useState(false);
+  const [notIn, setNotIn] = useState(true);
   const BASE_URL = "http://localhost:3000";
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser);
-  const handleAddtoWatchList = (listingID) => async (event) => {
+  const handleAddtoWatchList = (listingID) => async (event) =>
+  {
     event.preventDefault();
     dispatch(updateUserStart());
-    try {
-      const response = await axios.put(
-        `${BASE_URL}/api/user/add-to-watchlist/${listingID}`,
-        { username: currentUser.username }
-      );
-      if (response.status == 200) {
-        dispatch(updateUserSuccess(response.data.rest));
-        console.log(response.data.rest);
-      }
-    } catch (error) {
-      console.log(error.response.data.message);
+    try
+    {
+        const response = await axios.put(`${BASE_URL}/api/user/add-to-watchlist/${listingID}`, {username: currentUser.username});
+        if (response.status == 200)
+        {
+          console.log("Added to watchlist")
+            dispatch(updateUserSuccess(response.data.rest));
+            console.log(response.data.rest);
+            setSuccess(true);
+            setTimeout(() => {
+              setSuccess(false);
+            }, 2000);
+
+        }
+
+    }catch(error)
+    {
+        console.log(error.response.data.message);
+        const e = error.response.data.message;
+        if (e.type == "watchlist")
+        {
+          setSuccess(true);
+          setNotIn(false);
+          setTimeout(() => {
+            setSuccess(false);
+            setNotIn(true);
+          }, 2000);
+        }
     }
-  };
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -251,6 +273,11 @@ const SearchResults = () => {
             <SearchBar />
             <PropertyListings listings={propertyListings} />
         </div> */}
+        {success && (
+            <Alert  variant={notIn ? "success" : 'primary'} >
+              {notIn ? "Property added to Watchlist." : "Property already in your watchlist."}
+            </Alert>
+          )}
 
       <div className="col justify-content-center">
         <div
