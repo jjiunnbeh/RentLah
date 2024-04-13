@@ -127,12 +127,12 @@ const AgentListings = () => {
             style={{ marginBottom: "3%", marginTop: "3%" }}
           >
             <div className="col-4 d-flex justify-content-center">
-              <PaginationComponent
+            {propertyListings.length > 0 && <PaginationComponent
                 itemsCount={propertyListings.length}
                 itemsPerPage={itemsPerPage}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
-              />
+              />}
             </div>
           </div>
         </>
