@@ -11,11 +11,13 @@ import {
   updateUserStart,
   updateUserSuccess,
 } from "../redux/user/userSlice";
+import Alert from 'react-bootstrap/Alert';
 
 
 const Watchlist = () => {
   const [propertyListings, setPropertyListings] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [deleted, setDeleted] = useState(false);
   const currentUser = useSelector((state) => state.user.currentUser);
   const BASE_URL = "http://localhost:3000";
   const dispatch = useDispatch();
@@ -36,6 +38,10 @@ const Watchlist = () => {
       if (response.status == 200) {
         dispatch(updateUserSuccess(response.data.rest));
         console.log(response.data.rest);
+        setDeleted(true);
+          setTimeout(() => {
+            setDeleted(false);
+          }, 5000);
         window.location.reload();
       }
     } catch (error) {
@@ -76,6 +82,11 @@ const Watchlist = () => {
             <SearchBar />
             <PropertyListings listings={propertyListings} />
         </div> */}
+        {deleted && (
+            <Alert  variant="info" >
+              Property deleted from Watchlist.
+            </Alert>
+          )}
 
           <div className="col justify-content-center">
             <div
