@@ -256,6 +256,11 @@ const SearchResults = () => {
         setPropertyListings(listings.data);
         setCurrentPage(1);
       } catch (error) {
+        const e = error.response.data.message;
+        if (e.message == "No property found")
+        {
+          setPropertyListings([]);
+        }
         console.error(error);
       }
     };
