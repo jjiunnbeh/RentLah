@@ -1,5 +1,4 @@
 import NavBar from "../components/NavBar";
-import { useSelector } from "react-redux";
 import Triangles from "../components/Triangles";
 import "../styles/ListingDetails.css";
 import { Carousel } from "react-bootstrap";
@@ -10,16 +9,61 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+    updateUserFailure,
+    updateUserStart,
+    updateUserSuccess,
+  } from "../redux/user/userSlice";
+  import Alert from 'react-bootstrap/Alert';
 
 function ListingDetails() {
   const userType = useSelector((state) => state.user.currentUser.userType);
   console.log(userType);
   const { id } = useParams();
+  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser);
   const BASE_URL = "http://localhost:3000";
   const [listing, setListing] = useState({});
   const [agent, setAgent] = useState({});
   const navigate = useNavigate();
+  const [success, setSuccess] = useState(false);
+  const [notIn, setNotIn] = useState(true);
+  const handleAddtoWatchList = (listingID) => async (event) =>
+  {
+    event.preventDefault();
+    dispatch(updateUserStart());
+    try
+    {
+        const response = await axios.put(`${BASE_URL}/api/user/add-to-watchlist/${listingID}`, {username: currentUser.username});
+        if (response.status == 200)
+        {
+          console.log("Added to watchlist")
+            dispatch(updateUserSuccess(response.data.rest));
+            console.log(response.data.rest);
+            setSuccess(true);
+            setTimeout(() => {
+              setSuccess(false);
+            }, 2000);
+
+        }
+
+    }catch(error)
+    {
+        console.log(error.response.data.message);
+        const e = error.response.data.message;
+        if (e.type == "watchlist")
+        {
+          setSuccess(true);
+          setNotIn(false);
+          setTimeout(() => {
+            setSuccess(false);
+            setNotIn(true);
+          }, 2000);
+        }
+    }
+  }
+
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -80,6 +124,11 @@ function ListingDetails() {
       </header>
 
       <Triangles />
+      {success && (
+            <Alert  variant={notIn ? "success" : 'primary'} >
+              {notIn ? "Property added to Watchlist." : "Property already in your watchlist."}
+            </Alert>
+          )}
 
       <div className="row">
         <div className="col mt-3 " style={{ marginLeft: "12%" }}>
@@ -168,8 +217,8 @@ function ListingDetails() {
           )}
         </div>
 
-        <div className="col" style={{marginLeft:"4%" }}>
-          <div className="card text-white" id="agentcard" style={{ width:"72%" ,background:"rgb(62, 94, 133)"}}>
+        <div className="col" style={{marginLeft:"4%"}}>
+          <div className="card text-white" id="agentcard" style={{ width:"72%" ,background:"rgb(62, 94, 133)", paddingBottom: "1.5%"}}>
             <div className="card-body">
               <h2 className="card-title">{agent.agentname}</h2>
               <h4 className="card-text" style={{ whiteSpace: "pre-line" }}>
@@ -188,6 +237,15 @@ function ListingDetails() {
               >
                   <h5 style={{color:"black"}}>Contact by <img src={whatsapp} alt="Whatsapp" style={{ height: "2em" }}/></h5>
               </button>
+                      {
+                  userType==='Customer' && (
+                      <div className="row " style={{marginTop:"8%"}}>
+                        <button type="button" className="btn btn-link Listing"
+                        style={{fontSize:"30px", color:"white"}} onClick={handleAddtoWatchList(listing._id)}>Add to Watchlist</button>
+                      
+                </div>
+                     )
+                }
             </div>
           </div>
         </div>

@@ -1,9 +1,10 @@
 import NavBar from "../components/NavBar";
-import { useSelector, useDispatch } from "react-redux";
+
 import Triangles from "../components/Triangles";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../styles/Home.css";
+import { useSelector, useDispatch } from "react-redux";
 import {
     updateUserFailure,
     updateUserStart,
