@@ -61,7 +61,7 @@ const [formData, setFormData] = useState({
 //    images.push(downloadURL);
 // }
 const handleImageSubmit = (e) => {
-  if (files.length > 0 && files.length<4) {
+  if (files.length > 0 && files.length<11) {
     setUploading(true);
     setImageUploadError(false);
      const promises = [];
