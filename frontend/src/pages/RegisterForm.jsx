@@ -192,7 +192,7 @@ const [hideconfirm, setHideConfirm] = useState(true);
                                 onChange={handleChange}
                                 name="agentname"
                                 value={data.agentname}
-                                onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
+                                onKeyDown= {(event)=> (event.key === "Enter") && event.preventDefault()}
                                 required
                                 />
                             </div>
