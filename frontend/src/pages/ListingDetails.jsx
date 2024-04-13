@@ -168,7 +168,7 @@ function ListingDetails() {
           )}
         </div>
 
-        <div className="col" style={{marginLeft:"4%", marginTop:"1%" }}>
+        <div className="col" style={{marginLeft:"4%" }}>
           <div className="card text-white" id="agentcard" style={{ width:"72%" ,background:"rgb(62, 94, 133)"}}>
             <div className="card-body">
               <h2 className="card-title">{agent.agentname}</h2>

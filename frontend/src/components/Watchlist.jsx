@@ -78,10 +78,6 @@ const Watchlist = () => {
             <NavBar userType={userType} />
           </header>
           <Triangles />
-          {/* <div>
-            <SearchBar />
-            <PropertyListings listings={propertyListings} />
-        </div> */}
         {deleted && (
             <Alert  variant="info" >
               Property deleted from Watchlist.
@@ -112,7 +108,7 @@ const Watchlist = () => {
                     {listing.images && (
                       <div className="col-sm-auto">
                         <div className="img-div">
-                          <img src={listing.images[0]}></img>
+                          <img src={listing.images[0]} onClick={()=>{navigate("/listing/" + listing._id)}}></img>
                         </div>
                       </div>
                     )}
