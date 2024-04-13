@@ -78,7 +78,7 @@ async function sendEmail(email, userType, token, id)
             <div className="formcontainer" style={{marginTop:"10%"}}>
                 <form name="changePassword" onSubmit={handleSubmit}>
                 <h1 className="text-center font-weight-bold" style={{color:"white"}}> Enter your email</h1>
-                <div className="row justify-content-center">
+                <div className="row justify-content-center" style={{overflow:"hidden"}}>
                         <label htmlFor="inputEmail" className="col-sm-8 col-sm-7 col-form-label ">
                             Email
                         </label>
@@ -97,7 +97,7 @@ async function sendEmail(email, userType, token, id)
                         </div>
                         <span className="
                         green-text-500
-                        ">{msg.email}</span>
+                        " style={{marginLeft:"30%"}}>{msg.email}</span>
                 </div>
                 <br></br>
 
