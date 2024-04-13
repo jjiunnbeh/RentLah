@@ -137,8 +137,6 @@ import {
                 <div className="row">
                   <h3>{listing.bathroom}🛁 {listing.bedroom}🛏️</h3>
                 </div>
-                <div className="row">
-                </div>
 
                 {
                   userType==='Customer' && (
