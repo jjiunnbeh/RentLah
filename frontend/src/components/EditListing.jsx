@@ -113,7 +113,7 @@ function EditListing() {
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
-          navigate("/agent-listings");
+          navigate("/my-listings");
         }, 1000);
       
 
