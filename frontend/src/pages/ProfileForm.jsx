@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import NavBar from "./NavBar";
-import Triangles from "./Triangles";
+import NavBar from "../components/NavBar";
+import Triangles from "../components/Triangles";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {

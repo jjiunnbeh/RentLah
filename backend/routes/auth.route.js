@@ -1,5 +1,5 @@
 import express from "express";
-import {registerCustomer, registerAgent, loginCustomer, loginAgent, forgetPassword, resetPassword} from "../controllers/auth.controller.js"
+import {registerCustomer, registerAgent, loginCustomer, loginAgent, forgetPassword} from "../controllers/auth.controller.js"
 import { sendEmail } from '../controllers/auth.controller.js'
 
 const router = express.Router();
@@ -14,7 +14,6 @@ router.post("/register-customer", registerCustomer);
 router.post("/register-agent", registerAgent);
 router.post("/login-agent", loginAgent);
 router.post("/login-customer", loginCustomer);
-// router.post("/reset-pass/agent/:id/:token", resetPassword);
-// router.post("/reset-pass/customer/:id/:token", resetPassword);
+
 export default router;
 

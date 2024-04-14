@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-
 import "../styles/RegisterForm.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 import loginimg from '../assets/loginimg.png';
 
 function RegisterForm({ userType }) 
@@ -55,15 +53,6 @@ const [hide, setHide] = useState(true);
           [name]: value,
         }));
     }    
-    // useEffect(() => {
-    //     console.log(error.passwordconfirm);
-    //     console.log(error.password);
-    //     console.log(error.username);
-    //     console.log(error.email);
-    //     console.log(error.phoneNo);
-    //     console.log(error.license);
-    //     // Add more error state variables as needed
-    // }, [error.passwordconfirm, error.password, error.username, error.email, error.phoneNo, error.license]);
 
 
     const handleSubmit = async (event) => 

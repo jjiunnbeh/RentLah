@@ -1,17 +1,10 @@
-import NavBar from "./NavBar";
+import NavBar from "../components/NavBar";
 import { useSelector } from "react-redux";
-import Triangles from "./Triangles";
+import Triangles from "../components/Triangles";
 import "../styles/ListingDetails.css";
 import { Carousel } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import "../styles/ProfileForm.css";
-import {
-  getDownloadURL,
-  getStorage,
-  ref,
-  uploadBytesResumable,
-} from "firebase/storage";
-import { app } from "../firebase";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Alert from 'react-bootstrap/Alert';

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Triangles from "./Triangles";
-import NavBar from "./NavBar";
+import Triangles from "../components/Triangles";
+import NavBar from "../components/NavBar";
 import "../styles/SearchResults.css";
-import PaginationComponent from "./PageNavigator";
+import PaginationComponent from "../components/PageNavigator";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";

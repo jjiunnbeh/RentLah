@@ -15,13 +15,13 @@ import LoginPage from "../pages/LoginPage";
 import ProfileForm from "./ProfileForm";
 import ChangePassword from "../pages/ChangePassword";
 import ListingDetails from "../pages/ListingDetails";
-import ForgetPassword from "./ForgetPasword";
-import CreateListingForm from "./CreateListingForm";
-import ResetPassword from "./ResetPassword";
+import ForgetPassword from "../pages/ForgetPasword";
+import CreateListingForm from "../pages/CreateListingForm";
+import ResetPassword from "../pages/ResetPassword";
 import SearchResults from "../pages/SearchResults";
-import Watchlist from "./Watchlist";
-import EditListing from "./EditListing";
-import AgentListings from "./AgentListings";
+import Watchlist from "../pages/Watchlist";
+import EditListing from "../pages/EditListing";
+import AgentListings from "../pages/AgentListings";
 
 const store = createStore({
   authName: "_auth",
