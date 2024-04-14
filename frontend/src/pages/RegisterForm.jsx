@@ -116,7 +116,6 @@ const [hide, setHide] = useState(true);
                     console.log(e.content);
                     setError({license:e.content});
                 }
-          // Handle register errors 
         }
     }
     
@@ -185,7 +184,6 @@ const [hide, setHide] = useState(true);
                                 required
                                 />
                             </div>
-                            <span className="error">{error.license}</span>
                     </div>
                         <br></br>
                         <div className="row justify-content-center">
@@ -205,7 +203,7 @@ const [hide, setHide] = useState(true);
                                 required
                                 />
                             </div>
-                            <span className="error">{error.agentregnum}</span>
+                            <span className="error">{error.license}</span>
                     </div>
 
                     </>
