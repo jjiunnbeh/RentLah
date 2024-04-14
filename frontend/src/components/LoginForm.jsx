@@ -25,6 +25,7 @@ function LoginForm({ userType })
 // const [errorMessage,setErrorMessage] = useState("");
 const navigate = useNavigate();
 const dispatch = useDispatch();
+const [show, setShow] = useState(false);
 const {loading, errorMessage} = useSelector((state)=>state.user);
 
 
@@ -71,6 +72,7 @@ const {loading, errorMessage} = useSelector((state)=>state.user);
       // Handle login errors 
       console.log(error.response.data);
       dispatch(signInFailure(error.response.data.message));
+      setShow(true);
       setData({
         ...data,
         password: ""
@@ -136,7 +138,7 @@ const {loading, errorMessage} = useSelector((state)=>state.user);
               </button>
               </div>
               <div>
-              {errorMessage && <span id="errormsg">{errorMessage}</span>} 
+              {show && errorMessage && <span id="errormsg">{errorMessage}</span>} 
               </div>
               <div htmlFor="inputPassword3" className="col-sm-8 col-form-label">
               <a href = {"/forget-pass/"+ userType} style={{color: "white"}}> <h4>Forget Password</h4></a>
