@@ -10,6 +10,7 @@
   <img src="./frontend/src/assets/expressserver.png" alt="Express.js logo" style="width: 100px; height: 50px;"/>
   <img src="./frontend/src/assets/nodejs.jpg" alt="Node.js logo" style="width: 100px; height: 50px;"/>
   <img src="./frontend/src/assets/firebase.png" alt="Firebase logo" style="width: 100px; height: 50px;"/>
+  <img src="./frontend/src/assets/git.png" alt="git logo"style="width: 50px; height: 50px;"/>
 </p>
 
 To run this web applicaton, clone this file, then cd into your working directory:
