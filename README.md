@@ -5,11 +5,11 @@
 </p>
 
 <p>
-<img src="./frontend/src/assets/react.svg" alt="React Logo"/>
-<img src="./frontend/src/assets/mongodb.png" alt="MongoDb logo"/>
-<img src="./frontend/src/assets/expressjs.jpg" alt="MongoDb logo"/>
-<img src="./frontend/src/assets/nodejs.jpg" alt="MongoDb logo"/>
-<img src="./frontend/src/assets/firebase.jpg" alt="MongoDb logo"/>
+  <img src="./frontend/src/assets/react.svg" alt="React Logo" style="width: 50px; height: 50px;"/>
+  <img src="./frontend/src/assets/mongodb.png" alt="MongoDb logo" style="width: 50px; height: 50px;"/>
+  <img src="./frontend/src/assets/expressjs.jpg" alt="Express.js logo" style="width: 50px; height: 50px;"/>
+  <img src="./frontend/src/assets/nodejs.jpg" alt="Node.js logo" style="width: 50px; height: 50px;"/>
+  <img src="./frontend/src/assets/firebase.jpg" alt="Firebase logo" style="width: 50px; height: 50px;"/>
 </p>
 
 To run this web applicaton, clone this file, then cd into your working directory:
