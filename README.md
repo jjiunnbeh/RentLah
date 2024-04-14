@@ -4,6 +4,14 @@
   <img src="./frontend/src/assets/Login Choice Screenshot.png" alt="RentLah Login Choice Image" width="800"/>
 </p>
 
+<p>
+<img src="./frontend/src/assets/react.svg" alt="React Logo"/>
+<img src="./frontend/src/assets/mongodb.png" alt="MongoDb logo"/>
+<img src="./frontend/src/assets/expressjs.jpg" alt="MongoDb logo"/>
+<img src="./frontend/src/assets/nodejs.jpg" alt="MongoDb logo"/>
+<img src="./frontend/src/assets/firebase.jpg" alt="MongoDb logo"/>
+</p>
+
 To run this web applicaton, clone this file, then cd into your working directory:
 
 Then run the following code to launch the front end:  
