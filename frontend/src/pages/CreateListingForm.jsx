@@ -111,7 +111,7 @@ function CreateListingForm() {
         setTimeout(() => {
           setSuccess(false);
           window.location.reload();
-        }, 300);
+        }, 1000);
       }
       console.log(response.data);
     } catch (error) {

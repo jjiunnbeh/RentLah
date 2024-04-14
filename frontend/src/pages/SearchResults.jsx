@@ -233,7 +233,7 @@ const SearchResults = () => {
             setSuccess(true);
             setTimeout(() => {
               setSuccess(false);
-            }, 500);
+            }, 1000);
 
         }
 
@@ -248,7 +248,7 @@ const SearchResults = () => {
           setTimeout(() => {
             setSuccess(false);
             setNotIn(true);
-          }, 500);
+          }, 1000);
         }
     }
   }

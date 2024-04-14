@@ -41,7 +41,7 @@ function ListingDetails() {
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
-        }, 2000);
+        }, 1000);
       }
     } catch (error) {
       console.log(error.response.data.message);
@@ -52,7 +52,7 @@ function ListingDetails() {
         setTimeout(() => {
           setSuccess(false);
           setNotIn(true);
-        }, 2000);
+        }, 1000);
       }
     }
   };

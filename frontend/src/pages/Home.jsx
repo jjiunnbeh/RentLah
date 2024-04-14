@@ -52,7 +52,7 @@ import {
             setSuccess(true);
             setTimeout(() => {
               setSuccess(false);
-            }, 500);
+            }, 1000);
 
         }
 
@@ -67,7 +67,7 @@ import {
           setTimeout(() => {
             setSuccess(false);
             setNotIn(true);
-          }, 500);
+          }, 1000);
         }
     }
   }

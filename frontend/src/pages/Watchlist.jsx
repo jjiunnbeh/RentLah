@@ -38,7 +38,7 @@ const Watchlist = () => {
         setTimeout(() => {
           setDeleted(false);
           window.location.reload();
-        }, 500);
+        }, 1000);
         
       }
     } catch (error) {
