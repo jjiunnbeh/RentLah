@@ -185,7 +185,7 @@ const [hide, setHide] = useState(true);
                                 required
                                 />
                             </div>
-                            <span className="error">{error.agentname}</span>
+                            <span className="error">{error.license}</span>
                     </div>
                         <br></br>
                         <div className="row justify-content-center">
