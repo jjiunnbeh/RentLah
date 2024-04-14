@@ -43,13 +43,4 @@ Then in the backend directory, run the following:
 ```
 npm i
 npm run dev
-
 ```
-
-## APIs 
-public housing: 
-https://beta.data.gov.sg/collections/166/view
-
-private housing (URA): 
-https://www.developer.tech.gov.sg/products/categories/data-and-apis/ura-apis/overview.html
-
