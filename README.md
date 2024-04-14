@@ -8,8 +8,8 @@
   <img src="./frontend/src/assets/react.svg" alt="React Logo" style="width: 50px; height: 50px;"/>
   <img src="./frontend/src/assets/mongodb.png" alt="MongoDb logo" style="width: 50px; height: 50px;"/>
   <img src="./frontend/src/assets/expressserver.png" alt="Express.js logo" style="width: 100px; height: 50px;"/>
-  <img src="./frontend/src/assets/nodejsnoback.jpg" alt="Node.js logo" style="width: 100px; height: 50px;"/>
-  <img src="./frontend/src/assets/firebase no back.png" alt="Firebase logo" style="width: 100px; height: 50px;"/>
+  <img src="./frontend/src/assets/nodejs.jpg" alt="Node.js logo" style="width: 100px; height: 50px;"/>
+  <img src="./frontend/src/assets/firebase.png" alt="Firebase logo" style="width: 100px; height: 50px;"/>
 </p>
 
 To run this web applicaton, clone this file, then cd into your working directory:
