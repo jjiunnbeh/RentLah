@@ -106,6 +106,7 @@ function ChangePassword({userType})
                             Old Password
                         </label>
                         <div className="col-sm-8">
+                            <div className="input-group">
                             <input
                             type={hideold ? "password" : "text"}
                             className="form-control"
@@ -117,9 +118,10 @@ function ChangePassword({userType})
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
-                            <button className="btn" onClick={handleClickHideOld} id="monkey-emoji" style={{backgroundColor: "white", marginBottom:"20px"}}>
+                            <button className="btn" onClick={handleClickHideOld} id="monkey-emoji" style={{backgroundColor: "white",}}>
               {hideold ? "🙈" : "🙊"}
               </button>
+                        </div>
                         </div>
                         <span>{error.oldpassword}</span>
                 </div>
@@ -129,6 +131,7 @@ function ChangePassword({userType})
                             New Password
                         </label>
                         <div className="col-sm-8">
+                            <div className="input-group">
                             <input
                             type={hidenew ? "password" : "text"}
                             className="form-control"
@@ -140,9 +143,10 @@ function ChangePassword({userType})
                             onKeyDown= {(event)=> (event.key === "Enter" || event.key ===" ") && event.preventDefault()}
                             required
                             />
-                            <button className="btn" onClick={handleClickHideNew} id="monkey-emoji" style={{backgroundColor: "white", marginBottom:"20px"}}>
+                            <button className="btn" onClick={handleClickHideNew} id="monkey-emoji" style={{backgroundColor: "white",}}>
               {hidenew ? "🙈" : "🙊"}
               </button>
+                        </div>
                         </div>
                         <span>{error.password}</span>
                 </div>
