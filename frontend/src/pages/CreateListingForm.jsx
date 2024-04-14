@@ -111,7 +111,7 @@ function CreateListingForm() {
         setTimeout(() => {
           setSuccess(false);
           window.location.reload();
-        }, 3000);
+        }, 300);
       }
       console.log(response.data);
     } catch (error) {
@@ -293,18 +293,17 @@ function CreateListingForm() {
                   </h1>{" "}
                 </div>
                 <div className="col">
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="Property Description"
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    required
-                    onKeyDown={(event) =>
-                      event.key === "Enter" && event.preventDefault()
-                    }
-                  ></input>
+                <textarea
+    className="form-control"
+    placeholder="Property Description"
+    name="description"
+    value={formData.description}
+    onChange={handleChange}
+    required
+    onKeyDown={(event) => event.key === "Enter" && event.preventDefault()}
+    style={{backgroundColor:"white", color:"black", fontSize:"150%"}}
+    
+></textarea>
                 </div>
               </div>
 
