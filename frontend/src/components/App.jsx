@@ -12,7 +12,7 @@ import createStore from "react-auth-kit/createStore";
 import AuthProvider from "react-auth-kit";
 import RequireAuth from "@auth-kit/react-router/RequireAuth";
 import LoginPage from "../pages/LoginPage";
-import ProfileForm from "./ProfileForm";
+import ProfileForm from "../pages/ProfileForm";
 import ChangePassword from "../pages/ChangePassword";
 import ListingDetails from "../pages/ListingDetails";
 import ForgetPassword from "../pages/ForgetPasword";

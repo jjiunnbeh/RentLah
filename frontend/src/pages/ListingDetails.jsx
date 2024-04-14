@@ -223,7 +223,7 @@ function ListingDetails() {
                   mapStyle="https://www.onemap.gov.sg/maps/json/raster/mbstyle/Default.json"
                   attributionControl={false}
                   style={{
-                    height: "368px",
+                    height: "99.8%",
                     width: "109.3%",
                     borderRadius: "10px",
                   }}

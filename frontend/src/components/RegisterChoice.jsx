@@ -24,7 +24,7 @@ function RegisterChoice()
     <div className="d-grid gap-5 " style={{marginTop:"12%"}}>
       <button onClick={handleClick} name="customer" className="btn btn-primary" type="button" style={{fontSize:"25px"}}>Register as Customer</button>
       <button onClick={handleClick} name="agent" className="btn btn-primary" type="button"style={{fontSize:"25px"}}>Register as Agent</button>
-    <a className="Choice" href="/login"style={{fontSize:"25px"}}>Have account? Login Here</a>
+    <a className="Choice" href="/login"style={{color:"black" ,fontSize:"25px", fontWeight:"bold"}}>Have an account? Login Here</a>
     </div>
 
     <div className="imagecontainer">
