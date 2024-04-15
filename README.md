@@ -18,6 +18,9 @@
 ## Problem Statement:
 
 The high cost of property ownership in Singapore presents a significant barrier for young adults, particularly those between the ages of 22 and 29. This economic reality makes homeownership an unattainable goal for many in this age group, leading to a substantial increase in reliance on the rental market.
+<p align="center">
+  <img src="./frontend/src/assets/1Q2024 Flash Estimate Small Chart.png" alt="Resale Flat Price Index" width="800"/>
+</p>
 
 ## App purpose:
 
