@@ -142,7 +142,6 @@ function CreateListingForm() {
       [name]: value,
     }));
   };
-  // console.log(images);
 
   return (
     <>
@@ -283,7 +282,12 @@ function CreateListingForm() {
                   ></input>
                 </div>
               </div>
-              <span className="error" style={{marginLeft:"35%", marginBottom:"3%"}}>{error.postalCode}</span>
+              <span
+                className="error"
+                style={{ marginLeft: "35%", marginBottom: "3%" }}
+              >
+                {error.postalCode}
+              </span>
 
               <div className="row" style={{ marginBottom: "3%" }}>
                 <div className="col-lg-4">
@@ -293,17 +297,22 @@ function CreateListingForm() {
                   </h1>{" "}
                 </div>
                 <div className="col">
-                <textarea
-    className="form-control"
-    placeholder="Property Description"
-    name="description"
-    value={formData.description}
-    onChange={handleChange}
-    required
-    onKeyDown={(event) => event.key === "Enter" && event.preventDefault()}
-    style={{backgroundColor:"white", color:"black", fontSize:"150%"}}
-    
-></textarea>
+                  <textarea
+                    className="form-control"
+                    placeholder="Property Description"
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                    required
+                    onKeyDown={(event) =>
+                      event.key === "Enter" && event.preventDefault()
+                    }
+                    style={{
+                      backgroundColor: "white",
+                      color: "black",
+                      fontSize: "150%",
+                    }}
+                  ></textarea>
                 </div>
               </div>
 
@@ -349,7 +358,9 @@ function CreateListingForm() {
                   />
                 </div>
                 <div className="col-sm-2 text-center">
-                  <h1 className="text-start font-weight-bold">Monthly Rent: </h1>
+                  <h1 className="text-start font-weight-bold">
+                    Monthly Rent:{" "}
+                  </h1>
                 </div>
                 <div className="col-sm-2 ml-0" style={{ marginLeft: "-2%" }}>
                   <div className="input-group mb-0">
@@ -403,7 +414,6 @@ function CreateListingForm() {
           <p style={{ fontSize: "3em" }}>
             You don't have permission to access this page.
           </p>
-          
         </div>
       )}
     </>

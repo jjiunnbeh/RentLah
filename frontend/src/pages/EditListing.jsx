@@ -7,10 +7,10 @@ import { useState, useEffect } from "react";
 import "../styles/ProfileForm.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Alert from 'react-bootstrap/Alert';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import {useNavigate} from 'react-router-dom';
+import Alert from "react-bootstrap/Alert";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 
 function EditListing() {
   const currentAgent = useSelector((state) => state.user.currentUser.username);
@@ -80,44 +80,36 @@ function EditListing() {
     }));
   };
 
-  const handleDeleteConfirmation = (event) =>
-  {
+  const handleDeleteConfirmation = (event) => {
     event.preventDefault();
     setShow(true);
-  }
-  const handleClose = (event) =>
-  {
+  };
+  const handleClose = (event) => {
     event.preventDefault();
     setShow(false);
+  };
 
-  } 
-
-
-
-  const handleDelete = async (event)=>
-  {
+  const handleDelete = async (event) => {
     event.preventDefault();
     setShow(false);
     try {
-      const response = await axios.delete(`${BASE_URL}/api/listing/delete-listing/${listing._id}`);
-      if (response.status == 200)
-      {
+      const response = await axios.delete(
+        `${BASE_URL}/api/listing/delete-listing/${listing._id}`
+      );
+      if (response.status == 200) {
         setGreen(false);
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
           navigate("/my-listings");
         }, 1000);
-      
-
       }
-  } catch (error) {
-    const e = error.response.data.message;
-    console.log(e);
-  }
-};
+    } catch (error) {
+      const e = error.response.data.message;
+      console.log(e);
+    }
+  };
 
-  
   return (
     <>
       {userType === "Agent" ? (
@@ -338,22 +330,29 @@ function EditListing() {
                     Delete Listing
                   </button>
                   <Modal show={show} onHide={handleClose} animation={false}>
-  <Modal.Header closeButton onClick={handleClose} style={{ backgroundColor: 'white' }}>
-    <Modal.Title style={{ backgroundColor: 'white' }}>{`Are you sure you want to delete ${listing.name}?`}</Modal.Title>
-  </Modal.Header >
-  <Modal.Body style={{ backgroundColor: 'white',  fontWeight: 'bold' }}>
-    This delete is permanent and cannot be undone.
-  </Modal.Body>
-  <Modal.Footer style={{ backgroundColor: 'white' }}>
-    <Button variant="secondary" onClick={handleClose}>
-      No
-    </Button>
-    <Button variant="primary" onClick={handleDelete}>
-      Delete
-    </Button>
-  </Modal.Footer>
-</Modal>
-
+                    <Modal.Header
+                      closeButton
+                      onClick={handleClose}
+                      style={{ backgroundColor: "white" }}
+                    >
+                      <Modal.Title
+                        style={{ backgroundColor: "white" }}
+                      >{`Are you sure you want to delete ${listing.name}?`}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body
+                      style={{ backgroundColor: "white", fontWeight: "bold" }}
+                    >
+                      This delete is permanent and cannot be undone.
+                    </Modal.Body>
+                    <Modal.Footer style={{ backgroundColor: "white" }}>
+                      <Button variant="secondary" onClick={handleClose}>
+                        No
+                      </Button>
+                      <Button variant="primary" onClick={handleDelete}>
+                        Delete
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
                 </div>
               </div>
             </form>

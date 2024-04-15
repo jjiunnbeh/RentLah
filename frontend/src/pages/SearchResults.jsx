@@ -13,7 +13,7 @@ import {
 } from "../redux/user/userSlice";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import Alert from 'react-bootstrap/Alert';
+import Alert from "react-bootstrap/Alert";
 
 //import { fetchPropertyListings } from './propertyListings'; // Import the fetchPropertyListings function from your backend API file
 
@@ -69,8 +69,7 @@ const SearchBar = () => {
         navigate(`/search/${form.searchTerm}`);
       }
     }
-    if (form.searchTerm == "")
-    {
+    if (form.searchTerm == "") {
       if (
         form.bedroom > 0 &&
         form.bathroom > 0 &&
@@ -83,7 +82,6 @@ const SearchBar = () => {
       } else {
         navigate(`/search/all`);
       }
-
     }
   };
 
@@ -105,31 +103,30 @@ const SearchBar = () => {
       }
     }
   };
-  
 
   return (
     <>
-    <div className="row">
-      <div className="input-group">
-        <input
-          className="form-control"
-          type="text"
-          value={form.searchTerm}
-          onChange={handleChange}
-          name="searchTerm"
-          onKeyDown={handleEnter}
-        />
-        <button
-          className="btn btn-dark"
-          style={{ fontSize: "25px" }}
-          type="submit"
-          onClick={handleSearch}
-        >
-          🔍
-        </button>
+      <div className="row">
+        <div className="input-group">
+          <input
+            className="form-control"
+            type="text"
+            value={form.searchTerm}
+            onChange={handleChange}
+            name="searchTerm"
+            onKeyDown={handleEnter}
+          />
+          <button
+            className="btn btn-dark"
+            style={{ fontSize: "25px" }}
+            type="submit"
+            onClick={handleSearch}
+          >
+            🔍
+          </button>
+        </div>
       </div>
-    </div>
-      <Dropdown autoClose={false} drop="start" style={{marginLeft:"86%"}}>
+      <Dropdown autoClose={false} drop="start" style={{ marginLeft: "86%" }}>
         <Dropdown.Toggle
           variant="link"
           id="dropdown-basic"
@@ -143,7 +140,9 @@ const SearchBar = () => {
           <form className="px-0 py-1">
             <div className="row justify-content-center">
               <div className="form-group col-md-3">
-                <label htmlFor="inputbedroom" style={{fontSize:"20px"}}>Bedroom</label>
+                <label htmlFor="inputbedroom" style={{ fontSize: "20px" }}>
+                  Bedroom
+                </label>
                 <input
                   type="number"
                   className="form-control"
@@ -157,7 +156,9 @@ const SearchBar = () => {
               </div>
               <div className="col-md-3" />
               <div className="form-group col-md-3">
-                <label htmlFor="inputbathroom" style={{fontSize:"20px"}}>Bathroom</label>
+                <label htmlFor="inputbathroom" style={{ fontSize: "20px" }}>
+                  Bathroom
+                </label>
                 <input
                   type="number"
                   className="form-control"
@@ -184,7 +185,9 @@ const SearchBar = () => {
                 />
               </div>
               <div className="form-group col-md-3 text-center mt-1">
-                <h5>&lt; &nbsp; &nbsp; &nbsp; Price &nbsp; &nbsp; &nbsp; &gt;</h5>
+                <h5>
+                  &lt; &nbsp; &nbsp; &nbsp; Price &nbsp; &nbsp; &nbsp; &gt;
+                </h5>
               </div>
               <div className="form-group col-md-3">
                 <input
@@ -218,40 +221,36 @@ const SearchResults = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser);
   const navigate = useNavigate();
-  const handleAddtoWatchList = (listingID) => async (event) =>
-  {
+  const handleAddtoWatchList = (listingID) => async (event) => {
     event.preventDefault();
     dispatch(updateUserStart());
-    try
-    {
-        const response = await axios.put(`${BASE_URL}/api/user/add-to-watchlist/${listingID}`, {username: currentUser.username});
-        if (response.status == 200)
-        {
-          console.log("Added to watchlist")
-            dispatch(updateUserSuccess(response.data.rest));
-            console.log(response.data.rest);
-            setSuccess(true);
-            setTimeout(() => {
-              setSuccess(false);
-            }, 1000);
-
-        }
-
-    }catch(error)
-    {
-        console.log(error.response.data.message);
-        const e = error.response.data.message;
-        if (e.type == "watchlist")
-        {
-          setSuccess(true);
-          setNotIn(false);
-          setTimeout(() => {
-            setSuccess(false);
-            setNotIn(true);
-          }, 1000);
-        }
+    try {
+      const response = await axios.put(
+        `${BASE_URL}/api/user/add-to-watchlist/${listingID}`,
+        { username: currentUser.username }
+      );
+      if (response.status == 200) {
+        console.log("Added to watchlist");
+        dispatch(updateUserSuccess(response.data.rest));
+        console.log(response.data.rest);
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+        }, 1000);
+      }
+    } catch (error) {
+      console.log(error.response.data.message);
+      const e = error.response.data.message;
+      if (e.type == "watchlist") {
+        setSuccess(true);
+        setNotIn(false);
+        setTimeout(() => {
+          setSuccess(false);
+          setNotIn(true);
+        }, 1000);
+      }
     }
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -262,7 +261,6 @@ const SearchResults = () => {
           if (bedroom && bathroom && lowerPrice && upperPrice) {
             searchQuery = `search/${searchTerm}/${bedroom}/${bathroom}/${lowerPrice}/${upperPrice}`;
           } else {
-           
             searchQuery = `search/${searchTerm}`;
           }
         }
@@ -275,8 +273,7 @@ const SearchResults = () => {
         setCurrentPage(1);
       } catch (error) {
         const e = error.response.data.message;
-        if (e.message == "No property found")
-        {
+        if (e.message == "No property found") {
           setPropertyListings([]);
         }
         console.error(error);
@@ -293,11 +290,13 @@ const SearchResults = () => {
       </header>
       <Triangles />
 
-        {success && (
-            <Alert  variant={notIn ? "success" : 'warning'} >
-              {notIn ? "Property added to Watchlist." : "Property already in your watchlist."}
-            </Alert>
-          )}
+      {success && (
+        <Alert variant={notIn ? "success" : "warning"}>
+          {notIn
+            ? "Property added to Watchlist."
+            : "Property already in your watchlist."}
+        </Alert>
+      )}
 
       <div className="col justify-content-center">
         <div
@@ -319,7 +318,15 @@ const SearchResults = () => {
               <div className="row" key={listing._id}>
                 <div className="col-sm-auto">
                   <div className="img-div">
-                    {listing.images.length > 0 &&<img src={listing.images[0]} style={{borderRadius:"18px"}} onClick={()=>{navigate("/listing/" + listing._id)}}></img>}
+                    {listing.images.length > 0 && (
+                      <img
+                        src={listing.images[0]}
+                        style={{ borderRadius: "18px" }}
+                        onClick={() => {
+                          navigate("/listing/" + listing._id);
+                        }}
+                      ></img>
+                    )}
                   </div>
                 </div>
 
@@ -339,44 +346,31 @@ const SearchResults = () => {
                 </div>
 
                 <div className="col d-grid align-self-end gap-2">
-                  {/* <div className="row text-end">
-                    <a className="Listing" href={"/listing/" + listing._id}>
-                      {" "}
-                      Learn more...{" "}
-                    </a>
-                  </div> */}
                   <div className="row " style={{ marginTop: "3.5%" }}>
-                      <button
-                        type="button"
-                        className="btn btn-secondary Listing"
-                        style={{
-                          color: "black",
-                          backgroundColor: "transparent",
-                          marginLeft:"50%",
-                          width: "50%",
-                          height: "2.3em",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          fontSize: "25px",
-                          marginBottom:"-3%",
-                          ...(userType==="Agent" &&{marginTop:"-23%"})
-                        }}
-                        onClick={(e)=>{navigate(`/listing/${listing._id}`)}}
-                      >
-                        Learn More
-                      </button>
-                    </div>
-
-                 {/* {userType =="Customer" && <div className="row mb-5 text-end">
-                    <a
-                      className="Listing"
-                      onClick={handleAddtoWatchList(listing._id)}
+                    <button
+                      type="button"
+                      className="btn btn-secondary Listing"
+                      style={{
+                        color: "black",
+                        backgroundColor: "transparent",
+                        marginLeft: "50%",
+                        width: "50%",
+                        height: "2.3em",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: "25px",
+                        marginBottom: "-3%",
+                        ...(userType === "Agent" && { marginTop: "-23%" }),
+                      }}
+                      onClick={(e) => {
+                        navigate(`/listing/${listing._id}`);
+                      }}
                     >
-                      {" "}
-                      Add to watchlist{" "}
-                    </a>
-                  </div>} */}
+                      Learn More
+                    </button>
+                  </div>
+
                   {userType === "Customer" && (
                     <div className="row " style={{ marginTop: "3.5%" }}>
                       <button
@@ -385,8 +379,8 @@ const SearchResults = () => {
                         style={{
                           color: "black",
                           width: "50%",
-                          backgroundColor:"transparent",
-                          marginLeft:"50%",
+                          backgroundColor: "transparent",
+                          marginLeft: "50%",
                           height: "2.3em",
                           display: "flex",
                           alignItems: "center",
@@ -399,9 +393,6 @@ const SearchResults = () => {
                       </button>
                     </div>
                   )}
-
-
-
                 </div>
               </div>
             ))}
@@ -412,12 +403,14 @@ const SearchResults = () => {
         style={{ marginBottom: "3%", marginTop: "3%" }}
       >
         <div className="col-4 d-flex justify-content-center">
-        {propertyListings.length > 0 && <PaginationComponent
-                itemsCount={propertyListings.length}
-                itemsPerPage={itemsPerPage}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-              />}
+          {propertyListings.length > 0 && (
+            <PaginationComponent
+              itemsCount={propertyListings.length}
+              itemsPerPage={itemsPerPage}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          )}
         </div>
       </div>
     </>

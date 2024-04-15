@@ -58,7 +58,7 @@ const AgentListings = () => {
             >
               <button
                 className="btn btn-primary btn"
-                style={{backgroundColor:"rgb(62, 94, 133)"}}
+                style={{ backgroundColor: "rgb(62, 94, 133)" }}
                 onClick={() => {
                   navigate("/create-listing");
                 }}
@@ -87,7 +87,7 @@ const AgentListings = () => {
                           onClick={() => {
                             navigate("/listing/" + listing._id);
                           }}
-                          style={{borderRadius:"18px"}}
+                          style={{ borderRadius: "18px" }}
                         ></img>
                       </div>
                     </div>
@@ -108,67 +108,52 @@ const AgentListings = () => {
                     </div>
 
                     <div className="col d-grid align-self-end gap-2">
-                      {/* <div className="row text-end">
-                        <a className="Listing" href={"/listing/" + listing._id}>
-                          {" "}
-                          Learn more...{" "}
-                        </a>
-                      </div> */}
                       <div className="row ">
-                      <button
-                        type="button"
-                        className="btn btn-secondary Listing"
-                        style={{
-                          color: "black",
-                          backgroundColor: "transparent",
-                          marginLeft:"55%",
-                          width: "45%",
-                          height: "2.3em",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          fontSize: "25px",
-                          marginTop:"-20%"
-                        }}
-                        onClick={(e)=>{navigate(`/listing/${listing._id}`)}}
-                      >
-                        Learn More
-                      </button>
-                    </div>
-
-
-                      {/* <div className="row mb-5 text-end">
-                        <a
-                          className="Listing"
-                          href={"/edit-listing/" + listing._id}
+                        <button
+                          type="button"
+                          className="btn btn-secondary Listing"
+                          style={{
+                            color: "black",
+                            backgroundColor: "transparent",
+                            marginLeft: "55%",
+                            width: "45%",
+                            height: "2.3em",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            fontSize: "25px",
+                            marginTop: "-20%",
+                          }}
+                          onClick={(e) => {
+                            navigate(`/listing/${listing._id}`);
+                          }}
                         >
-                          {" "}
-                          Manage Listing{" "}
-                        </a>
-                      </div> */}
-                      <div className="row " >
-                      <button
-                        type="button"
-                        className="btn btn-secondary Listing"
-                        style={{
-                          color: "black",
-                          backgroundColor: "transparent",
-                          marginLeft:"55%",
-                          width: "45%",
-                          height: "2.3em",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          fontSize: "25px",
-                          marginTop:"-10%"
-
-                        }}
-                        onClick={(e)=>{navigate(`/edit-listing/${listing._id}`)}}
-                      >
-                        Manage Listing
-                      </button>
-                    </div>
-
+                          Learn More
+                        </button>
+                      </div>
+                      <div className="row ">
+                        <button
+                          type="button"
+                          className="btn btn-secondary Listing"
+                          style={{
+                            color: "black",
+                            backgroundColor: "transparent",
+                            marginLeft: "55%",
+                            width: "45%",
+                            height: "2.3em",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            fontSize: "25px",
+                            marginTop: "-10%",
+                          }}
+                          onClick={(e) => {
+                            navigate(`/edit-listing/${listing._id}`);
+                          }}
+                        >
+                          Manage Listing
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -196,7 +181,6 @@ const AgentListings = () => {
           <p style={{ fontSize: "3em" }}>
             You don't have permission to access this page.
           </p>
-          
         </div>
       )}
     </>

@@ -129,12 +129,6 @@ const Watchlist = () => {
                     </div>
 
                     <div className="col d-grid align-self-end gap-2">
-                      {/* <div className="row text-end">
-                        <a className="Listing" href={"/listing/" + listing._id}>
-                          {" "}
-                          Learn more...{" "}
-                        </a>
-                      </div> */}
                       <div className="row " style={{ marginTop: "-25%" }}>
                       <button
                         type="button"
@@ -156,16 +150,6 @@ const Watchlist = () => {
                         Learn More
                       </button>
                     </div>
-
-                      {/* <div className="row mb-5 text-end">
-                        <a
-                          className="Listing"
-                          onClick={handleDeleteWatchList(listing._id)}
-                        >
-                          {" "}
-                          Delete from watchlist{" "}
-                        </a>
-                      </div> */}
                     <div className="row " style={{ marginTop: "-12%" }}>
                       <button
                         type="button"
