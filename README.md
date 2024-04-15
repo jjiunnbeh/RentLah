@@ -1,4 +1,4 @@
-# RentLah : A Real Estate Web Application
+# RentLah! : A Real Estate Web Application
 
 <p align="center">
   <img src="./frontend/src/assets/Login Choice Screenshot.png" alt="RentLah Login Choice Image" width="800"/>
