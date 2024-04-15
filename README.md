@@ -69,6 +69,13 @@ Then in the backend directory, run the following:
 npm i
 npm run dev
 ```
-
+## Contributors ##
+| Name              |                    GitHub Link                    |
+|---|:---:|
+| Jia Jiunn Beh |https://github.com/jjiunnbeh|
+| Kapoor Ananya |https://github.com/ananyakapoor12|      
+| Nguyen Trong Phan |https://github.com/phanng0605|
+| Sakalesh Ashoka Rugi |https://github.com/SakaJoe|
+| Denis Yu Dian |https://github.com/XaviaThe2nd|
 
 
