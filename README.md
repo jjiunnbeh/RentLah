@@ -17,12 +17,12 @@
 
 ## Problem Statement:
 
-The high cost of property ownership in Singapore presents a significant barrier for young adults, particularly those between the ages of 22 and 29. This economic reality makes homeownership an unattainable goal for many in this age group, leading to a substantial increase in reliance on the rental market.
+The high cost of property ownership in Singapore presents a significant barrier for young adults, particularly those between the ages of 22 and 29. This economic reality makes homeownership an unattainable goal for many in this age group, leading to a substantial increase in reliance on the rental market. This is where RentLah! comes in.
 <p align="center">
   <img src="./frontend/src/assets/1Q2024 Flash Estimate Small Chart.png" alt="Resale Flat Price Index" width="400"/>
 </p>
 
-## App purpose:
+## App Purpose:
 
 Our app is targeting young adults in the age group of 22 to 35. We understand the difficulties that they face in securing affordable housing in Singpapore. The Smart Nation Initiative aims to utilize technology to empower Singapore's citizens. Our app, RentLah! embodies this vision by leveraging technology to address the specific challenge young adults nowadays face. RentLah! provides a user friendly platform that will streamline the rental process, making it easier for our users to find a perfect place they can call home in Singapore.
 
