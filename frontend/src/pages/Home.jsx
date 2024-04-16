@@ -1,6 +1,4 @@
 import NavBar from "../components/NavBar";
-
-import Triangles from "../components/Triangles";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../styles/Home.css";
@@ -75,12 +73,10 @@ import {
 
   
   return (
-    <>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       <header>
         <NavBar userType={userType} />
       </header>
-
-      {/* <Triangles /> */}
       {success && (
             <Alert  variant={notIn ? "success" : 'primary'} >
               {notIn ? "Property added to Watchlist." : "Property already in your watchlist."}
@@ -96,7 +92,7 @@ import {
       </div>
 
       <div
-        className="col overflow-auto"
+        className="col overflow-auto vh-100"
         id="Listingsbar"
         style={{ marginTop: "3%", width: "100%" }}
       >
@@ -167,7 +163,7 @@ import {
           <div className="col" style={{marginLeft:"-1%"}}/>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 export default Home;
