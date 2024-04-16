@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img src="./frontend/src/assets/PropertyDetails.png" alt="Property Details Page Screenshot" width="800" style="borderRadius: 20px;"/>
+  <img src="./frontend/src/assets/PropertyDetails.png" alt="Property Details Page Screenshot" width="800" style="borderRadius: 100px;"/>
 </p>
 
 
