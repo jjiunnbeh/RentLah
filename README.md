@@ -2,15 +2,15 @@
 
 
 <p align="center">
-  <img src="./frontend/src/assets/Login Choice Screenshot.png" alt="RentLah Login Choice Screenshot" width="800" style="borderRadius: 20px;"/>
+  <img src="./frontend/src/assets/Login Choice Screenshot.png" alt="RentLah Login Choice Screenshot" width="800" style="border-radius: 20px;"/>
 </p>
 
 <p align="center">
-  <img src="./frontend/src/assets/homepage.jpg" alt="Home Page Screenshot" width="800" style="borderRadius: 20px;"/>
+  <img src="./frontend/src/assets/homepage.jpg" alt="Home Page Screenshot" width="800"/>
 </p>
 
 <p align="center">
-  <img src="./frontend/src/assets/PropertyDetails.png" alt="Property Details Page Screenshot" width="800" style="borderRadius: 100px;"/>
+  <img src="./frontend/src/assets/PropertyDetails.png" alt="Property Details Page Screenshot" width="800"/>
 </p>
 
 
