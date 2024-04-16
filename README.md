@@ -74,14 +74,20 @@ Then in the backend directory, run the following:
 npm i
 npm run dev
 ```
+
+To center the table within the GitHub README.md file, you can use a combination of HTML <div> tags and markdown syntax. Here's how you can do it:
+
+markdown
+Copy code
 <div align="center">
-## Contributors ##
-| Name              |                    GitHub Link                    |
-|---|:---:|
-| Jia Jiunn Beh |https://github.com/jjiunnbeh|
-| Kapoor Ananya |https://github.com/ananyakapoor12|      
-| Nguyen Trong Phan |https://github.com/phanng0605|
-| Sakalesh Ashoka Rugi |https://github.com/SakaJoe|
-| Denis Yu Dian |https://github.com/XaviaThe2nd|
+
+| Name                    | GitHub Link                                 |
+|-------------------------|---------------------------------------------|
+| Jia Jiunn Beh           | [jjiunnbeh](https://github.com/jjiunnbeh)  |
+| Kapoor Ananya           | [ananyakapoor12](https://github.com/ananyakapoor12) |      
+| Nguyen Trong Phan       | [phanng0605](https://github.com/phanng0605)|
+| Sakalesh Ashoka Rugi    | [SakaJoe](https://github.com/SakaJoe)      |
+| Denis Yu Dian           | [XaviaThe2nd](https://github.com/XaviaThe2nd) |
+
 </div>
 
