@@ -1,12 +1,16 @@
 # RentLah! : A Real Estate Web Application
 
 <p align="center">
-  <img src="./frontend/src/assets/Login Choice Screenshot.png" alt="RentLah Login Choice Image" width="800"/>
+  <img src="./frontend/src/assets/Login Choice Screenshot.png" alt="RentLah Login Choice Screenshot" width="800"/>
 </p>
+<p align="center">
+  <img src="./frontend/src/assets/homepage.jpg" alt="Home Page Screenshot" width="800"/>
+</p>
+
 
 ## Tech Stack:
 <p align="center">
-  <img src="./frontend/src/assets/mongodb.png" alt="MongoDb logo" style="width: 50px; height: 50px;"/>
+  <img src="./frontend/src/assets/mongodb.png" alt="MongoDB logo" style="width: 50px; height: 50px;"/>
   <img src="./frontend/src/assets/expressserver.png" alt="Express.js logo" style="width: 100px; height: 50px;"/>
     <img src="./frontend/src/assets/react.svg" alt="React Logo" style="width: 50px; height: 50px;"/>
   <img src="./frontend/src/assets/nodejs.jpg" alt="Node.js logo" style="width: 100px; height: 50px;"/>
@@ -15,9 +19,10 @@
 </p>
 
 
-## Problem Statement:
+## Problem Statement ##
 
 The high cost of property ownership in Singapore presents a significant barrier for young adults, particularly those between the ages of 22 and 29. This economic reality makes homeownership an unattainable goal for many in this age group, leading to a substantial increase in reliance on the rental market. This is where RentLah! comes in.
+
 <p align="center">
   <img src="./frontend/src/assets/1Q2024 Flash Estimate Small Chart.png" alt="Resale Flat Price Index" width="400"/>
 </p>
@@ -27,7 +32,7 @@ The high cost of property ownership in Singapore presents a significant barrier 
 Our app is targeting young adults in the age group of 22 to 35. We understand the difficulties that they face in securing affordable housing in Singpapore. The Smart Nation Initiative aims to utilize technology to empower Singapore's citizens. Our app, RentLah! embodies this vision by leveraging technology to address the specific challenge young adults nowadays face. RentLah! provides a user friendly platform that will streamline the rental process, making it easier for our users to find a perfect place they can call home in Singapore.
 
 
-## To run this web applicaton:
+## To run this web applicaton: ##
 
 Firstly, clone this repo, then cd into your working directory:
 
