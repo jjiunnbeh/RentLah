@@ -74,6 +74,7 @@ Then in the backend directory, run the following:
 npm i
 npm run dev
 ```
+<div align="center">
 ## Contributors ##
 | Name              |                    GitHub Link                    |
 |---|:---:|
@@ -82,5 +83,5 @@ npm run dev
 | Nguyen Trong Phan |https://github.com/phanng0605|
 | Sakalesh Ashoka Rugi |https://github.com/SakaJoe|
 | Denis Yu Dian |https://github.com/XaviaThe2nd|
-
+</div>
 
