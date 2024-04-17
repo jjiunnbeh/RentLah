@@ -132,7 +132,7 @@ function ResetPassword({ userType }) {
                 <button
                   className="btn"
                   onClick={handleClickHideConfirm}
-                  id="monkey-emoji"
+                  id="monkey-emoji2"
                   style={{ backgroundColor: "white" }}
                 >
                   {hideconfirm ? "🙈" : "🙊"}

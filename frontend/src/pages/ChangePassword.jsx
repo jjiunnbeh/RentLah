@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "../styles/RegisterForm.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import useSignOut from "react-auth-kit/hooks/useSignOut";
 import loginimg from "../assets/loginimg.png";
 import {
   updateUserFailure,
@@ -24,6 +24,7 @@ function ChangePassword({ userType }) {
   });
   const [hidenew, setHideNew] = useState(true);
   const [hideold, setHideOld] = useState(true);
+  const signOut = useSignOut();
 
   function handleClickHideOld(event) {
     event.preventDefault();
@@ -44,7 +45,6 @@ function ChangePassword({ userType }) {
     setError({ oldpassword: "", password: "" });
 
     event.preventDefault();
-    console.log(data);
     try {
       dispatch(updateUserStart());
       const response = await axios.post(
@@ -52,6 +52,7 @@ function ChangePassword({ userType }) {
         data
       );
       if (response.status == 200) {
+        signOut();
         navigate("/login/" + userType);
       }
     } catch (error) {
@@ -151,7 +152,7 @@ function ChangePassword({ userType }) {
                 <button
                   className="btn"
                   onClick={handleClickHideNew}
-                  id="monkey-emoji"
+                  id="monkey-emoji2"
                   style={{ backgroundColor: "white" }}
                 >
                   {hidenew ? "🙈" : "🙊"}
